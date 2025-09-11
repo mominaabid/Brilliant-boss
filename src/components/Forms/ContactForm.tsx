@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import {
   MapPin,
   Mail,
   Phone,
-  Facebook,
-  Linkedin,
-  Instagram,
+ 
   Send,
 } from "lucide-react";
 import Header from "../Header";
