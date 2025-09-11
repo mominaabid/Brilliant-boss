@@ -20,7 +20,7 @@ import {
   BenefitChecklistItem,
   ServiceCard,
 } from "../../utils/helper";
-import { useStore } from "../../store/store";
+import { Link } from "react-router-dom";
 
 const MOBILITY_BENEFITS = [
   "Minimising tax costs and risks",
@@ -34,6 +34,7 @@ const MOBILITY_BENEFITS = [
   "Ensuring consistent and fair application of global mobility policies",
   "Streamlining vendor management for all relocation-related services",
 ];
+
 const MOBILITY_SERVICES = [
   {
     icon: <FaHandshake />,
@@ -111,22 +112,19 @@ const MOBILITY_SERVICES = [
 
 // --- Main Page Component ---
 const EmployeeMobilityPage = () => {
-  const { setIsContactFormOpen } = useStore();
   return (
     <div className="bg-gray-50 font-sans">
       <Header />
 
       <main>
         {/* Section 1: Hero */}
-        <section className=" py-20 md:py-28 px-4">
-          <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div className="text-center md:text-left ">
-              <h1 className="text-4xl lg:text-5xl font-extrabold text-[#03254D] leading-tight">
-                Your{" "}
-                <span className="text-red-800">Premier Global Mobility</span>{" "}
-                Specialists in Dubai
+        <section className="py-24 md:py-4 px-4">
+          <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+            <div className="text-center md:text-left">
+              <h1 className="text-3xl md:text-5xl font-extrabold text-[#03254D] mb-4 leading-tight">
+                Your Premier Global Mobility Specialists in Dubai
               </h1>
-              <p className="mt-4 mb-8 text-lg text-gray-600 max-w-3xl">
+              <p className="mt-4 mb-2 text-lg text-gray-600 max-w-3xl">
                 As the leading experts in global mobility, we are dedicated to
                 seamlessly relocating your most valuable asset—your people. We
                 provide end-to-end solutions for mobilising the best talent to
@@ -135,14 +133,14 @@ const EmployeeMobilityPage = () => {
                 with us for a strategic, efficient, and stress-free expansion
                 into the region.
               </p>
-              <div onClick={() => setIsContactFormOpen(true)}>
+              <Link to="/contact">
                 <CallToActionButton
                   text="Contact Us"
-                  className="bg-red-800 hover:bg-red-700"
+                  className="bg-blue-950 text-white"
                 />
-              </div>
+              </Link>
             </div>
-            <div className="h-80 w-full   rounded-lg shadow-lg flex items-center justify-center ">
+            <div className="h-80 w-full rounded-lg shadow-lg flex items-center justify-center">
               <img
                 src="/dubai-overall.jpg"
                 alt="Global Mobility"
@@ -161,17 +159,17 @@ const EmployeeMobilityPage = () => {
               titleClass="text-[#03254D]"
               subtitleClass="text-gray-600"
             />
-            <div onClick={() => setIsContactFormOpen(true)}>
+            <Link to="/contact">
               <CallToActionButton
                 text="Schedule A Call"
                 className="bg-red-800 hover:bg-red-700"
               />
-            </div>
+            </Link>
           </div>
         </section>
 
         {/* Section 3: Benefits */}
-        <section className="pt-20 sm:pb-20 px-4 ">
+        <section className="pt-24 sm:pb-20 px-4">
           <div className="max-w-7xl mx-auto grid md:grid-cols-2 sm:gap-12 gap-2 items-center">
             <div className="md:pr-8">
               <SectionTitle
@@ -191,14 +189,12 @@ const EmployeeMobilityPage = () => {
           </div>
         </section>
 
-        <section className=" py-20 md:py-28 px-4">
+        {/* Section 4: Strategic Advisory */}
+        <section className="py-20 md:py-28 px-4">
           <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div className="text-center md:text-left ">
+            <div className="text-center md:text-left">
               <h1 className="text-3xl md:text-4xl font-bold text-[#03254D]">
-                Comprehensive{" "}
-                <span className="text-red-800">Global Immigration</span> Support
-                and <span className="text-red-800">Strategic Advisory </span>
-                Services
+                Comprehensive <span className="text-blue-950">Global Immigration</span> Support and <span className="text-blue-950">Strategic Advisory</span> Services
               </h1>
               <p className="text-lg mb-4 text-gray-600 mt-2 max-w-3xl mx-auto">
                 Navigating the intricate landscape of global mobility and
@@ -213,14 +209,14 @@ const EmployeeMobilityPage = () => {
                 precision, guaranteeing a smooth, efficient, and stress-free
                 transition for your talent.
               </p>
-              <div onClick={() => setIsContactFormOpen(true)}>
+              <Link to="/contact">
                 <CallToActionButton
                   text="Contact Our Specialist"
-                  className="bg-red-800 hover:bg-red-700"
+                  className="bg-blue-950"
                 />
-              </div>
+              </Link>
             </div>
-            <div className="h-80 w-full rounded-lg shadow-lg flex items-center justify-center ">
+            <div className="h-80 w-full rounded-lg shadow-lg flex items-center justify-right">
               <img
                 src="/immigration.jpg"
                 alt="Global Mobility"
@@ -231,7 +227,7 @@ const EmployeeMobilityPage = () => {
         </section>
 
         {/* Section 5: What We Do */}
-        <section className="py-20 max-sm:py-4 px-4 ">
+        <section className="py-20 max-sm:py-4 px-4">
           <div className="max-w-7xl mx-auto">
             <SectionTitle
               titleClass="text-[#03254D]"
@@ -247,25 +243,26 @@ const EmployeeMobilityPage = () => {
           </div>
         </section>
 
-        <section className="relative text-white  py-24 px-4">
-          <div className="absolute inset-0 bg-red-800 "></div>
+        {/* Section 6: Connect With Us */}
+        <section className="relative text-white py-24 px-4">
+          <div className="absolute inset-0 bg-[#5b0404]" />
           <div className="relative max-w-3xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Connect With Us
             </h2>
-            <p className="text-lg  mb-6">
+            <p className="text-lg mb-6">
               Our global mobility programs are backed by our extensive
               experience. We combine a multi-disciplinary approach with deep
               industry knowledge to help you overcome all the challenges of
               global mobility and start your international operations without
               delay.
             </p>
-            <button
-              onClick={() => setIsContactFormOpen(true)}
-              className="inline-block bg-white cursor-pointer text-red-800 font-bold py-3 px-8 rounded-lg text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
-            >
-              Contact Us Now
-            </button>
+            <Link to="/contact">
+              <CallToActionButton
+                text="Contact Us Now"
+                className="bg-blue-800 text-red-950"
+              />
+            </Link>
           </div>
         </section>
       </main>

@@ -22,19 +22,19 @@ type ServiceCardProps = {
 const ServiceCard = ({ icon, title, description, path }: ServiceCardProps) => (
   <motion.div
     className="
-      relative overflow-hidden bg-white p-6 rounded-lg shadow
+      relative overflow-hidden bg-[#f1eae1] p-6 rounded-lg shadow
       transition-shadow duration-300 hover:shadow-lg
       group cursor-default
     "
     initial={{ opacity: 0, y: 50 }} 
     whileInView={{ opacity: 1, y: 0 }} 
-    transition={{ duration: 0.6, ease: "easeOut" }}
-    viewport={{ once: false, amount: 0.2 }} 
+    transition={{ duration: 0.6, ease: 'easeOut' }}
+    viewport={{ once: true, amount: 0.2 }} 
   >
     {/* Sliding overlay */}
     <div
       className="
-        absolute inset-0 bg-[#03254D] 
+        absolute inset-0 bg-[#01112d] 
         transform -translate-x-full
         transition-transform duration-500 ease-out
         group-hover:translate-x-0
@@ -159,13 +159,25 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className=" py-16 md:py-4 bg-gray-50">
-      <div className="container mx-auto px-4 lg:px-8">
+    <section id="services" className="relative py-16 md:py-20">
+      {/* HR IMAGE BACKGROUND */}
+      <div className="absolute inset-0 w-full h-full -z-10">
+        <img
+          src="/hr.jpg"
+          alt="HR Background"
+          className="w-full h-full object-cover"
+        />
+        {/* Overlay for readability */}
+        <div className="absolute inset-0 bg-black/50"></div>
+      </div>
+
+      {/* CONTENT */}
+      <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#03254D]">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#f1f0ea] drop-shadow-md">
             Services We Offer
           </h2>
-          <p className="mt-2 text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-2 text-lg text-white max-w-2xl mx-auto drop-shadow-md">
             We provide HR solutions for your business in the most flexible and
             affordable way.
           </p>

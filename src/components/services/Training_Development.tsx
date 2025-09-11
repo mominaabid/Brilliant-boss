@@ -3,12 +3,13 @@ import Header from "../Header";
 import { CallToActionButton } from "../../utils/helper";
 import { FaUsers, FaTools } from "react-icons/fa";
 import { HiTrendingUp } from "react-icons/hi";
-import { useStore } from "../../store/store";
+import { Link } from "react-router-dom";
 import {
   HiOutlineUserPlus,
   HiOutlineLightBulb,
   HiOutlineShieldCheck,
 } from "react-icons/hi2";
+
 const ArrowTrendingUpIcon = () => <HiTrendingUp className="h-6 w-6 mr-2 " />;
 const UsersIcon = () => <FaUsers className="h-6 w-6 mr-2 " />;
 const WrenchScrewdriverIcon = () => <FaTools className="h-6 w-6 mr-2 " />;
@@ -25,7 +26,6 @@ interface TabData {
 // --- Main Training & Development Component ---
 export default function TrainingAndDevelopment() {
   const [activeTab, setActiveTab] = useState<TabKey>("leadership");
-  const { setIsContactFormOpen } = useStore();
 
   const benefitsData = [
     {
@@ -47,6 +47,7 @@ export default function TrainingAndDevelopment() {
         "A well-trained workforce is more agile and better equipped to adapt to market changes and new challenges.",
     },
   ];
+
   const tabs: Record<TabKey, TabData> = {
     leadership: {
       title: "Leadership Development",
@@ -74,46 +75,50 @@ export default function TrainingAndDevelopment() {
   return (
     <main className="bg-gray-50 font-sans">
       <Header />
+
       {/* Hero Section */}
-      <section>
-        <div className="container mx-auto max-sm:py-8 px-6 py-20 lg:py-32 grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <p className="text-sm font-semibold tracking-widest uppercase text-[#03254D]">
-              Training & Development
-            </p>
-            <h1 className="text-4xl lg:text-6xl font-extrabold mt-4 leading-tight text-[#03254D]">
-              <span className=" text-red-800">Unlock</span> Your Team's{" "}
-              <span className=" text-red-800">Full Potential</span>
-            </h1>
+      <section className="py-20 md:py-3 px-6">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+          {/* Left Content */}
+          <div className="text-center md:text-left">
+           
+           <h1 className="text-3xl md:text-5xl font-extrabold text-[#03254D] mb-6 leading-snug">
+  <span>Unlock Your Team&apos;s</span> <br />
+  <span>Full Potential</span>
+</h1>
+
             <p className="text-lg lg:text-xl text-gray-600 max-w-2xl mt-6">
-              Go beyond standard training. We design and deliver bespoke
-              development programs that close skill gaps, boost productivity,
-              and create a culture of continuous growth.
+              Go beyond standard training. We design and deliver bespoke development
+              programs that close skill gaps, boost productivity, and create a culture
+              of continuous growth.
             </p>
-            <div className="mt-10" 
-                onClick={() => setIsContactFormOpen(true)}>
-              <CallToActionButton
-                text="Design Your Training Roadmap"
-                className=" bg-red-800 hover:bg-red-700 text-white"
-              />
+            <div className="mt-6">
+              <Link to="/contact">
+                <CallToActionButton
+                  text="Training Roadmap"
+                  className="bg-blue-950 text-white"
+                />
+              </Link>
             </div>
           </div>
-          <div className="hidden lg:flex justify-center items-center">
+
+          {/* Right Image */}
+          <div className="h-80 w-full rounded-lg shadow-lg flex items-start justify-center">
             <img
               src="/services-potential.jpg"
               alt="Training & Development"
-              className="max-w-full h-auto rounded-md "
+              className="object-cover rounded-lg w-full h-full"
             />
           </div>
         </div>
       </section>
 
-      {/* Why Invest Section - Enhanced */}
-      <section className="bg-gray-50 py-12 max-sm:py-8 lg:py-16">
+      {/* Why Invest Section */}
+      <section className="bg-gray-50 py-12 max-sm:py-8 lg:py-26">
         <div className="container mx-auto px-6 text-center max-w-5xl">
           <h2 className="text-3xl lg:text-4xl font-bold text-[#03254D]">
-            Why <span className=" text-red-800">Invest in</span> Your{" "}
-            <span className=" text-red-800">People?</span>
+            Why <span className="text-red-800">Invest in</span> Your{" "}
+            <span className="text-red-800">People?</span>
           </h2>
           <p className="text-lg text-gray-600 mt-6 max-w-3xl mx-auto">
             Strategic investment in employee development is the most powerful
@@ -127,10 +132,7 @@ export default function TrainingAndDevelopment() {
                 key={benefit.title}
                 className="group relative overflow-hidden rounded-lg border border-gray-100 bg-white p-6 shadow-md transition-shadow duration-300 hover:shadow-xl"
               >
-                {/* The slide-in overlay */}
                 <div className="absolute inset-0 z-0 -translate-x-full transform bg-[#03254D] transition-transform duration-500 ease-in-out group-hover:translate-x-0" />
-
-                {/* Content is wrapped in a positioned container to stay on top */}
                 <div className="relative z-10">
                   <div className="mb-4 text-[#03254D] transition-colors duration-300 group-hover:text-white">
                     {benefit.icon}
@@ -149,7 +151,7 @@ export default function TrainingAndDevelopment() {
       </section>
 
       {/* Tabbed Programs Section */}
-      <section className=" py-20 max-sm:py-8 lg:py-24">
+      <section className="py-20 max-sm:py-8 lg:py-24">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16 max-w-3xl mx-auto">
             <h2 className="text-3xl lg:text-4xl font-bold text-[#03254D]">
@@ -193,7 +195,7 @@ export default function TrainingAndDevelopment() {
               <img
                 src={tabs[activeTab].image}
                 alt={tabs[activeTab].title}
-                className="w-full h-full object-cover "
+                className="w-full h-full object-cover"
               />
             </div>
           </div>
@@ -201,23 +203,24 @@ export default function TrainingAndDevelopment() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-red-800">
+      <section className="bg-[#5b0404]">
         <div className="container mx-auto max-sm:py-8 px-6 py-20 text-center text-white">
           <h2 className="text-3xl lg:text-4xl font-bold">
             Build a Skilled, Motivated, and Future-Ready Team
           </h2>
-          <p className="text-lg  max-w-2xl mx-auto mt-4">
+          <p className="text-lg max-w-2xl mx-auto mt-4">
             Let's work together to create a custom training and development
             strategy that aligns with your business objectives and inspires your
             employees.
           </p>
-          <div className="mt-8" 
-                onClick={() => setIsContactFormOpen(true)}>
-            <CallToActionButton
-              text="Get a Custom Consultation"
-              isPrimary={false}
-              className=" text-red-800"
-            />
+          <div className="mt-8">
+            <Link to="/contact">
+              <CallToActionButton
+                text="Get a Custom Consultation"
+                isPrimary={false}
+                className="text-red-800"
+              />
+            </Link>
           </div>
         </div>
       </section>

@@ -11,11 +11,9 @@ import {
   FaCoins,
   FaUserCog,
   FaFileExport,
+  FaUsers,
 } from "react-icons/fa";
-import { useStore } from "../../store/store";
 import { motion } from "framer-motion";
-
-import { FaUsers } from "react-icons/fa";
 import Header from "../Header";
 import {
   CallToActionButton,
@@ -24,6 +22,7 @@ import {
   FeatureIconCard,
   SectionTitle,
 } from "../../utils/helper";
+import { Link } from "react-router-dom"; // If Next.js → use `next/link`
 
 const PAYROLL_PROCESS_STEPS = [
   {
@@ -93,50 +92,67 @@ const PAYROLL_FEATURES = [
 
 // --- Main Page Component ---
 const PayrollOutsourcingPage = () => {
-  const { setIsContactFormOpen } = useStore();
   return (
     <div className="bg-gray-50 font-sans">
       <Header />
 
       <main>
         {/* Section 1: Hero */}
-        <section className=" py-8 md:py-28 px-4 text-center">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-4xl lg:text-5xl font-extrabold text-[#03254D] leading-tight">
-              Your Trusted Partner for{" "}
-              <span className="text-red-800">Payroll Outsourcing</span> Services
-              in the UAE
-            </h1>
-            <p className="mt-4 text-lg text-gray-600">
-              With payroll expertise built over decades, we know what it takes
-              to run payrolls smoothly in compliance with UAE’s Wage Protection
-              System (WPS) regulations.
-            </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <HeroPill
-                icon={<FaShieldAlt className="text-green-500" />}
-                text="WPS Compliant"
-              />
-              <HeroPill
-                icon={<FaUsers className="text-[#03254D]" />}
-                text="Any Business Size"
-              />
-              <HeroPill
-                icon={<FaFileInvoiceDollar className="text-orange-500" />}
-                text="Accurate & Timely"
-              />
+        <section className="relative py-0 md:py-1 px-4 overflow-hidden">
+          <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 w-full h-full">
+            {/* Left Content */}
+            <div className="flex flex-col justify-between py-2 h-full">
+              <div>
+               
+
+                <h1 className="text-3xl md:text-5xl font-extrabold text-[#03254D] mb-4 leading-tight">
+                  Your Trusted Partner for{" "}
+                  <span className="text-blue-950">Payroll Outsourcing</span> Services in the UAE
+                </h1>
+
+                <p className="mt-4 text-lg text-gray-600">
+                  With payroll expertise built over decades, we know what it takes to run
+                  payrolls smoothly in compliance with UAE’s Wage Protection System (WPS) regulations.
+                </p>
+
+                <div className="mt-6 flex flex-wrap gap-4">
+                  <HeroPill
+                    icon={<FaShieldAlt className="text-green-500" />}
+                    text="WPS Compliant"
+                  />
+                  <HeroPill
+                    icon={<FaUsers className="text-[#03254D]" />}
+                    text="Any Business Size"
+                  />
+                  <HeroPill
+                    icon={<FaFileInvoiceDollar className="text-orange-500" />}
+                    text="Accurate & Timely"
+                  />
+                </div>
+              </div>
+
+              {/* CTA Button */}
+              <Link to="/contact">
+                <CallToActionButton
+                  text="Talk to an Expert"
+                  className="mt-8 bg-blue-950 text-white"
+                />
+              </Link>
             </div>
-            <div onClick={() => setIsContactFormOpen(true)}>
-              <CallToActionButton
-                text="Talk to an Expert"
-                className=" bg-red-800 hover:bg-red-700"
+
+            {/* Right Image */}
+            <div className="flex items-center justify-center h-full">
+              <img
+                src="/payroll1.jpg"
+                alt="Payroll Outsourcing"
+                className="rounded-lg shadow-xl w-full h-[400px] object-cover"
               />
             </div>
           </div>
         </section>
 
         {/* Section 2: Introduction */}
-        <section className="py-20 max-sm:py-6 px-4 ">
+        <section className="py-20 max-sm:py-6 px-4">
           <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl font-bold text-[#03254D] mb-4">
@@ -153,18 +169,18 @@ const PayrollOutsourcingPage = () => {
                 comprehensive benefits administration. You can focus on
                 improving customer service and business growth.
               </p>
-              <div onClick={() => setIsContactFormOpen(true)}>
+              <Link to="/contact">
                 <CallToActionButton
                   text="BOOK A FREE CONSULTATION"
                   className="mt-8 bg-red-800 hover:bg-red-700"
                 />
-              </div>
+              </Link>
             </div>
             <div className="h-80 w-full rounded-lg shadow-lg flex items-center justify-center">
               <img
                 src="/compliance.jpg"
                 className="object-cover rounded-lg w-full h-full"
-                alt=""
+                alt="Compliance"
               />
             </div>
           </div>
@@ -172,15 +188,15 @@ const PayrollOutsourcingPage = () => {
 
         {/* Section 3: Services Process Stepper */}
         <motion.section
-          className="py-20 px-4 "
+          className="py-20 max-sm:py-6 px-4"
           initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }} 
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: false, amount: 0.2 }}
         >
-          <div className="max-w-3xl  mx-auto">
+          <div className="max-w-3xl mx-auto">
             <SectionTitle
-              titleClass=" text-[#03254D]"
+              titleClass="text-[#03254D]"
               subtitleClass="text-gray-600"
               title="Our Payroll Outsourcing Process"
               subtitle="We provide comprehensive and scalable WPS payroll services, regardless of your company's size or complexity."
@@ -195,9 +211,9 @@ const PayrollOutsourcingPage = () => {
 
         {/* Section 4: Why Choose Us / Feature Grid */}
         <motion.section
-          className="py-20 max-sm:py-6 px-4 "
-          initial={{ opacity: 0, y: 50 }} 
-          whileInView={{ opacity: 1, y: 0 }} 
+          className="py-20 max-sm:py-6 px-4"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: false, amount: 0.2 }}
         >
@@ -217,8 +233,8 @@ const PayrollOutsourcingPage = () => {
         </motion.section>
 
         {/* Section 5: Final CTA */}
-        <section className="py-20 px-4 ">
-          <div className="max-w-4xl mx-auto bg-red-800 text-white p-12 rounded-lg text-center shadow-2xl">
+        <section className="py-20 px-4">
+          <div className="max-w-4xl mx-auto bg-red-950 text-white p-12 rounded-lg text-center shadow-2xl">
             <h2 className="text-3xl font-bold mb-4">
               Spend Less Time on Payroll. Focus More on Growth.
             </h2>
@@ -227,12 +243,12 @@ const PayrollOutsourcingPage = () => {
               provider, enhanced by digital solutions. Let us handle the
               complexity so you don't have to.
             </p>
-            <button
-              onClick={() => setIsContactFormOpen(true)}
-              className="inline-block bg-white cursor-pointer text-red-800 font-bold py-3 px-8 rounded-lg text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
-            >
-              Find Out More
-            </button>
+            <Link to="/contact">
+              <CallToActionButton
+                text="Find Out More"
+                className="bg-blue-500 text-red-800"
+              />
+            </Link>
           </div>
         </section>
       </main>

@@ -1,7 +1,7 @@
 import { CallToActionButton } from "../../utils/helper";
 import Header from "../Header";
 import { HiOutlineShieldExclamation } from "react-icons/hi2";
-import { useStore } from "../../store/store";
+import { Link } from "react-router-dom";
 import {
   DocumentCheckIcon,
   ClockIcon,
@@ -67,55 +67,54 @@ const ourServicesData = [
 
 // --- Main Visa Stamping Services Component ---
 export default function VisaStampingServices() {
-  const {setIsContactFormOpen } = useStore();
   return (
     <main className="bg-gray-50 font-sans">
       <Header />
+
       {/* Hero Section */}
-      <section>
-        <div className="container mx-auto max-sm:py-8 px-6 py-20 lg:py-32 grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <p className="text-sm font-semibold tracking-widest uppercase text-[#03254D]">
-              Visa Stamping Services
-            </p>
-            <h1 className="text-4xl lg:text-6xl font-extrabold mt-4 leading-tight text-[#03254D]">
-              The <span className="text-red-800">Final Step</span> to Your
-              Destination
+      <section className="relative py-1 md:py-1 px-4 overflow-hidden">
+        <div className="relative max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+          {/* Left Side - Text */}
+          <div className="text-center md:text-left">
+            
+            <h1 className="text-3xl md:text-5xl font-extrabold text-[#03254D] mb-4 leading-tight">
+              The <span className="text-blue-950">Final Step</span> to Your Destination
             </h1>
-            <p className="text-lg lg:text-xl text-gray-600 max-w-2xl mt-6">
-              Navigate the crucial final stage of your visa process with
-              confidence. Our expert service ensures your visa is stamped
-              accurately and efficiently, providing complete peace of mind.
+            <p className="text-base md:text-lg text-gray-600 max-w-xl mb-20 mx-auto md:mx-0">
+              Navigate the crucial final stage of your visa process with confidence. 
+              Our expert service ensures your visa is stamped accurately and efficiently, 
+              providing complete peace of mind.
             </p>
-            <div className="mt-10" 
-                onClick={() => setIsContactFormOpen(true)}>
+            <Link to="/contact">
               <CallToActionButton
                 text="Secure Your Visa Stamp"
-                className=" bg-red-800 hover:bg-red-700 text-white"
+                className="bg-blue-950 text-white"
               />
-            </div>
+            </Link>
           </div>
-          <div className="hidden lg:flex justify-center items-center">
+
+          {/* Right Side - Image */}
+          <div className="h-64 md:h-80 w-full rounded-lg overflow-hidden shadow-lg flex justify-center md:justify-end">
             <img
               src="/services-visa-stamping.jpg"
-              alt="Visa Stamping Hero "
-              className="max-w-full  h-auto rounded-md"
+              alt="Visa Stamping Hero"
+              className="w-full h-full object-cover rounded-lg"
             />
           </div>
         </div>
       </section>
 
-      {/* Why It Matters Section - Enhanced */}
+      {/* Why It Matters Section */}
       <section className="bg-gray-50 py-12 max-sm:py-8 lg:py-16">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center bg-white p-8 lg:p-12 rounded-2xl shadow-lg border border-gray-200">
+          <div className="max-w-4xl mx-auto text-center bg-gray-100 p-8 lg:p-12 rounded-2xl shadow-lg border border-gray-200">
             <div className="flex justify-center mb-6">
               <HiOutlineShieldExclamation className="h-16 w-16 text-red-800" />
             </div>
 
             <h2 className="text-3xl lg:text-4xl font-bold text-[#03254D]">
-              Don't <span className=" text-red-800">Overlook</span> the{" "}
-              <span className=" text-red-800">Final Hurdle</span>
+              Don't <span className="text-red-800">Overlook</span> the{" "}
+              <span className="text-red-800">Final Hurdle</span>
             </h2>
 
             <p className="text-lg text-gray-600 mt-6">
@@ -133,7 +132,7 @@ export default function VisaStampingServices() {
       </section>
 
       {/* Our Services Grid */}
-      <section className=" py-20 max-sm:py-8 lg:py-24">
+      <section className=" py-12 max-sm:py-8 lg:py-16">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16 max-w-3xl mx-auto">
             <h2 className="text-3xl lg:text-4xl font-bold text-[#03254D]">
@@ -153,7 +152,7 @@ export default function VisaStampingServices() {
                 <div className="absolute inset-0 z-0 -translate-x-full transform bg-[#03254D] transition-transform duration-500 ease-in-out group-hover:translate-x-0" />
 
                 <div className="relative z-10 flex items-start space-x-6">
-                  <div className="flex-shrink-0v bg-[#03254D] text-white rounded-full p-4  transition-colors duration-300 group-hover:bg-white group-hover:text-[#03254D]">
+                  <div className="flex-shrink-0 bg-[#03254D] text-white rounded-full p-4 transition-colors duration-300 group-hover:bg-white group-hover:text-[#03254D]">
                     {service.icon}
                   </div>
                   <div>
@@ -172,23 +171,24 @@ export default function VisaStampingServices() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-red-800">
+      <section className="bg-[#5b0404] ">
         <div className="container mx-auto px-6 max-sm:py-8 py-20 text-center text-white">
           <h2 className="text-3xl lg:text-4xl font-bold">
             Finalize Your Journey with Confidence
           </h2>
-          <p className="text-lg  max-w-2xl mx-auto mt-4">
+          <p className="text-lg max-w-2xl mx-auto mt-4">
             Let our experts handle the complexities of visa stamping so you can
             focus on your upcoming travel or new role. Contact us today to get
             started.
           </p>
-          <div className="mt-8" 
-                onClick={() => setIsContactFormOpen(true)}>
-            <CallToActionButton
-              text="Contact Us for Stamping Services"
-              isPrimary={false}
-              className=" text-red-800"
-            />
+          <div className="mt-8">
+            <Link to="/contact">
+              <CallToActionButton
+                text="Contact Us for Stamping Services"
+                isPrimary={false}
+                className="text-red-800"
+              />
+            </Link>
           </div>
         </div>
       </section>

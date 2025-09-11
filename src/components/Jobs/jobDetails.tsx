@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import type { Job } from "../types";
 import { motion } from "framer-motion";
 import { MdCheckCircle, MdArrowForward } from "react-icons/md";
@@ -9,17 +9,27 @@ interface ModalProps {
   onApply: () => void;
 }
 
-// Animation variants for the backdrop
+// Animation variants
 const backdropVariants = {
   visible: { opacity: 1 },
   hidden: { opacity: 0 },
 };
 
-const JobDetailsModal: React.FC<ModalProps> = ({
-  job,
-  onClose,
-  onApply
-}) => {
+const modalVariants = {
+  hidden: { opacity: 0, scale: 0.9, y: 50 },
+  visible: { opacity: 1, scale: 1, y: 0 },
+  exit: { opacity: 0, scale: 0.9, y: 50 },
+};
+
+const JobDetailsModal: React.FC<ModalProps> = ({ job, onClose, onApply }) => {
+  // 🔒 Lock body scroll when modal is open
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   return (
     <motion.div
       className="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 flex justify-center items-center p-4"
@@ -32,6 +42,11 @@ const JobDetailsModal: React.FC<ModalProps> = ({
     >
       <motion.div
         className="bg-white rounded-lg shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col"
+        variants={modalVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        transition={{ duration: 0.25, ease: "easeOut" }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
@@ -82,7 +97,7 @@ const JobDetailsModal: React.FC<ModalProps> = ({
         <div className="sticky bottom-0 bg-white border-t border-gray-200 px-8 py-4 rounded-b-lg flex justify-end space-x-4">
           <button
             onClick={onClose}
-            className="px-6 py-2 cursor-pointer font-semibold text-gray-600 bg-gray-200 rounded-md hover:bg-gray-300 transition-colors duration-200 "
+            className="px-6 py-2 cursor-pointer font-semibold text-gray-600 bg-gray-200 rounded-md hover:bg-gray-300 transition-colors duration-200"
           >
             Close
           </button>

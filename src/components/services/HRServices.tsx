@@ -1,6 +1,6 @@
 import Header from "../Header";
 import { CallToActionButton } from "../../utils/helper";
-import { useStore } from "../../store/store";
+import { Link } from "react-router-dom";
 import {
   HiOutlineCheckBadge,
   HiOutlineLifebuoy,
@@ -10,38 +10,50 @@ import {
 
 // --- Main HR Services Component ---
 export default function HrServices() {
-  const { setIsContactFormOpen } = useStore();
   return (
     <main className="bg-gray-50 font-sans">
       <Header />
+
       {/* Hero Section */}
-      <section className="bg-[#03254D] text-white">
-        <div className="container mx-auto px-6 py-20 max-sm:py-8 lg:py-32 text-center">
-          <p className="text-sm font-semibold tracking-widest uppercase ">
-            HR Services
-          </p>
-          <h1 className="text-4xl lg:text-6xl font-extrabold mt-4 leading-tight">
-            Flexible HR Solutions for Modern Business
-          </h1>
-          <p className="text-lg lg:text-xl  max-w-3xl mx-auto mt-6">
-            From streamlining administrative tasks to comprehensive outsourced
-            HR management, we provide the technology and expert support to help
-            you achieve your goals.
-          </p>
-          <div className="mt-10" 
-                onClick={() => setIsContactFormOpen(true)}>
-            <CallToActionButton text="Explore Our Services" isPrimary={false} />
+      <section className="relative py-1 md:py-1 px-4 overflow-hidden bg-white text-blue-950">
+        <div className="relative max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+          {/* Left Side - Text */}
+          <div className="text-center md:text-left">
+            
+            <h1 className="text-3xl md:text-5xl font-extrabold text-[#03254D] mb-4 leading-tight">
+              Flexible HR Solutions for Modern Business
+            </h1>
+            <p className="text-base md:text-lg max-w-xl mb-8 mx-auto md:mx-0">
+              From streamlining administrative tasks to comprehensive outsourced 
+              HR management, we provide the technology and expert support 
+              to help you achieve your goals.
+            </p>
+            <Link to="/">
+              <CallToActionButton 
+                text="Explore Our Services" 
+                className="bg-blue-950 text-white"
+              />
+            </Link>
+          </div>
+
+          {/* Right Side - Image */}
+          <div className="h-64 md:h-80 w-full rounded-lg overflow-hidden shadow-lg flex justify-center md:justify-end">
+            <img
+              src="/hr2.jpg"
+              alt="HR Services"
+              className="w-full h-full object-cover rounded-lg"
+            />
           </div>
         </div>
       </section>
 
       {/* Intro & Stats Section */}
-      <section className=" py-20 max-sm:py-8 lg:py-24">
+      <section className="bg-gray-50 py-20 max-sm:py-8 lg:py-34">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-3 gap-12 items-center">
             <div className="lg:col-span-2 text-gray-600">
               <h2 className="text-3xl lg:text-4xl font-bold text-[#03254D]">
-                Your <span className=" text-red-800">Partner in</span> an Increasingly <span className=" text-red-800">Complex World</span>
+                Your <span className="text-blue-950">Partner in</span> an Increasingly <span className="text-blue-950">Complex World</span>
               </h2>
               <p className="mt-6 text-lg">
                 Since 2012, we've provided expert HR services across the Gulf
@@ -85,7 +97,7 @@ export default function HrServices() {
             <div>
               <HiOutlineCog6Tooth className="h-12 w-12 text-[#03254D]" />
               <h3 className="text-3xl font-bold text-[#03254D] mt-4">
-                <span className=" text-red-800">Automated </span>Benefits Administration
+                <span className="text-red-800">Automated </span>Benefits Administration
               </h3>
               <p className="mt-4 text-lg text-gray-600">
                 Simplify one of HR's most complex and time-consuming tasks. We
@@ -112,7 +124,7 @@ export default function HrServices() {
             <div>
               <HiOutlineFolder className="h-12 w-12 text-[#03254D]" />
               <h3 className="text-3xl font-bold text-[#03254D] mt-4">
-                <span className=" text-red-800">Efficient</span> Records Administration <span className=" text-red-800">(HRMS)</span>
+                <span className="text-red-800">Efficient</span> Records Administration <span className="text-red-800">(HRMS)</span>
               </h3>
               <p className="mt-4 text-lg text-gray-600">
                 With over a decade of experience, we deliver robust,
@@ -139,7 +151,7 @@ export default function HrServices() {
             <div>
               <HiOutlineLifebuoy className="h-12 w-12 text-[#03254D]" />
               <h3 className="text-3xl font-bold text-[#03254D] mt-4">
-                <span className=" text-red-800">Custom HR Support</span> for Your Business
+                <span className="text-red-800">Custom HR Support</span> for Your Business
               </h3>
               <p className="mt-4 text-lg text-gray-600">
                 Get the expert HR help you need, precisely when you need it. We
@@ -165,7 +177,7 @@ export default function HrServices() {
             <div>
               <HiOutlineCheckBadge className="h-12 w-12 text-[#03254D]" />
               <h3 className="text-3xl font-bold text-[#03254D] mt-4">
-                Essential <span className=" text-red-800">Compliance Services</span>
+                Essential <span className="text-red-800">Compliance Services</span>
               </h3>
               <p className="mt-4 text-lg text-gray-600">
                 Don't let the complexity of UAE Labour Law become a burden. We
@@ -182,19 +194,24 @@ export default function HrServices() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-red-800">
+      <section className="bg-[#5b0404]">
         <div className="container mx-auto px-6 py-20 max-sm:py-8 text-center text-white">
           <h2 className="text-3xl lg:text-4xl font-bold">
             Optimize Your HR Operations Today
           </h2>
-          <p className="text-lg  max-w-2xl mx-auto mt-4">
+          <p className="text-lg max-w-2xl mx-auto mt-4">
             Whether you need to streamline a single process or require a fully
             outsourced solution, we're here to help. Contact us for a
             consultation.
           </p>
-          <div className="mt-8" 
-                onClick={() => setIsContactFormOpen(true)}>
-            <CallToActionButton text="Get a Custom Quote" isPrimary={false} className=" text-red-800" />
+          <div className="mt-8">
+            <Link to="/contact">
+              <CallToActionButton 
+                text="Get a Custom Quote" 
+                isPrimary={false} 
+                className="text-red-800" 
+              />
+            </Link>
           </div>
         </div>
       </section>

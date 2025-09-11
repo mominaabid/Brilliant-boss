@@ -1,6 +1,6 @@
 import Header from "../Header";
 import { CallToActionButton } from "../../utils/helper";
-import { useStore } from "../../store/store";
+import { Link } from "react-router-dom";
 import {
   FaNetworkWired,
   FaBalanceScale,
@@ -69,6 +69,7 @@ const ourApproachData = [
       "We aim to be your long-term partner, helping you build a sustainable pipeline of national talent for future leadership roles.",
   },
 ];
+
 const sectors = [
   "Government & Public Sector",
   "Banking & Finance",
@@ -89,38 +90,50 @@ const sectors = [
   "Sovereign Wealth Funds",
   "Oil & Gas",
 ];
+
 // --- Main National Recruitment Component ---
 export default function SaudiEmiratiNationalRecruitment() {
-    const { setIsContactFormOpen } = useStore();
   return (
     <main className="bg-gray-50 font-sans">
       <Header />
+
       {/* Hero Section */}
-      <section className="bg-[#03254D] text-white">
-        <div className="container mx-auto px-6 py-20 max-sm:py-8 lg:py-32 text-center">
-          <p className="text-sm font-semibold tracking-widest uppercase ">
-            Saudi & Emirati National Recruitment
-          </p>
-          <h1 className="text-4xl lg:text-6xl font-extrabold mt-4 leading-tight">
-            Empowering Your Workforce with National Talent
-          </h1>
-          <p className="text-lg lg:text-xl  max-w-3xl mx-auto mt-6">
-            We are your strategic partner in achieving nationalization goals,
-            connecting you with top-tier Saudi and Emirati professionals who
-            will drive your business forward.
-          </p>
-          <div className="mt-10" 
-                onClick={() => setIsContactFormOpen(true)}>
-            <CallToActionButton
-              text="Achieve Your Nationalization Goals"
-              isPrimary={false}
+      <section className="py-24 md:py-4 px-6">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+          {/* Left Text */}
+          <div className="text-center md:text-left">
+           
+            <h1 className="text-3xl md:text-5xl font-extrabold text-[#03254D] mb-4 leading-tight">
+              Empowering Your Workforce with National Talent
+            </h1>
+            <p className="text-lg lg:text-xl text-gray-600 max-w-2xl mt-6">
+              We are your strategic partner in achieving nationalization goals,
+              connecting you with top-tier Saudi and Emirati professionals who
+              will drive your business forward.
+            </p>
+            <div className="mt-1 flex gap-4 justify-center md:justify-start">
+              <Link to="/contact">
+                <CallToActionButton
+                  text="Achieve Your Nationalization"
+                  className="bg-blue-950 text-white"
+                />
+              </Link>
+            </div>
+          </div>
+
+          {/* Right Image */}
+          <div className="h-80 w-full rounded-lg shadow-lg flex items-center justify-center">
+            <img
+              src="/saudi.jpg"
+              alt="Saudi & Emirati National Recruitment"
+              className="object-cover rounded-lg w-full h-full"
             />
           </div>
         </div>
       </section>
 
       {/* Intro Section */}
-      <section className=" py-20 max-sm:py-8 lg:py-24">
+      <section className="py-20 max-sm:py-8 lg:py-24">
         <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center">
           <div className="rounded-lg overflow-hidden shadow-2xl">
             <img
@@ -131,8 +144,8 @@ export default function SaudiEmiratiNationalRecruitment() {
           </div>
           <div className="text-gray-600">
             <h2 className="text-3xl lg:text-4xl font-bold text-[#03254D]">
-              <span className=" text-red-800">Harness</span> the Power of{" "}
-              <span className=" text-red-800">Local Expertise</span>
+              <span className="text-red-800">Harness</span> the Power of{" "}
+              <span className="text-red-800">Local Expertise</span>
             </h2>
             <p className="mt-6 text-lg">
               In line with government initiatives like Saudization and
@@ -151,11 +164,11 @@ export default function SaudiEmiratiNationalRecruitment() {
       </section>
 
       {/* Our Approach Section */}
-      <section className=" py-20 max-sm:py-8 lg:py-24">
+      <section className="py-20 max-sm:py-8 lg:py-24">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16 max-w-3xl mx-auto">
             <h2 className="text-3xl lg:text-4xl font-bold text-[#03254D]">
-              A <span className=" text-red-800">Strategic Approach</span> to
+              A <span className="text-red-800">Strategic Approach</span> to
               National Recruitment
             </h2>
             <p className="text-lg text-gray-600 mt-4">
@@ -191,7 +204,7 @@ export default function SaudiEmiratiNationalRecruitment() {
       <section className="py-20 max-sm:py-8 lg:py-24">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold text-[#03254D]">
-            Connecting <span className=" text-red-800">National Talent</span> Across Key Sectors
+            Connecting <span className="text-red-800">National Talent</span> Across Key Sectors
           </h2>
           <p className="text-lg text-gray-600 mt-4 max-w-3xl mx-auto">
             Our specialization covers the most vital industries driving the
@@ -211,7 +224,7 @@ export default function SaudiEmiratiNationalRecruitment() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-red-800">
+      <section className="bg-red-950">
         <div className="container mx-auto px-6 max-sm:py-8 py-20 text-center text-white">
           <h2 className="text-3xl lg:text-4xl font-bold">
             Build a Stronger, Localized Workforce
@@ -221,13 +234,14 @@ export default function SaudiEmiratiNationalRecruitment() {
             potential of local talent. Let's discuss your specific recruitment
             needs.
           </p>
-          <div className="mt-8" 
-                onClick={() => setIsContactFormOpen(true)}>
-            <CallToActionButton
-              text="Consult with Our Specialists"
-              className=" text-red-800"
-              isPrimary={false}
-            />
+          <div className="mt-8">
+            <Link to="/contact">
+              <CallToActionButton
+                text="Consult with Our Specialists"
+                className="text-red-800"
+                isPrimary={false}
+              />
+            </Link>
           </div>
         </div>
       </section>

@@ -1,135 +1,191 @@
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
+import {
+  MapPin,
+  Mail,
+  Phone,
+  Facebook,
+  Linkedin,
+  Instagram,
+  Send,
+} from "lucide-react";
+import Header from "../Header";
+import { motion } from "framer-motion";
 
-// --- Input component ---
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label: string;
-}
-const Input: React.FC<InputProps> = ({ label, ...props }) => (
-  <div>
-    <label className="block text-sm font-medium text-gray-700 mb-1">
-      {label}
-    </label>
-    <input
-      {...props}
-      className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm "
-    />
-  </div>
-);
+const ContactForm = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  });
 
-// --- Contact Form Modal ---
-interface ContactFormModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-const ContactForm: React.FC<ContactFormModalProps> = ({ isOpen, onClose }) => {
-  const [resumeName, setResumeName] = useState("");
-  const [isShowing, setIsShowing] = useState(false);
-  const [isClosing, setIsClosing] = useState(false);
-
-  useEffect(() => {
-    if (isOpen) {
-      setIsShowing(true);
-      setIsClosing(false);
-    }
-  }, [isOpen]);
-
-  if (!isOpen) return null;
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files[0]) {
-      setResumeName(event.target.files[0].name);
-    } else {
-      setResumeName("");
-    }
+  const handleChange = (e: any) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleClose = () => {
-    setIsClosing(true);
-    setTimeout(() => {
-      setIsShowing(false);
-      onClose();
-    }, 300);
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
   };
 
   return (
-    <div
-      className={`fixed inset-0 z-50 flex justify-center items-center p-4 
-                  bg-slate-900/70 backdrop-blur-sm
-                  transition-opacity duration-300 ease-in-out
-                  ${isShowing && !isClosing ? "opacity-100" : "opacity-0"}`}
-    >
-      <div
-        className={`bg-white rounded-lg shadow-2xl p-8 w-full max-w-lg relative
-                    transform transition-all duration-300 ease-in-out
-                    ${
-                      isShowing && !isClosing
-                        ? "opacity-100 scale-100"
-                        : "opacity-0 scale-95"
-                    }`}
+    <>
+      <Header />
+      <div className="min-h-screen bg-gray-50">
+        {/* Hero Section */}
+     <section
+        className="relative h-[180px] sm:h-[220px] flex items-center justify-center bg-cover bg-center"
+        style={{ backgroundImage: "url('/banner.jpg')" }}
       >
-        <button
-          onClick={handleClose}
-          className="absolute top-4 cursor-pointer right-4 text-gray-400 hover:text-gray-600 transition-colors"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"
-            />
-          </svg>
-        </button>
-        <h2 className="text-2xl font-bold text-gray-800 mb-6">Contact Us</h2>
-        <form className="space-y-4">
-          <Input
-            label="Full Name"
-            type="text"
-            placeholder="John Doe"
-            required
-          />
-          <Input
-            label="Mobile Number"
-            type="tel"
-            placeholder="+971 50 123 4567"
-            required
-          />
-          <Input
-            label="Nationality"
-            type="text"
-            placeholder="Emirati"
-            required
-          />
-          <Input
-            label="Email Address"
-            type="email"
-            placeholder="you@example.com"
-            required
-          />
-          <div>
-          {/* message box */}
-          <textarea
-            className="w-full px-3 py-2 resize-none border border-gray-300 rounded-md shadow-sm "
-            rows={4}
-            placeholder="Your message..."
-            required
-          ></textarea>
+        <div className="absolute inset-0 bg-black/50"></div>
+        <h1 className="relative text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center">
+          Reach Out To Us
+        </h1>
+      </section>
+
+
+        {/* Contact Info Cards */}
+        <section className="py-4 bg-white">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="grid md:grid-cols-3 gap-4 mb-4">
+              {/* Address */}
+              <motion.div
+                className="text-center p-4"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
+                <div className="w-14 h-14 mx-auto mb-3 rounded-full border-2 border-blue-300 border-dashed flex items-center justify-center">
+                  <MapPin className="w-6 h-6 text-blue-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-800 mb-1">
+                  Our Address
+                </h3>
+                <p className="text-gray-600 text-sm">
+                  Dubai, United Arab Emirates
+                </p>
+              </motion.div>
+
+              {/* Email */}
+              <motion.div
+                className="text-center p-4"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <div className="w-14 h-14 mx-auto mb-3 rounded-full border-2 border-blue-300 border-dashed flex items-center justify-center">
+                  <Mail className="w-6 h-6 text-blue-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-800 mb-1">
+                  Email Us
+                </h3>
+                <p className="text-gray-600 text-sm">info@brilliantboss.com</p>
+              </motion.div>
+
+              {/* Phone */}
+              <motion.div
+                className="text-center p-4"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
+                <div className="w-14 h-14 mx-auto mb-3 rounded-full border-2 border-blue-300 border-dashed flex items-center justify-center">
+                  <Phone className="w-6 h-6 text-blue-600" />
+                </div>
+                <h3 className="text-lg font-bold text-gray-800 mb-1">
+                  Call Us
+                </h3>
+                <p className="text-gray-600 text-sm">+971 50 123 4567</p>
+              </motion.div>
+            </div>
           </div>
-          <button
-            type="submit"
-            className={`mt-6 cursor-pointer flex w-full items-center justify-center font-bold py-2 px-8 rounded-lg text-lg transition-all duration-300 transform bg-[#03254D]  text-white hover:bg-[#03254D]/90`}
-          >
-            Contact
-          </button>
-        </form>
+        </section>
+
+        {/* Main Content */}
+        <section className="py-20 mb-20 bg-gray-200">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="grid lg:grid-cols-2 gap-8 items-stretch">
+              {/* Map */}
+              <motion.div
+                className="bg-white rounded-xl overflow-hidden shadow-md h-full"
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d115507.7162034715!2d55.1952143!3d25.2161648!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f137659781879%3A0x2bc5182a005bbd8f!2sBrilliant%20Boss%20HR%20Consultancy!5e0!3m2!1sen!2s!4v1757413554897!5m2!1sen!2s"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="w-full h-full min-h-[300px]"
+                />
+              </motion.div>
+
+              {/* Contact Form */}
+              <motion.div
+                className="bg-white rounded-xl shadow-md p-5 h-full flex flex-col justify-between"
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <div className="space-y-3 flex-1">
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Your Name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full border border-gray-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Your Email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full border border-gray-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  />
+                  <input
+                    type="text"
+                    name="subject"
+                    placeholder="Subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    className="w-full border border-gray-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                  />
+                  <textarea
+                    name="message"
+                    placeholder="Message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows={4}
+                    className="w-full border border-gray-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
+                  />
+                </div>
+
+                <button
+                  onClick={handleSubmit}
+                  className="w-full bg-blue-950 text-white py-2.5 rounded-lg font-semibold flex items-center justify-center space-x-2 mt-3 hover:bg-red-900 transition"
+                >
+                  <Send className="w-5 h-5" />
+                  <span>Send Message</span>
+                </button>
+              </motion.div>
+            </div>
+          </div>
+        </section>
       </div>
-    </div>
+    </>
   );
 };
 

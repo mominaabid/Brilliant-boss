@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaRegClock, FaProjectDiagram, FaCalendarAlt } from "react-icons/fa";
 import Header from "../Header";
 import { CallToActionButton } from "../../utils/helper";
-import { useStore } from "../../store/store";
+import { Link } from "react-router-dom";
 
 interface OutsourcingType {
   id: string;
@@ -16,6 +16,7 @@ interface Benefit {
   title: string;
   description: string;
 }
+
 const OUTSOURCING_TYPES: OutsourcingType[] = [
   {
     id: "short-term",
@@ -39,6 +40,7 @@ const OUTSOURCING_TYPES: OutsourcingType[] = [
       "When you have a specific goal with a clear start and finish, our project-based outsourcing is the ideal solution. We assemble a dedicated team with the precise skills required to deliver your project on time and within budget. This outcome-focused approach means we manage the team and deliverables, allowing you to focus on the results without getting bogged down in the day-to-day management.",
   },
 ];
+
 const STAFFING_BENEFITS: Benefit[] = [
   {
     icon: (
@@ -94,11 +96,11 @@ const OutsourcingTypeToggle: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>(OUTSOURCING_TYPES[0].id);
   const activeContent = OUTSOURCING_TYPES.find((type) => type.id === activeTab);
 
-  if (!activeContent) return null; 
+  if (!activeContent) return null;
 
   return (
     <div>
-      <div className="flex flex-col sm:flex-row border-b  border-gray-300">
+      <div className="flex flex-col sm:flex-row border-b border-gray-300">
         {OUTSOURCING_TYPES.map((type) => (
           <button
             key={type.id}
@@ -146,11 +148,11 @@ const AlternatingFeatureBlock: React.FC<AlternatingFeatureBlockProps> = ({
       }`}
     >
       <div
-        className={`h-80 w-full  rounded-lg flex items-center justify-center ${
+        className={`h-80 w-full rounded-lg flex items-center justify-center ${
           isReversed ? "md:col-start-2" : ""
         }`}
       >
-        <div className="text-6xl ">{icon}</div>
+        <div className="text-6xl">{icon}</div>
       </div>
       <div className="text-center md:text-left">
         <h3 className="text-3xl font-bold text-[#03254D]">{title}</h3>
@@ -162,38 +164,35 @@ const AlternatingFeatureBlock: React.FC<AlternatingFeatureBlockProps> = ({
 
 // --- Main Page ---
 const StaffOutsourcingPage: React.FC = () => {
-  const { setIsContactFormOpen } = useStore();
   return (
     <div className="bg-gray-50 font-sans">
       <Header />
 
       <main>
         {/* Hero */}
-        <section className="py-8md:py-12 px-4 ">
-          <div className="max-w-7xl  mx-auto grid md:grid-cols-2 gap-12 justify-center items-center">
+        <section className="py-8 md:py-0.5 px-3">
+          <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 justify-center items-center">
             {/* Text Section */}
-            <div className="max-w-xl bg-[#03254D] text-white backdrop-blur-sm p-8 rounded-lg">
-              <h1 className="text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+            <div className="max-w-xl bg-white text-blue-950 backdrop-blur-sm p-8 rounded-lg">
+              <h1 className="text-4xl lg:text-5xl font-extrabold text-blue-950">
                 Fully Compliant and Customizable Staff Outsourcing Solutions
               </h1>
-              <p className="mt-4 text-lg text-gray-100">
-                Take advantage of our highly trained pool of qualified talent in
-                all fields and industries.
+              <p className="mt-4 text-lg text-blue-950">
+               Take advantage of our highly trained pool of qualified talent in all fields and industries. We provide specialists who bring expertise and innovation to your organization. With the right talent, you can achieve faster growth and long-term success.
               </p>
-              <div onClick={() => setIsContactFormOpen(true)}>
+              <Link to="/contact">
                 <CallToActionButton
                   text="Let’s Talk"
-                  isPrimary={false}
-                  className="bg-white text-[#03254D] hover:bg-gray-100"
+                  className="bg-blue-950 text-white"
                 />
-              </div>
+              </Link>
             </div>
 
             {/* Image Section */}
-            <div className="h-80 w-full max-md:hidden rounded-lg  flex items-center justify-center ">
+            <div className="h-80 w-full max-md:hidden rounded-lg flex items-center justify-center">
               <img
                 src="/staff.jpg"
-                alt="Global Mobility"
+                alt="Staff Outsourcing"
                 className="object-cover rounded-lg w-full h-full"
               />
             </div>
@@ -204,7 +203,7 @@ const StaffOutsourcingPage: React.FC = () => {
         <section className="py-20 max-sm:py-8 px-4 text-center">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-[#03254D]">
-              Build Your <span className=" text-red-800">Dream Team</span> with
+              Build Your <span className="text-red-800">Dream Team</span> with
               Brilliant Boss HR
             </h2>
             <p className="mt-4 text-xl text-gray-600">
@@ -214,32 +213,31 @@ const StaffOutsourcingPage: React.FC = () => {
               are turning to staff outsourcing to achieve greater flexibility,
               lower overheads, and hassle-free HR administration.
             </p>
-            <div onClick={() => setIsContactFormOpen(true)}>
+            <Link to="/contact">
               <CallToActionButton
                 text="Get In Touch"
-                className=" bg-red-800 hover:bg-red-700"
+                className="bg-red-800 hover:bg-red-700"
               />
-            </div>
+            </Link>
           </div>
         </section>
 
         {/* Outsourcing Types */}
-        <section className="py-20 max-sm:py-8 px-4 ">
+        <section className="py-20 max-sm:py-8 px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-[#03254D] text-center mb-10">
               Covering All Your{" "}
-              <span className=" text-red-800">Staff Outsourcing</span> Needs
+              <span className="text-red-800">Staff Outsourcing</span> Needs
             </h2>
             <OutsourcingTypeToggle />
           </div>
         </section>
 
         {/* Benefits */}
-        <section className="py-20 max-sm:py-8 px-4 ">
+        <section className="py-20 max-sm:py-8 px-4">
           <div className="max-w-6xl mx-auto space-y-20">
             <h2 className="text-4xl font-extrabold text-[#03254D] text-center">
-              Why <span className=" text-red-800">Choose Brilliant Boss</span>{" "}
-              HR?
+              Why <span className="text-red-800">Choose Brilliant Boss</span> HR?
             </h2>
             {STAFFING_BENEFITS.map((benefit, index) => (
               <AlternatingFeatureBlock
@@ -252,20 +250,20 @@ const StaffOutsourcingPage: React.FC = () => {
         </section>
 
         {/* Final CTA */}
-        <section className="py-24 px-4 bg-gradient-to-r bg-red-800 text-white">
+        <section className="py-24 px-4 bg-[#5b0404] text-white">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold">
-              Optimise Your Workforce Today
-            </h2>
-            <p className="mt-4 text-lg  max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold">Optimize Your Workforce Today</h2>
+            <p className="mt-4 text-lg max-w-2xl mx-auto">
               Contact us to find out how our expert staff outsourcing solutions
               can streamline your recruitment procedure and improve your
               business’ efficiency.
             </p>
-            <button 
-                onClick={() => setIsContactFormOpen(true)} className="mt-8 inline-block bg-white cursor-pointer text-red-800 font-bold py-3 px-8 rounded-lg text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105">
-              TALK TO OUR EXPERT
-            </button>
+            <Link to="/contact">
+              <CallToActionButton
+                text="TALK TO OUR EXPERT"
+                className="bg-blue-800 text-red-950"
+              />
+            </Link>
           </div>
         </section>
       </main>
