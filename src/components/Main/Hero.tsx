@@ -93,7 +93,7 @@ const Hero = () => {
             </p>
 
             {/* BUTTONS */}
-            <div className="flex flex-col sm:flex-row items-start gap-4 w-full">
+            <div className="flex flex-col sm:flex-row items-start gap-4 w-full py-4">
               <button
                 onClick={() => scrollToSection("services")}
                 className="w-full sm:w-48 h-12 cursor-pointer duration-300 transform hover:scale-105 bg-blue-950 text-white font-bold px-6 py-3 rounded-lg shadow-2xl hover:shadow-3xl flex items-center justify-center text-sm"

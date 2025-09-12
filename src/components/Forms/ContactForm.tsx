@@ -1,48 +1,23 @@
-import  { useState } from "react";
-import {
-  MapPin,
-  Mail,
-  Phone,
- 
-  Send,
-} from "lucide-react";
+// components/Forms/ContactForm.tsx
 import Header from "../Header";
+import { MapPin, Mail, Phone, Send } from "lucide-react";
 import { motion } from "framer-motion";
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    subject: "",
-    message: "",
-  });
-
-  const handleChange = (e: any) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    console.log("Form submitted:", formData);
-  };
-
   return (
     <>
       <Header />
       <div className="min-h-screen bg-gray-50">
         {/* Hero Section */}
-     <section
-        className="relative h-[180px] sm:h-[220px] flex items-center justify-center bg-cover bg-center"
-        style={{ backgroundImage: "url('/banner.jpg')" }}
-      >
-        <div className="absolute inset-0 bg-black/50"></div>
-        <h1 className="relative text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center">
-          Reach Out To Us
-        </h1>
-      </section>
-
+        <section
+          className="relative h-[180px] sm:h-[220px] flex items-center justify-center bg-cover bg-center"
+          style={{ backgroundImage: "url('/banner.jpg')" }}
+        >
+          <div className="absolute inset-0 bg-black/50"></div>
+          <h1 className="relative text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center">
+            Reach Out To Us
+          </h1>
+        </section>
 
         {/* Contact Info Cards */}
         <section className="py-4 bg-white">
@@ -136,48 +111,64 @@ const ContactForm = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <div className="space-y-3 flex-1">
+                <form
+                  action="https://formspree.io/f/xzzawdja"
+                  method="POST"
+                  className="space-y-3 flex-1"
+                >
                   <input
                     type="text"
                     name="name"
                     placeholder="Your Name"
-                    value={formData.name}
-                    onChange={handleChange}
                     className="w-full border border-gray-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                    required
                   />
                   <input
                     type="email"
                     name="email"
                     placeholder="Your Email"
-                    value={formData.email}
-                    onChange={handleChange}
+                    className="w-full border border-gray-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+                    required
+                  />
+                  <input
+                    type="text"
+                    name="phone"
+                    placeholder="Phone Number"
                     className="w-full border border-gray-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                   />
                   <input
                     type="text"
                     name="subject"
                     placeholder="Subject"
-                    value={formData.subject}
-                    onChange={handleChange}
                     className="w-full border border-gray-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                   />
                   <textarea
                     name="message"
                     placeholder="Message"
-                    value={formData.message}
-                    onChange={handleChange}
                     rows={4}
                     className="w-full border border-gray-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
+                    required
                   />
-                </div>
 
-                <button
-                  onClick={handleSubmit}
-                  className="w-full bg-blue-950 text-white py-2.5 rounded-lg font-semibold flex items-center justify-center space-x-2 mt-3 hover:bg-red-900 transition"
-                >
-                  <Send className="w-5 h-5" />
-                  <span>Send Message</span>
-                </button>
+                  <input
+                    type="hidden"
+                    name="_subject"
+                    value="New Contact Inquiry"
+                  />
+                  <input
+                    type="hidden"
+                    name="_redirect"
+                    value="https://yourdomain.com/thank-you"
+                  />
+
+                  <button
+                    type="submit"
+                    className="w-full bg-blue-950 text-white py-2.5 rounded-lg font-semibold flex items-center justify-center space-x-2 mt-3 hover:bg-red-900 transition"
+                  >
+                    <Send className="w-5 h-5" />
+                    <span>Send Message</span>
+                  </button>
+                </form>
               </motion.div>
             </div>
           </div>

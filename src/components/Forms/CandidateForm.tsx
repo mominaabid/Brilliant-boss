@@ -1,4 +1,5 @@
 // app/CandidateFormPage.tsx
+
 import React, { useState } from "react";
 import Header from "../Header";
 import { HiOutlineArrowUpTray } from "react-icons/hi2";
@@ -6,12 +7,16 @@ import { motion } from "framer-motion";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
+  name: string;
 }
 
-const Input: React.FC<InputProps> = ({ label, ...props }) => (
+const Input: React.FC<InputProps> = ({ label, name, ...props }) => (
   <div className="w-full mb-4">
-    <label className="block text-sm font-medium text-gray-700 mb-1">{label}</label>
+    <label className="block text-sm font-medium text-gray-700 mb-1">
+      {label}
+    </label>
     <input
+      name={name}
       {...props}
       className="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-[#03254D] focus:border-[#03254D] text-sm"
     />
@@ -20,6 +25,7 @@ const Input: React.FC<InputProps> = ({ label, ...props }) => (
 
 const CandidateForm: React.FC = () => {
   const [resumeName, setResumeName] = useState("");
+  const [status, setStatus] = useState("");
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
@@ -29,9 +35,35 @@ const CandidateForm: React.FC = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert("Thanks for submitting your resume!");
+    setStatus("Submitting...");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    // Add resume filename (since free Formspree doesn't accept actual file uploads)
+    if (resumeName) {
+      formData.append("resume_filename", resumeName);
+    }
+
+    try {
+      const response = await fetch("https://formspree.io/f/xzzawdja", {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+
+      if (response.ok) {
+        setStatus("Thanks for submitting your resume!");
+        form.reset();
+        setResumeName("");
+      } else {
+        setStatus("Oops! Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      setStatus("Network error. Please try again later.");
+    }
   };
 
   const fadeInUp = {
@@ -56,7 +88,7 @@ const CandidateForm: React.FC = () => {
 
       {/* Two-column Form Section */}
       <section className="flex flex-col lg:flex-row justify-center items-start py-12 px-4 gap-12 max-w-6xl mx-auto">
-        {/* Left Column - Info Text */}
+        {/* Left Column */}
         <motion.div
           className="lg:w-1/2 flex flex-col justify-center"
           variants={fadeInUp}
@@ -105,10 +137,34 @@ const CandidateForm: React.FC = () => {
           </h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            <Input label="Full Name" type="text" placeholder="John Doe" required />
-            <Input label="Mobile Number" type="tel" placeholder="+971 50 123 4567" required />
-            <Input label="Nationality" type="text" placeholder="Emirati" required />
-            <Input label="Email Address" type="email" placeholder="you@example.com" required />
+            <Input
+              label="Full Name"
+              name="full_name"
+              type="text"
+              placeholder="John Doe"
+              required
+            />
+            <Input
+              label="Mobile Number"
+              name="mobile"
+              type="tel"
+              placeholder="+971 50 123 4567"
+              required
+            />
+            <Input
+              label="Nationality"
+              name="nationality"
+              type="text"
+              placeholder="Emirati"
+              required
+            />
+            <Input
+              label="Email Address"
+              name="email"
+              type="email"
+              placeholder="you@example.com"
+              required
+            />
 
             {/* Resume Upload */}
             <div>
@@ -137,6 +193,10 @@ const CandidateForm: React.FC = () => {
               Send Resume
             </button>
           </form>
+
+          {status && (
+            <p className="mt-4 text-center text-sm text-gray-600">{status}</p>
+          )}
         </motion.div>
       </section>
     </div>

@@ -183,7 +183,7 @@ const EorPage = () => {
               , we guarantee faster visa processing and work permits with full
               compliance.
             </p>
-            <div className="bg-yellow-500 border-l-4 border-[#03254D]/90 text-left p-6 rounded-r-lg max-w-3xl mx-auto shadow-sm">
+            <div className="bg-gray-200 border-l-4 border-[#03254D]/90 text-left p-6 rounded-r-lg max-w-3xl mx-auto shadow-sm">
               <p className="text-gray-600 text-base md:text-lg">
                 Want to hire or relocate employees to the UAE without the
                 lengthy process of setting up an entity? Worried about

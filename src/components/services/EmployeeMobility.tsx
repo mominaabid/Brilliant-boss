@@ -124,7 +124,7 @@ const EmployeeMobilityPage = () => {
               <h1 className="text-3xl md:text-5xl font-extrabold text-[#03254D] mb-4 leading-tight">
                 Your Premier Global Mobility Specialists in Dubai
               </h1>
-              <p className="mt-4 mb-2 text-lg text-gray-600 max-w-3xl">
+              <p className="mt-4  text-lg text-gray-600 max-w-3xl">
                 As the leading experts in global mobility, we are dedicated to
                 seamlessly relocating your most valuable asset—your people. We
                 provide end-to-end solutions for mobilising the best talent to
