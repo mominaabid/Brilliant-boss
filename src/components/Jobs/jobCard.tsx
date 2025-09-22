@@ -1,7 +1,9 @@
 import React from "react";
+import { motion } from "framer-motion";
 import type { Job } from "../types";
-import { IoLocationSharp } from "react-icons/io5";
-import { BiTimeFive } from "react-icons/bi";
+import { IoLocationSharp, IoBriefcaseOutline, IoCalendarOutline } from "react-icons/io5";
+import { BiMoney } from "react-icons/bi";
+import { BsBuilding } from "react-icons/bs";
 
 interface JobCardProps {
   job: Job;
@@ -14,55 +16,127 @@ const JobCard: React.FC<JobCardProps> = ({
   onDetailsClick,
   onApplyClick,
 }) => {
-  return (
-    <div
-      className="relative overflow-hidden rounded-xl border border-gray-200 shadow-lg 
-                 p-6 flex flex-col justify-between group bg-[#e3e5f580] transition-all duration-300 ease-out
-                 hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.01]"
-    >
-      {/* Job Title */}
-      <div>
-        <h3 className="text-xl font-bold text-gray-800 group-hover:text-[#03254D] transition-colors">
-          {job.title}
-        </h3>
+  // Format posting date to display like BrilliantBoss format
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-GB', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    });
+  };
 
-        {/* Location & Type */}
-        <div className="mt-4 flex flex-col sm:flex-row sm:space-x-6 space-y-2 sm:space-y-0 text-sm text-gray-600">
-          <div className="flex items-center">
-            <IoLocationSharp
-              className="h-5 w-5 mr-2 text-teal-600"
-              aria-hidden="true"
-            />
-            <span>{job.location}</span>
+  // Truncate description for preview
+  const truncateDescription = (text: string, maxLength: number = 100) => {
+    if (!text) return "";
+    return text.length > maxLength 
+      ? text.substring(0, maxLength).trim() + "..." 
+      : text;
+  };
+
+  return (
+    <motion.div
+      whileHover={{ y: -4, scale: 1.02, boxShadow: "0 8px 32px 0 rgba(23,37,84,0.10)" }}
+      whileTap={{ scale: 0.98 }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ type: "spring", stiffness: 180, damping: 18 }}
+      className="bg-white border border-blue-950 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 flex flex-col h-full group relative overflow-hidden"
+    >
+      {/* Header Section */}
+      {/* Decorative animated ring on hover */}
+      <motion.div
+        className="absolute -inset-1 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 z-0"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0 }}
+        whileHover={{ opacity: 1 }}
+        transition={{ duration: 0.4 }}
+        style={{
+          background:
+            "radial-gradient(circle at 60% 40%, rgba(23,37,84,0.08) 0%, rgba(255,255,255,0) 70%)"
+        }}
+      />
+      <div className="flex-grow relative z-10">
+        {/* Job Title & Company */}
+        <div className="mb-4">
+          <h3 className="text-lg font-bold text-gray-900 mb-2 leading-tight">
+            {job.title}
+          </h3>
+          
+          {/* Company Info */}
+          {job.company && (
+            <div className="flex items-center text-gray-600 mb-2">
+              <BsBuilding className="w-4 h-4 mr-2 flex-shrink-0" />
+              <span className="text-sm font-medium">{job.company}</span>
+            </div>
+          )}
+        </div>
+
+        {/* Job Details Grid */}
+        <div className="space-y-3 mb-4">
+          {/* Location & Job Type */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            <div className="flex items-center text-gray-600">
+              <IoLocationSharp className="w-4 h-4 mr-2 text-blue-500 flex-shrink-0" />
+              <span className="text-sm">{job.location}</span>
+            </div>
+            <div className="flex items-center text-gray-600">
+              <IoBriefcaseOutline className="w-4 h-4 mr-2 text-green-500 flex-shrink-0" />
+              <span className="text-sm">{job.type}</span>
+            </div>
           </div>
-          <div className="flex items-center">
-            <BiTimeFive
-              className="h-5 w-5 mr-2 text-sky-600"
-              aria-hidden="true"
-            />
-            <span>{job.type}</span>
+
+          {/* Salary & Posting Date */}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+            {job.salary && (
+              <div className="flex items-center text-gray-600">
+                <BiMoney className="w-4 h-4 mr-2 text-emerald-500 flex-shrink-0" />
+                <span className="text-sm font-medium text-emerald-700">
+                  {job.salary}
+                </span>
+              </div>
+            )}
+            {job.postedDate && (
+              <div className="flex items-center text-gray-500">
+                <IoCalendarOutline className="w-4 h-4 mr-2 flex-shrink-0" />
+                <span className="text-sm">
+                  Posting Date: {formatDate(job.postedDate)}
+                </span>
+              </div>
+            )}
           </div>
+
+          {/* Job Description Preview */}
+          {job.description && (
+            <div className="mt-3">
+              <p className="text-sm text-gray-600 leading-relaxed">
+                {truncateDescription(job.description, 120)}
+              </p>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Buttons */}
-      <div className="mt-8 grid grid-cols-2 gap-3">
+      {/* Action Buttons */}
+  <div className="flex gap-3 mt-6 pt-4 border-t border-gray-100 relative z-10">
         <button
           onClick={onDetailsClick}
-          className="w-full px-4 py-2 text-sm font-medium rounded-md 
-                     text-white bg-red-900"
+          className="flex-1 bg-yellow-500 hover:bg-sky-600 text-white px-4 py-2.5 rounded-md 
+                     font-medium text-sm transition-colors duration-200 focus:outline-none 
+                     focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
         >
-          Details
+          Job Detail
         </button>
         <button
           onClick={onApplyClick}
-          className="w-full px-4 py-2 text-sm font-medium rounded-md 
-                     text-white bg-blue-950"
+          className="flex-1 bg-blue-950 hover:bg-blue-800 text-white px-4 py-2.5 rounded-md 
+                     font-medium text-sm transition-colors duration-200 focus:outline-none 
+                     focus:ring-2 focus:ring-blue-700 focus:ring-offset-2"
         >
-          Apply
+          Apply Now
         </button>
       </div>
-    </div>
+  </motion.div>
   );
 };
 

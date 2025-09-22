@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { FaPhoneAlt } from "react-icons/fa";
 
-// Service icons + social icons
+// Service icons
 import {
   FaUserTie,
   FaUsers,
@@ -15,10 +16,6 @@ import {
   FaFlag,
   FaStamp,
   FaChalkboardTeacher,
-  FaFacebookF,
-  FaTwitter,
-  FaLinkedinIn,
-  FaInstagram,
 } from "react-icons/fa";
 
 const servicesData = [
@@ -44,70 +41,114 @@ const Header: React.FC = () => {
   const toggleMobileMenu = () => setIsMenuOpen((s) => !s);
 
   return (
-    <header className="relative z-30">
+    <header className="relative z-30 w-full">
       {/* Top thin header */}
       <div className="bg-black text-sm text-white">
-        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-1">
-          <span className="font-medium">Welcome to Brilliant Boss Human Resources Consultancy</span>
-          <div className="flex gap-4 items-center">
-            <a href="https://www.facebook.com/brilliantbosshr/" target="_blank" rel="noopener noreferrer"><FaFacebookF size={18} className="text-[#1877F2] hover:opacity-80" /></a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><FaTwitter size={18} className="text-[#1DA1F2] hover:opacity-80" /></a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><FaLinkedinIn size={18} className="text-[#0077B5] hover:opacity-80" /></a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram size={18} style={{ color: "#E1306C" }} className="hover:opacity-80" /></a>
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center py-2 gap-2">
+          {/* Left: feature.jpg */}
+          <img src="/feature.jpg" alt="Feature" className="h-6 sm:h-8 object-contain" />
+
+          {/* Right: phone + proposal link */}
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 items-center">
+            <a
+              href="tel:+97142944925"
+              className="flex items-center gap-2 hover:text-gray-300 transition-colors"
+            >
+              <FaPhoneAlt className="w-4 h-4" />
+              <span className="font-medium underline">+971-42944925</span>
+            </a>
+
+            <Link
+              to="/contact"
+              className="text-white text-sm underline hover:text-gray-300 transition-colors"
+            >
+              Request a Proposal
+            </Link>
           </div>
         </div>
       </div>
 
       {/* Main Nav */}
-      <div className="py-4 bg-[#001345] relative">
+      <div className="py-2 bg-[#001345] relative">
         <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo */}
-         <Link to={"/"} className="flex items-center">
-  <div className="bg-white rounded px-3 py-2">
-    <img
-      src="/logo.png"
-      alt="Brilliant Boss HR Consultancy"
-      className="h-10 md:h-12"
-    />
-  </div>
-</Link>
-
+          <Link to={"/"} className="flex items-center">
+            <img
+              src="/logo4.png"
+              alt="Brilliant Boss HR Consultancy"
+              className="h-10 sm:h-12 md:h-14"
+            />
+          </Link>
 
           {/* Hamburger button (mobile) */}
-          <button onClick={toggleMobileMenu} className="lg:hidden p-2 rounded-md hover:bg-blue-700 transition-colors text-white">
+          <button
+            onClick={toggleMobileMenu}
+            className="lg:hidden p-2 rounded-md hover:bg-blue-700 transition-colors text-white"
+          >
             <div className="w-6 h-5 flex flex-col justify-between">
-              <span className={`h-0.5 w-full bg-current transform transition-all duration-300 ${isMenuOpen ? "rotate-45 translate-y-2" : ""}`} />
-              <span className={`h-0.5 w-full bg-current transform transition-all duration-300 ${isMenuOpen ? "opacity-0" : ""}`} />
-              <span className={`h-0.5 w-full bg-current transform transition-all duration-300 ${isMenuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+              <span
+                className={`h-0.5 w-full bg-current transform transition-all duration-300 ${
+                  isMenuOpen ? "rotate-45 translate-y-2" : ""
+                }`}
+              />
+              <span
+                className={`h-0.5 w-full bg-current transform transition-all duration-300 ${
+                  isMenuOpen ? "opacity-0" : ""
+                }`}
+              />
+              <span
+                className={`h-0.5 w-full bg-current transform transition-all duration-300 ${
+                  isMenuOpen ? "-rotate-45 -translate-y-2" : ""
+                }`}
+              />
             </div>
           </button>
 
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center space-x-6">
-            <Link to="/" className={`${linkColor} hover:text-gray-300 font-medium transition-colors`}>Home</Link>
+            <Link to="/" className={`${linkColor} hover:text-gray-300 font-medium transition-colors`}>
+              Home
+            </Link>
 
-            <div className="relative" onMouseEnter={() => setIsServicesOpen(true)} onMouseLeave={() => setIsServicesOpen(false)}>
-              <div className={`${linkColor} font-medium flex items-center gap-1 cursor-pointer hover:text-gray-300 transition-colors`}>
+            {/* Services Dropdown (Desktop) */}
+            <div
+              className="relative"
+              onMouseEnter={() => setIsServicesOpen(true)}
+              onMouseLeave={() => setIsServicesOpen(false)}
+            >
+              <div
+                className={`${linkColor} font-medium flex items-center gap-1 cursor-pointer hover:text-gray-300 transition-colors`}
+              >
                 Services
-                <svg className={`w-4 h-4 transition-transform duration-200 ${isServicesOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg
+                  className={`w-4 h-4 transition-transform duration-200 ${
+                    isServicesOpen ? "rotate-180" : ""
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                 </svg>
               </div>
 
               {isServicesOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 w-128 bg-white rounded-lg shadow-xl border border-gray-100 py-2 z-50">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 w-[28rem] bg-white rounded-lg shadow-xl border border-gray-100 py-2 z-50">
                   <div className="grid grid-cols-2 xl:grid-cols-3 gap-0 p-2">
                     {servicesData.map((service) => (
                       <NavLink
                         key={service.title}
                         to={service.path}
                         className={({ isActive }) =>
-                          `flex items-center gap-3 px-3 py-2 text-sm transition-colors border-b border-gray-300/40 last:border-b-1 ${
-                            isActive ? "bg-blue-50 text-blue-700" : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                          `flex items-center gap-3 px-3 py-2 text-sm transition-colors border-b border-gray-200 last:border-b-0 ${
+                            isActive
+                              ? "bg-blue-50 text-blue-700"
+                              : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
                           }`
                         }
                       >
-                        {service.icon}{service.title}
+                        {service.icon}
+                        {service.title}
                       </NavLink>
                     ))}
                   </div>
@@ -116,28 +157,45 @@ const Header: React.FC = () => {
             </div>
 
             {/* Page Links */}
-            <Link to="/employee" className={`${linkColor} hover:text-gray-300 font-medium transition-colors`}>Employers</Link>
-            <Link to="/candidate" className={`${linkColor} hover:text-gray-300 font-medium transition-colors`}>Candidates</Link>
-            <Link to="/contact" className={`${linkColor} hover:text-gray-300 font-medium transition-colors`}>Contact Us</Link>
-            <Link to="/jobs" className={`${linkColor} hover:text-gray-300 font-medium transition-colors`}>Jobs</Link>
-            <Link to="/login" className={`${linkColor} hover:text-gray-300 font-medium transition-colors`}>Login</Link>
+            <Link to="/employee" className={`${linkColor} hover:text-gray-300 font-medium transition-colors`}>
+              Employers
+            </Link>
+            <Link to="/candidate" className={`${linkColor} hover:text-gray-300 font-medium transition-colors`}>
+              Candidates
+            </Link>
+            <Link to="/contact" className={`${linkColor} hover:text-gray-300 font-medium transition-colors`}>
+              Contact Us
+            </Link>
+            <Link to="/jobs" className={`${linkColor} hover:text-gray-300 font-medium transition-colors`}>
+              Jobs
+            </Link>
+            <Link to="/login" className={`${linkColor} hover:text-gray-300 font-medium transition-colors`}>
+              Login
+            </Link>
           </nav>
         </div>
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 w-full bg-[#001345] shadow-lg z-40">
+          <div className="lg:hidden absolute top-full left-0 w-full bg-[#001345] shadow-lg z-40 max-h-[80vh] overflow-y-auto">
             <nav className="flex flex-col space-y-3 p-4 text-white">
-              <Link to="/" className="hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>Home</Link>
+              <Link to="/" className="hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
+                Home
+              </Link>
 
-              {/* Services Dropdown (mobile) */}
+              {/* Services Dropdown (Mobile) */}
               <div>
                 <button
                   onClick={() => setIsServicesOpen(!isServicesOpen)}
                   className="flex items-center justify-between w-full hover:text-gray-300"
                 >
                   Services
-                  <svg className={`w-4 h-4 transition-transform ${isServicesOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg
+                    className={`w-4 h-4 transition-transform ${isServicesOpen ? "rotate-180" : ""}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
@@ -161,11 +219,21 @@ const Header: React.FC = () => {
                 )}
               </div>
 
-              <Link to="/employee" className="hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>Employers</Link>
-              <Link to="/candidate" className="hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>Candidates</Link>
-              <Link to="/contact" className="hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>Contact Us</Link>
-              <Link to="/jobs" className="hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>Jobs</Link>
-              <Link to="/login" className="hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>Login</Link>
+              <Link to="/employee" className="hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
+                Employers
+              </Link>
+              <Link to="/candidate" className="hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
+                Candidates
+              </Link>
+              <Link to="/contact" className="hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
+                Contact Us
+              </Link>
+              <Link to="/jobs" className="hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
+                Jobs
+              </Link>
+              <Link to="/login" className="hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
+                Login
+              </Link>
             </nav>
           </div>
         )}

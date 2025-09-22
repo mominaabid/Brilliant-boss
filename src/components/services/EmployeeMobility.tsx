@@ -115,6 +115,36 @@ const EmployeeMobilityPage = () => {
   return (
     <div className="bg-gray-50 font-sans">
       <Header />
+      {/* First Section: EOR/EOR-related, blue-950 bg, text left, image right */}
+      <section className="w-full bg-purple-50 py-10 flex flex-col md:flex-row items-center justify-center gap-8 px-4 md:px-12">
+        <div className="md:w-1/2 w-full mb-8 md:mb-0 flex flex-col items-center md:items-start text-center md:text-left">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-950 mb-4">
+            Employee Mobility Solutions
+          </h2>
+          <p className="text-blue-950 mb-3 text-base sm:text-lg">
+            <strong>Brilliant Boss HR consultancy</strong> empowers your business to
+            expand globally with ease. Our Employer of Record (EOR) services handle
+            compliance, payroll, and HR administration, so you can focus on growth.
+          </p>
+          <p className="text-blue-950 mb-3 text-base sm:text-lg">
+            Seamlessly onboard talent in new markets, reduce risk, and ensure full
+            legal compliance—without the need to set up a local entity.
+            <strong>Brilliant Boss HR consultancy</strong> is your trusted partner
+            for international workforce management.
+          </p>
+          <p className="text-white text-base sm:text-lg">
+            Discover how our EOR and employee mobility solutions can help your
+            company thrive in today's dynamic business landscape.
+          </p>
+        </div>
+        <div className="md:w-1/2 w-full flex justify-center">
+          <img
+            src="/EO.jpg"
+            alt="Employee Mobility EOR"
+            className="max-w-xs sm:max-w-sm md:max-w-md w-full h-auto rounded-lg shadow-md object-contain"
+          />
+        </div>
+      </section>
 
       <main>
         {/* Section 1: Hero */}
@@ -194,7 +224,10 @@ const EmployeeMobilityPage = () => {
           <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div className="text-center md:text-left">
               <h1 className="text-3xl md:text-4xl font-bold text-[#03254D]">
-                Comprehensive <span className="text-blue-950">Global Immigration</span> Support and <span className="text-blue-950">Strategic Advisory</span> Services
+                Comprehensive{" "}
+                <span className="text-blue-950">Global Immigration</span> Support
+                and{" "}
+                <span className="text-blue-950">Strategic Advisory</span> Services
               </h1>
               <p className="text-lg mb-4 text-gray-600 mt-2 max-w-3xl mx-auto">
                 Navigating the intricate landscape of global mobility and
@@ -244,27 +277,80 @@ const EmployeeMobilityPage = () => {
         </section>
 
         {/* Section 6: Connect With Us */}
-        <section className="relative text-white py-24 px-4">
-          <div className="absolute inset-0 bg-[#5b0404]" />
-          <div className="relative max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Connect With Us
-            </h2>
-            <p className="text-lg mb-6">
-              Our global mobility programs are backed by our extensive
-              experience. We combine a multi-disciplinary approach with deep
-              industry knowledge to help you overcome all the challenges of
-              global mobility and start your international operations without
-              delay.
-            </p>
-            <Link to="/contact">
-              <CallToActionButton
-                text="Contact Us Now"
-                className="bg-blue-800 text-red-950"
-              />
-            </Link>
-          </div>
-        </section>
+       <section className="relative text-gray-900 py-12 md:py-20 px-4 bg-[#e6f9fb]">
+  <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+    {/* Left Content */}
+    <div>
+      <h2 className="text-2xl md:text-4xl font-bold mb-4">
+        Today is the day to streamline your HR process!
+      </h2>
+      <p className="text-base md:text-lg">
+        Fill out the form, and we’ll handle the rest.
+      </p>
+    </div>
+
+    {/* Right Form */}
+    <div className="bg-white shadow-lg rounded-lg p-6 md:p-8">
+      <h3 className="text-xl font-semibold mb-6 text-center">
+        Get more information today
+      </h3>
+      <form className="space-y-4">
+        {/* Full Name */}
+        <input
+          type="text"
+          placeholder="Full Name"
+          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+        />
+
+        {/* Email */}
+        <input
+          type="email"
+          placeholder="Email"
+          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+        />
+
+        {/* Phone */}
+        <div className="flex">
+          <select className="border border-gray-300 rounded-l-lg px-3 py-2 bg-gray-100 text-sm">
+            <option>+971</option>
+            <option>+1</option>
+            <option>+44</option>
+          </select>
+          <input
+            type="tel"
+            placeholder="Your phone number"
+            className="w-full border border-gray-300 rounded-r-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+          />
+        </div>
+
+        {/* Interested In */}
+        <select className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none">
+          <option>Select-one-or-more</option>
+          <option>HR Services</option>
+          <option>Visa Services</option>
+          <option>Recruitment</option>
+          <option>Payroll Outsourcing</option>
+        </select>
+
+        {/* Message */}
+        <textarea
+          placeholder="How can we assist you?"
+          rows={4}
+          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+        ></textarea>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="w-full bg-blue-950 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-800 transition-all duration-300"
+        >
+          SUBMIT
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
       </main>
     </div>
   );

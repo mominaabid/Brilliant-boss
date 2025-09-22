@@ -78,11 +78,11 @@ const Hero = () => {
                 </div>
                 <div className="mb-2">
                   <span className="text-white font-black drop-shadow-2xl typewriter">
-                    Out of House
+                One-Stop 
                   </span>
                 </div>
                 <div>
-                  <span className="text-amber-50 drop-shadow-2xl">HR</span>
+                  <span className="text-white drop-shadow-2xl">Destination for Global HR Solutions</span>
                 </div>
               </h1>
             </div>

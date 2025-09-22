@@ -73,24 +73,55 @@ export default function TrainingAndDevelopment() {
   };
 
   return (
-    <main className="bg-gray-50 font-sans">
+    <div className="bg-gray-50 font-sans">
       <Header />
+      {/* New Section: Training & Development, image right, text left, after header */}
+      <section className="w-full bg-white py-10 flex flex-col md:flex-row items-center justify-center gap-8 px-4 md:px-12">
+        <div className="md:w-1/2 w-full mb-8 md:mb-0 flex flex-col items-center md:items-start text-center md:text-left">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-950 mb-4">
+            Transformative Training & Development
+          </h2>
+          <p className="text-gray-700 mb-3 text-base sm:text-lg">
+            <strong>Brilliant Boss HR consultancy</strong> empowers your workforce
+            with world-class training and development programs. We unlock your
+            team's full potential, driving innovation, productivity, and long-term
+            success.
+          </p>
+          <p className="text-gray-700 mb-3 text-base sm:text-lg">
+            Our expert-led solutions at{" "}
+            <strong>Brilliant Boss HR consultancy</strong> are tailored to your
+            business needs—whether you seek leadership development, technical
+            upskilling, or soft skills mastery.
+          </p>
+          <p className="text-gray-700 text-base sm:text-lg">
+            Invest in your people. Choose{" "}
+            <strong>Brilliant Boss HR consultancy</strong> for impactful,
+            measurable results and a future-ready organization.
+          </p>
+        </div>
+        <div className="md:w-1/2 w-full flex justify-center">
+          <img
+            src="/train2.jpg"
+            alt="Training & Development"
+            className="max-w-xs sm:max-w-sm md:max-w-md w-full h-auto rounded-lg shadow-md object-contain"
+          />
+        </div>
+      </section>
 
       {/* Hero Section */}
       <section className="py-20 md:py-3 px-6">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="text-center md:text-left">
-           
-           <h1 className="text-3xl md:text-5xl font-extrabold text-[#03254D] mb-6 leading-snug">
-  <span>Unlock Your Team&apos;s</span> <br />
-  <span>Full Potential</span>
-</h1>
+            <h1 className="text-3xl md:text-5xl font-extrabold text-[#03254D] mb-6 leading-snug">
+              <span>Unlock Your Team&apos;s</span> <br />
+              <span>Full Potential</span>
+            </h1>
 
             <p className="text-lg lg:text-xl text-gray-600 max-w-2xl mt-6">
-              Go beyond standard training. We design and deliver bespoke development
-              programs that close skill gaps, boost productivity, and create a culture
-              of continuous growth.
+              Go beyond standard training. We design and deliver bespoke
+              development programs that close skill gaps, boost productivity, and
+              create a culture of continuous growth.
             </p>
             <div className="mt-6">
               <Link to="/contact">
@@ -203,27 +234,80 @@ export default function TrainingAndDevelopment() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-[#5b0404]">
-        <div className="container mx-auto max-sm:py-8 px-6 py-20 text-center text-white">
-          <h2 className="text-3xl lg:text-4xl font-bold">
-            Build a Skilled, Motivated, and Future-Ready Team
-          </h2>
-          <p className="text-lg max-w-2xl mx-auto mt-4">
-            Let's work together to create a custom training and development
-            strategy that aligns with your business objectives and inspires your
-            employees.
-          </p>
-          <div className="mt-8">
-            <Link to="/contact">
-              <CallToActionButton
-                text="Get a Custom Consultation"
-                isPrimary={false}
-                className="text-red-800"
-              />
-            </Link>
-          </div>
+     <section className="relative text-gray-900 py-12 md:py-20 px-4 bg-[#e6f9fb]">
+  <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+    {/* Left Content */}
+    <div>
+      <h2 className="text-2xl md:text-4xl font-bold mb-4">
+        Today is the day to streamline your HR process!
+      </h2>
+      <p className="text-base md:text-lg">
+        Fill out the form, and we’ll handle the rest.
+      </p>
+    </div>
+
+    {/* Right Form */}
+    <div className="bg-white shadow-lg rounded-lg p-6 md:p-8">
+      <h3 className="text-xl font-semibold mb-6 text-center">
+        Get more information today
+      </h3>
+      <form className="space-y-4">
+        {/* Full Name */}
+        <input
+          type="text"
+          placeholder="Full Name"
+          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+        />
+
+        {/* Email */}
+        <input
+          type="email"
+          placeholder="Email"
+          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+        />
+
+        {/* Phone */}
+        <div className="flex">
+          <select className="border border-gray-300 rounded-l-lg px-3 py-2 bg-gray-100 text-sm">
+            <option>+971</option>
+            <option>+1</option>
+            <option>+44</option>
+          </select>
+          <input
+            type="tel"
+            placeholder="Your phone number"
+            className="w-full border border-gray-300 rounded-r-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+          />
         </div>
-      </section>
-    </main>
+
+        {/* Interested In */}
+        <select className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none">
+          <option>Select-one-or-more</option>
+          <option>HR Services</option>
+          <option>Visa Services</option>
+          <option>Recruitment</option>
+          <option>Payroll Outsourcing</option>
+        </select>
+
+        {/* Message */}
+        <textarea
+          placeholder="How can we assist you?"
+          rows={4}
+          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+        ></textarea>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="w-full bg-blue-950 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-800 transition-all duration-300"
+        >
+          SUBMIT
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+    </div>
   );
 }

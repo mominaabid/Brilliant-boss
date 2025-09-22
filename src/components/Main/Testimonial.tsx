@@ -17,17 +17,17 @@ const testimonials: TestimonialItem[] = [
   {
     text: `"Brilliant Boss helped us find the perfect candidate quickly and efficiently. Their team understood our needs and delivered great results. We were impressed with how they assessed candidates not just for skills, but also for cultural fit, which made a huge difference in team cohesion and performance."`,
     author: "Emma - HR Manager",
-    image: "/testimonial2.jpg",
+    image: "/client-4.jpg",
   },
   {
     text: `"The team at Brilliant Boss is professional, responsive, and trustworthy. They made the recruitment process seamless for our company. From the initial consultation to the final placement, their guidance and support were invaluable, and we highly recommend their services to other organizations."`,
     author: "Daniel - Operations Head",
-    image: "/testimonial3.jpg",
+    image: "/client-2.jpg",
   },
   {
     text: `"I highly recommend Brilliant Boss for any organization looking for top talent. Their expertise and guidance are unmatched. They take the time to understand your organization's needs and provide tailored solutions that lead to successful hires every time."`,
     author: "Michael Smith - CEO",
-    image: "/testimonial5.jpg",
+    image: "/client-3.jpg",
   },
 ];
 
@@ -50,19 +50,15 @@ const Testimonial: React.FC = () => {
   return (
     <section className="relative md:py-24">
       {/* Background image */}
-      <div className="absolute inset-0 w-full h-full -z-10">
-        <img
-          src="/testimonial1.jpg"
-          alt="Testimonial Background"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/40"></div>
+      <div className="absolute inset-0 w-full h-full -z-10 bg-[#f1eae1] ">
+    
+        <div className="absolute inset-0"></div>
       </div>
 
       <div className="relative container mx-auto px-4 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-16">
           {/* Textimonial text */}
-          <div className="text-white flex-1 flex flex-col justify-center">
+          <div className="text-black flex-1 flex flex-col justify-center">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current}

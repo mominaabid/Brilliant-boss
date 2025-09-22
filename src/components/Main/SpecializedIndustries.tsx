@@ -63,13 +63,13 @@ const SpecializedIndustries = () => {
   const extendedIndustries = [...industries, ...industries];
 
   return (
-    <div className="relative w-full overflow-hidden md:pt-20 pt-10 pb-2 bg-[#010d2d]">
+    <div className="relative w-full overflow-hidden md:pt-20 pt-10 pb-2 bg-white">
       {/* Heading */}
       <div className="text-center mb-12 px-5 lg:px-8 relative z-10">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-white drop-shadow-md">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-blue-950 drop-shadow-md">
           Industries We Specialize In
         </h2>
-        <p className="mt-2 text-lg text-gray-200 max-w-2xl mx-auto drop-shadow-md">
+        <p className="mt-2 text-lg text-blue-950 max-w-2xl mx-auto drop-shadow-md">
           We specialize in providing tailored solutions for various industries.
         </p>
       </div>

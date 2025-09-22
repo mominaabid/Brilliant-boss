@@ -31,15 +31,24 @@ const EmployeeForm: React.FC = () => {
       <Header />
 
       {/* Banner */}
-      <section
-        className="relative h-[180px] sm:h-[220px] flex items-center justify-center bg-cover bg-center"
-        style={{ backgroundImage: "url('/banner.jpg')" }}
-      >
-        <div className="absolute inset-0 bg-black/50"></div>
-        <h1 className="relative text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center px-4">
-          Employer Recruitment Inquiry
-        </h1>
-      </section>
+<section className="relative min-h-[280px] sm:min-h-[350px] lg:min-h-[450px] flex items-center justify-center overflow-hidden">
+  {/* Background Image */}
+  <img
+    src="/services-hr-automation.jpg"
+    alt="Employer Recruitment"
+    className="absolute inset-0 w-full h-full object-cover object-top "
+  />
+
+  {/* Dark overlay */}
+  <div className="absolute inset-0 bg-black/50"></div>
+  <h1 className="relative text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center px-4">
+    Employee Recruitment Enquiry
+  </h1>
+</section>
+
+
+
+
 
       {/* Two-column Form Section */}
       <section className="flex flex-col lg:flex-row justify-center items-start py-12 px-4 gap-12 max-w-6xl mx-auto">

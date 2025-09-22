@@ -134,6 +134,26 @@ const EorPage = () => {
   return (
     <div className="bg-gray-50 font-sans">
       <Header />
+      {/* New Section: EOR, image right, text left, after header */}
+      <section className="w-full bg-white py-10 flex flex-col md:flex-row items-center justify-center gap-8 px-4 md:px-12">
+        <div className="md:w-1/2 w-full mb-8 md:mb-0 flex flex-col items-center md:items-start text-center md:text-left">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-950 mb-4">
+            EOR Services by Brilliant Boss HR consultancy
+          </h2>
+          <p className="text-gray-700 mb-3 text-base sm:text-lg">
+            <strong>Brilliant Boss HR consultancy</strong> delivers world-class Employer of Record (EOR) solutions, enabling your business to hire, pay, and manage talent anywhere with full compliance and zero hassle.
+          </p>
+          <p className="text-gray-700 mb-3 text-base sm:text-lg">
+            Our EOR platform streamlines onboarding, payroll, and HR administration, so you can focus on growth while we handle the legal complexities. Expand into new markets confidently with <strong>Brilliant Boss HR consultancy</strong> as your trusted partner.
+          </p>
+          <p className="text-gray-700 text-base sm:text-lg">
+            Experience seamless international hiring, risk mitigation, and local expertise—choose <strong>Brilliant Boss HR consultancy</strong> for your EOR needs.
+          </p>
+        </div>
+        <div className="md:w-1/2 w-full flex justify-center">
+          <img src="/EO2.jpg" alt="EOR Services" className="max-w-xs sm:max-w-sm md:max-w-md w-full h-auto rounded-lg shadow-md object-contain" />
+        </div>
+      </section>
 
       <main>
         {/* Section 1: Hero */}
@@ -269,25 +289,80 @@ const EorPage = () => {
         </motion.section>
 
         {/* Section 6: Final CTA */}
-        <section className="relative text-white py-12 md:py-20 px-4">
-          <div className="absolute inset-0 bg-[#5b0404]"></div>
-          <div className="relative max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl md:text-4xl font-bold mb-4">
-              Focus on Growth. We'll Handle the Rest.
-            </h2>
-            <p className="text-base md:text-lg mb-6">
-              Let us manage your workforce on the ground so you can concentrate
-              on expanding your business in the UAE.
-            </p>
-            <Link to="/contact">
-              <button
-                className="inline-block bg-white cursor-pointer text-red-800 font-bold py-3 px-8 rounded-lg text-base md:text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
-              >
-                Get Started Today
-              </button>
-            </Link>
-          </div>
-        </section>
+     <section className="relative text-gray-900 py-12 md:py-20 px-4 bg-[#e6f9fb]">
+  <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+    {/* Left Content */}
+    <div>
+      <h2 className="text-2xl md:text-4xl font-bold mb-4">
+        Today is the day to streamline your HR process!
+      </h2>
+      <p className="text-base md:text-lg">
+        Fill out the form, and we’ll handle the rest.
+      </p>
+    </div>
+
+    {/* Right Form */}
+    <div className="bg-white shadow-lg rounded-lg p-6 md:p-8">
+      <h3 className="text-xl font-semibold mb-6 text-center">
+        Get more information today
+      </h3>
+      <form className="space-y-4">
+        {/* Full Name */}
+        <input
+          type="text"
+          placeholder="Full Name"
+          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+        />
+
+        {/* Email */}
+        <input
+          type="email"
+          placeholder="Email"
+          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+        />
+
+        {/* Phone */}
+        <div className="flex">
+          <select className="border border-gray-300 rounded-l-lg px-3 py-2 bg-gray-100 text-sm">
+            <option>+971</option>
+            <option>+1</option>
+            <option>+44</option>
+          </select>
+          <input
+            type="tel"
+            placeholder="Your phone number"
+            className="w-full border border-gray-300 rounded-r-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+          />
+        </div>
+
+        {/* Interested In */}
+        <select className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none">
+          <option>Select-one-or-more</option>
+          <option>HR Services</option>
+          <option>Visa Services</option>
+          <option>Recruitment</option>
+          <option>Payroll Outsourcing</option>
+        </select>
+
+        {/* Message */}
+        <textarea
+          placeholder="How can we assist you?"
+          rows={4}
+          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+        ></textarea>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="w-full bg-blue-950 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-800 transition-all duration-300"
+        >
+          SUBMIT
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
       </main>
     </div>
   );

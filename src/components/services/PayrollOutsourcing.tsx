@@ -96,6 +96,30 @@ const PayrollOutsourcingPage = () => {
     <div className="bg-gray-50 font-sans">
       <Header />
 
+      {/* New Section: Payroll Outsourcing, image right, text left, after header */}
+      <section className="w-full bg-white py-10 flex flex-col md:flex-row items-center justify-center gap-8 px-4 md:px-12">
+        <div className="md:w-1/2 w-full mb-8 md:mb-0 flex flex-col items-center md:items-start text-center md:text-left">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-950 mb-4">
+            Payroll Outsourcing Solutions
+          </h2>
+          <p className="text-gray-700 mb-3 text-base sm:text-lg">
+            <strong>Brilliant Boss HR consultancy</strong> provides secure, accurate, and fully compliant payroll outsourcing for businesses of all sizes. Our expert team ensures your employees are paid on time, every time.
+          </p>
+          <p className="text-gray-700 mb-3 text-base sm:text-lg">
+            With <strong>Brilliant Boss HR consultancy</strong>, you gain peace of mind knowing that all payroll, WPS, and statutory requirements are handled by professionals who care about your business.
+          </p>
+          <p className="text-gray-700 mb-3 text-base sm:text-lg">
+            We offer transparent pricing, dedicated support, and a seamless payroll experience. Let <strong>Brilliant Boss HR consultancy</strong> help you focus on growth while we manage your payroll complexities.
+          </p>
+          <p className="text-gray-700 text-base sm:text-lg">
+            Our company is committed to building long-term partnerships and delivering value through innovation, reliability, and a client-first approach.
+          </p>
+        </div>
+        <div className="md:w-1/2 w-full flex justify-center">
+          <img src="/payroll.jpg" alt="Payroll Outsourcing" className="max-w-xs sm:max-w-sm md:max-w-md w-full h-auto rounded-lg shadow-md object-contain" />
+        </div>
+      </section>
+
       <main>
         {/* Section 1: Hero */}
         <section className="relative py-0 md:py-1 px-4 overflow-hidden">
@@ -233,24 +257,80 @@ const PayrollOutsourcingPage = () => {
         </motion.section>
 
         {/* Section 5: Final CTA */}
-        <section className="py-20 px-4">
-          <div className="max-w-4xl mx-auto bg-red-950 text-white p-12 rounded-lg text-center shadow-2xl">
-            <h2 className="text-3xl font-bold mb-4">
-              Spend Less Time on Payroll. Focus More on Growth.
-            </h2>
-            <p className="mb-6 text-lg">
-              Connect Resources is the UAE’s leading payroll outsourcing service
-              provider, enhanced by digital solutions. Let us handle the
-              complexity so you don't have to.
-            </p>
-            <Link to="/contact">
-              <CallToActionButton
-                text="Find Out More"
-                className="bg-blue-500 text-red-800"
-              />
-            </Link>
-          </div>
-        </section>
+      <section className="relative text-gray-900 py-12 md:py-20 px-4 bg-[#e6f9fb]">
+  <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+    {/* Left Content */}
+    <div>
+      <h2 className="text-2xl md:text-4xl font-bold mb-4">
+        Today is the day to streamline your HR process!
+      </h2>
+      <p className="text-base md:text-lg">
+        Fill out the form, and we’ll handle the rest.
+      </p>
+    </div>
+
+    {/* Right Form */}
+    <div className="bg-white shadow-lg rounded-lg p-6 md:p-8">
+      <h3 className="text-xl font-semibold mb-6 text-center">
+        Get more information today
+      </h3>
+      <form className="space-y-4">
+        {/* Full Name */}
+        <input
+          type="text"
+          placeholder="Full Name"
+          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+        />
+
+        {/* Email */}
+        <input
+          type="email"
+          placeholder="Email"
+          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+        />
+
+        {/* Phone */}
+        <div className="flex">
+          <select className="border border-gray-300 rounded-l-lg px-3 py-2 bg-gray-100 text-sm">
+            <option>+971</option>
+            <option>+1</option>
+            <option>+44</option>
+          </select>
+          <input
+            type="tel"
+            placeholder="Your phone number"
+            className="w-full border border-gray-300 rounded-r-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+          />
+        </div>
+
+        {/* Interested In */}
+        <select className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none">
+          <option>Select-one-or-more</option>
+          <option>HR Services</option>
+          <option>Visa Services</option>
+          <option>Recruitment</option>
+          <option>Payroll Outsourcing</option>
+        </select>
+
+        {/* Message */}
+        <textarea
+          placeholder="How can we assist you?"
+          rows={4}
+          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+        ></textarea>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="w-full bg-blue-950 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-800 transition-all duration-300"
+        >
+          SUBMIT
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
       </main>
     </div>
   );

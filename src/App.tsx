@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import { FaWhatsapp } from "react-icons/fa";
 
 import Main from "./components/Main/Main";
 import EorPage from "./components/services/EorPage";
@@ -77,7 +78,17 @@ export default function App() {
           <Route path="/candidate" element={<CandidateForm />} />
           <Route path="/employee" element={<EmployeeForm />} />
         </Routes>
-      </Router>
+
+        {/*  Floating WhatsApp Button */}
+      <a
+  href="https://wa.me/971545188045?text=Hello%20I%20want%20to%20know%20more%20about%20your%20services"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="fixed bottom-4 right-4 bg-green-500 text-white p-3 rounded-full shadow-lg hover:bg-green-600 transition z-50"
+>
+  <FaWhatsapp className="w-6 h-6" />
+</a>
+   </Router>
     </div>
   );
 }

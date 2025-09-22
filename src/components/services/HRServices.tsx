@@ -13,6 +13,36 @@ export default function HrServices() {
   return (
     <main className="bg-gray-50 font-sans">
       <Header />
+      {/* New Section: HR Services, image right, text left, after header */}
+      <section className="w-full bg-white py-10 flex flex-col md:flex-row items-center justify-center gap-8 px-4 md:px-12">
+        <div className="md:w-1/2 w-full mb-8 md:mb-0 flex flex-col items-center md:items-start text-center md:text-left">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-950 mb-4">
+            Comprehensive HR Services
+          </h2>
+          <p className="text-gray-700 mb-3 text-base sm:text-lg">
+            <strong>Brilliant Boss HR consultancy</strong> delivers flexible,
+            scalable HR solutions for businesses of all sizes. Our expert team
+            streamlines your HR operations so you can focus on growth.
+          </p>
+          <p className="text-gray-700 mb-3 text-base sm:text-lg">
+            From compliance and payroll to talent management,{" "}
+            <strong>Brilliant Boss HR consultancy</strong> provides end-to-end
+            support tailored to your unique needs.
+          </p>
+          <p className="text-gray-700 text-base sm:text-lg">
+            Partner with{" "}
+            <strong>Brilliant Boss HR consultancy</strong> for reliable, innovative
+            HR services that empower your workforce and drive business success.
+          </p>
+        </div>
+        <div className="md:w-1/2 w-full flex justify-center">
+          <img
+            src="/hr6.jpg"
+            alt="HR Services"
+            className="max-w-xs sm:max-w-sm md:max-w-md w-full h-auto rounded-lg shadow-md object-contain"
+          />
+        </div>
+      </section>
 
       {/* Hero Section */}
       <section className="relative py-1 md:py-1 px-4 overflow-hidden bg-white text-blue-950">
@@ -69,14 +99,9 @@ export default function HrServices() {
             </div>
             <div className="bg-gray-50 border-l-4 border-red-800 p-8 rounded-lg shadow-lg text-center">
               <p className="sm:text-6xl text-4xl font-extrabold text-red-800">
-                25+
+                Since 2012
               </p>
-              <p className="text-xl font-semibold text-red-800 mt-2">
-                Years of Combined Industry Experience
-              </p>
-              <p className="text-gray-600 mt-4">
-                Work with an expert team you can trust.
-              </p>
+             
             </div>
           </div>
         </div>
@@ -192,29 +217,112 @@ export default function HrServices() {
           </div>
         </div>
       </section>
+                {/* Service 5: Labour Policy Development (UAE) */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="rounded-lg overflow-hidden shadow-2xl">
+              <img
+                src="/uae2.jpg"
+                alt="Labour Policy Development UAE"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div>
+              <HiOutlineCheckBadge className="h-12 w-12 text-[#03254D]" />
+              <h3 className="text-3xl font-bold text-[#03254D] mt-4">
+                Labour <span className="text-red-800">Policy Development</span> Services for UAE
+              </h3>
+              <p className="mt-4 text-lg text-gray-600">
+                We help businesses design and implement clear, compliant, and
+                practical labour policies tailored to the UAE’s unique
+                regulatory framework. From drafting employment contracts and
+                workplace policies to creating grievance redressal mechanisms,
+                our services ensure your HR policies align with local labour
+                laws and industry best practices.  
+              </p>
+              <p className="mt-4 text-lg text-gray-600">
+                With our expertise, you can foster a fair, transparent, and
+                legally compliant work environment while safeguarding your
+                organization against costly disputes and penalties.
+              </p>
+            </div>
+          </div>
+
 
       {/* CTA Section */}
-      <section className="bg-[#5b0404]">
-        <div className="container mx-auto px-6 py-20 max-sm:py-8 text-center text-white">
-          <h2 className="text-3xl lg:text-4xl font-bold">
-            Optimize Your HR Operations Today
-          </h2>
-          <p className="text-lg max-w-2xl mx-auto mt-4">
-            Whether you need to streamline a single process or require a fully
-            outsourced solution, we're here to help. Contact us for a
-            consultation.
-          </p>
-          <div className="mt-8">
-            <Link to="/contact">
-              <CallToActionButton 
-                text="Get a Custom Quote" 
-                isPrimary={false} 
-                className="text-red-800" 
-              />
-            </Link>
-          </div>
+    <section className="relative text-gray-900 py-12 md:py-20 px-4 bg-[#e6f9fb]">
+  <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+    {/* Left Content */}
+    <div>
+      <h2 className="text-2xl md:text-4xl font-bold mb-4">
+        Today is the day to streamline your HR process!
+      </h2>
+      <p className="text-base md:text-lg">
+        Fill out the form, and we’ll handle the rest.
+      </p>
+    </div>
+
+    {/* Right Form */}
+    <div className="bg-white shadow-lg rounded-lg p-6 md:p-8">
+      <h3 className="text-xl font-semibold mb-6 text-center">
+        Get more information today
+      </h3>
+      <form className="space-y-4">
+        {/* Full Name */}
+        <input
+          type="text"
+          placeholder="Full Name"
+          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+        />
+
+        {/* Email */}
+        <input
+          type="email"
+          placeholder="Email"
+          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+        />
+
+        {/* Phone */}
+        <div className="flex">
+          <select className="border border-gray-300 rounded-l-lg px-3 py-2 bg-gray-100 text-sm">
+            <option>+971</option>
+            <option>+1</option>
+            <option>+44</option>
+          </select>
+          <input
+            type="tel"
+            placeholder="Your phone number"
+            className="w-full border border-gray-300 rounded-r-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+          />
         </div>
-      </section>
+
+        {/* Interested In */}
+        <select className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none">
+          <option>Select-one-or-more</option>
+          <option>HR Services</option>
+          <option>Visa Services</option>
+          <option>Recruitment</option>
+          <option>Payroll Outsourcing</option>
+        </select>
+
+        {/* Message */}
+        <textarea
+          placeholder="How can we assist you?"
+          rows={4}
+          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+        ></textarea>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="w-full bg-blue-950 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-800 transition-all duration-300"
+        >
+          SUBMIT
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
     </main>
   );
 }

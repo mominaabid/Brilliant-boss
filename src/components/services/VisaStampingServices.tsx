@@ -70,21 +70,58 @@ export default function VisaStampingServices() {
   return (
     <main className="bg-gray-50 font-sans">
       <Header />
+      {/* New Section: Visa Stamping, image right, text left, after header */}
+      <section className="w-full bg-white py-10 flex flex-col md:flex-row items-center justify-center gap-8 px-4 md:px-12">
+        <div className="md:w-1/2 w-full mb-8 md:mb-0 flex flex-col items-center md:items-start text-center md:text-left">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-950 mb-4">
+            Visa Stamping Services
+          </h2>
+          <p className="text-gray-700 mb-3 text-base sm:text-lg">
+            <strong>Brilliant Boss HR consultancy</strong> streamlines your visa
+            stamping process with precision, speed, and full compliance. We handle
+            every detail, so you can focus on your journey or business.
+          </p>
+          <p className="text-gray-700 mb-3 text-base sm:text-lg">
+            Our experienced team at{" "}
+            <strong>Brilliant Boss HR consultancy</strong> ensures your documents
+            are verified, submitted, and processed efficiently—minimizing delays
+            and maximizing peace of mind.
+          </p>
+          <p className="text-gray-700 text-base sm:text-lg">
+            Choose{" "}
+            <strong>Brilliant Boss HR consultancy</strong> for secure, reliable,
+            and transparent visa stamping services trusted by individuals and
+            companies alike.
+          </p>
+        </div>
+        <div className="md:w-1/2 w-full flex justify-center">
+          <img
+            src="/visaa2.png"
+            alt="Visa Stamping"
+            className="max-w-xs sm:max-w-sm md:max-w-md w-full h-auto rounded-lg shadow-md object-contain"
+          />
+        </div>
+      </section>
 
       {/* Hero Section */}
       <section className="relative py-1 md:py-1 px-4 overflow-hidden">
         <div className="relative max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
           {/* Left Side - Text */}
           <div className="text-center md:text-left">
-            
             <h1 className="text-3xl md:text-5xl font-extrabold text-[#03254D] mb-4 leading-tight">
-              The <span className="text-blue-950">Final Step</span> to Your Destination
+              The{" "}
+              <span className="text-blue-950">Final Step</span> to Your Destination
             </h1>
             <p className="text-base md:text-lg text-gray-600 max-w-xl mb-20 mx-auto md:mx-0">
-              Navigate the crucial final stage of your visa process with confidence. 
-              Our expert service ensures your visa is stamped accurately and efficiently, 
-              providing complete peace of mind.
+              Navigate the crucial final stage of your visa process with
+              confidence. Our expert service ensures your visa is stamped
+              accurately and efficiently, providing complete peace of mind.
+              <span className="block mt-3 font-semibold text-red-800">
+                We specialize in Saudi Visa stamping services, available for
+                applicants across the globe.
+              </span>
             </p>
+
             <Link to="/contact">
               <CallToActionButton
                 text="Secure Your Visa Stamp"
@@ -113,7 +150,8 @@ export default function VisaStampingServices() {
             </div>
 
             <h2 className="text-3xl lg:text-4xl font-bold text-[#03254D]">
-              Don't <span className="text-red-800">Overlook</span> the{" "}
+              Don't{" "}
+              <span className="text-red-800">Overlook</span> the{" "}
               <span className="text-red-800">Final Hurdle</span>
             </h2>
 
@@ -123,9 +161,15 @@ export default function VisaStampingServices() {
               process involves strict documentation, specific appointments, and
               direct dealings with embassies or consulates. Any error, no matter
               how small, can lead to significant delays or even outright
-              rejection, jeopardizing your travel or employment plans. Our
-              dedicated service eliminates these risks, ensuring a smooth and
-              successful outcome.
+              rejection, jeopardizing your travel or employment plans.
+              <br />
+              <br />
+              Our dedicated service focuses on{" "}
+              <span className="font-semibold text-red-800">
+                Saudi Visa stamping
+              </span>
+              , assisting applicants from anywhere in the world with reliable and
+              efficient support.
             </p>
           </div>
         </div>
@@ -136,11 +180,13 @@ export default function VisaStampingServices() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16 max-w-3xl mx-auto">
             <h2 className="text-3xl lg:text-4xl font-bold text-[#03254D]">
-              How <span className="text-red-800">We Ensure</span> a <span className="text-red-800">Smooth Process</span>
+              How{" "}
+              <span className="text-red-800">We Ensure</span> a{" "}
+              <span className="text-red-800">Smooth Process</span>
             </h2>
             <p className="text-lg text-gray-600 mt-4">
-              We provide a comprehensive, hands-on service to manage every
-              detail of the visa stamping stage.
+              We provide a comprehensive, hands-on service to manage every detail
+              of the visa stamping stage.
             </p>
           </div>
           <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-2">
@@ -171,22 +217,25 @@ export default function VisaStampingServices() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-[#5b0404] ">
-        <div className="container mx-auto px-6 max-sm:py-8 py-20 text-center text-white">
+      <section className="bg-gray-200 ">
+        <div className="container mx-auto px-6 max-sm:py-8 py-20 text-center text-blue-950">
           <h2 className="text-3xl lg:text-4xl font-bold">
-            Finalize Your Journey with Confidence
+            Finalize Your{" "}
+            <span className="text-blue-950">Saudi Visa</span> Journey with
+            Confidence
           </h2>
           <p className="text-lg max-w-2xl mx-auto mt-4">
-            Let our experts handle the complexities of visa stamping so you can
-            focus on your upcoming travel or new role. Contact us today to get
-            started.
+            Let our experts handle the complexities of Saudi visa stamping so you
+            can focus on your upcoming travel or new role. We proudly serve
+            applicants across the globe — contact us today to get started.
           </p>
+
           <div className="mt-8">
             <Link to="/contact">
               <CallToActionButton
                 text="Contact Us for Stamping Services"
-                isPrimary={false}
-                className="text-red-800"
+                isPrimary={true}
+                className=" bg-blue-950 text-white border border-blue-950"
               />
             </Link>
           </div>

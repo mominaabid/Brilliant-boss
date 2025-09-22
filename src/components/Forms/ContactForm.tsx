@@ -10,14 +10,12 @@ const ContactForm = () => {
       <div className="min-h-screen bg-gray-50">
         {/* Hero Section */}
         <section
-          className="relative h-[180px] sm:h-[220px] flex items-center justify-center bg-cover bg-center"
-          style={{ backgroundImage: "url('/banner.jpg')" }}
-        >
-          <div className="absolute inset-0 bg-black/50"></div>
-          <h1 className="relative text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center">
-            Reach Out To Us
-          </h1>
-        </section>
+  className="relative h-[300px] sm:h-[400px] flex items-center justify-center bg-cover bg-top"
+  style={{ backgroundImage: "url('/contact-us-banner.jpg')" }}
+>
+  <div className="absolute inset-0 bg-black/50"></div>
+</section>
+
 
         {/* Contact Info Cards */}
         <section className="py-4 bg-white">
@@ -56,7 +54,7 @@ const ContactForm = () => {
                 <h3 className="text-lg font-bold text-gray-800 mb-1">
                   Email Us
                 </h3>
-                <p className="text-gray-600 text-sm">info@brilliantboss.com</p>
+                <p className="text-gray-600 text-sm">contact@brilliantbosshr.com</p>
               </motion.div>
 
               {/* Phone */}

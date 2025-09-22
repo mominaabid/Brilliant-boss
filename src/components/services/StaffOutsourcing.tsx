@@ -167,6 +167,38 @@ const StaffOutsourcingPage: React.FC = () => {
   return (
     <div className="bg-gray-50 font-sans">
       <Header />
+      {/* New Section: Staff Outsourcing, image right, text left, after header */}
+      <section className="w-full bg-white py-10 flex flex-col md:flex-row items-center justify-center gap-8 px-4 md:px-12">
+        <div className="md:w-1/2 w-full mb-8 md:mb-0 flex flex-col items-center md:items-start text-center md:text-left">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-950 mb-4">
+            Staff Outsourcing Solutions
+          </h2>
+          <p className="text-gray-700 mb-3 text-base sm:text-lg">
+            <strong>Brilliant Boss HR consultancy</strong> delivers flexible,
+            scalable staff outsourcing for businesses of all sizes. Our expert team
+            provides the right talent, right when you need it.
+          </p>
+          <p className="text-gray-700 mb-3 text-base sm:text-lg">
+            With{" "}
+            <strong>Brilliant Boss HR consultancy</strong>, you gain access to a pool
+            of pre-vetted professionals, seamless onboarding, and full HR
+            support—so you can focus on your core business.
+          </p>
+          <p className="text-gray-700 text-base sm:text-lg">
+            Choose{" "}
+            <strong>Brilliant Boss HR consultancy</strong> for reliable, efficient,
+            and people-focused staff outsourcing that drives your company's
+            success.
+          </p>
+        </div>
+        <div className="md:w-1/2 w-full flex justify-center">
+          <img
+            src="/staff2.jpg"
+            alt="Staff Outsourcing"
+            className="max-w-xs sm:max-w-sm md:max-w-md w-full h-auto rounded-lg shadow-md object-contain"
+          />
+        </div>
+      </section>
 
       <main>
         {/* Hero */}
@@ -178,7 +210,10 @@ const StaffOutsourcingPage: React.FC = () => {
                 Fully Compliant and Customizable Staff Outsourcing Solutions
               </h1>
               <p className="mt-4 text-lg text-blue-950">
-               Take advantage of our highly trained pool of qualified talent in all fields and industries. We provide specialists who bring expertise and innovation to your organization. With the right talent, you can achieve faster growth and long-term success.
+                Take advantage of our highly trained pool of qualified talent in
+                all fields and industries. We provide specialists who bring
+                expertise and innovation to your organization. With the right
+                talent, you can achieve faster growth and long-term success.
               </p>
               <Link to="/contact">
                 <CallToActionButton
@@ -203,8 +238,9 @@ const StaffOutsourcingPage: React.FC = () => {
         <section className="py-20 max-sm:py-8 px-4 text-center">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-[#03254D]">
-              Build Your <span className="text-red-800">Dream Team</span> with
-              Brilliant Boss HR
+              Build Your{" "}
+              <span className="text-red-800">Dream Team</span> with Brilliant Boss
+              HR
             </h2>
             <p className="mt-4 text-xl text-gray-600">
               Employees are the greatest assets of any business. Staff
@@ -237,7 +273,8 @@ const StaffOutsourcingPage: React.FC = () => {
         <section className="py-20 max-sm:py-8 px-4">
           <div className="max-w-6xl mx-auto space-y-20">
             <h2 className="text-4xl font-extrabold text-[#03254D] text-center">
-              Why <span className="text-red-800">Choose Brilliant Boss</span> HR?
+              Why{" "}
+              <span className="text-red-800">Choose Brilliant Boss</span> HR?
             </h2>
             {STAFFING_BENEFITS.map((benefit, index) => (
               <AlternatingFeatureBlock
@@ -250,22 +287,80 @@ const StaffOutsourcingPage: React.FC = () => {
         </section>
 
         {/* Final CTA */}
-        <section className="py-24 px-4 bg-[#5b0404] text-white">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-bold">Optimize Your Workforce Today</h2>
-            <p className="mt-4 text-lg max-w-2xl mx-auto">
-              Contact us to find out how our expert staff outsourcing solutions
-              can streamline your recruitment procedure and improve your
-              business’ efficiency.
-            </p>
-            <Link to="/contact">
-              <CallToActionButton
-                text="TALK TO OUR EXPERT"
-                className="bg-blue-800 text-red-950"
-              />
-            </Link>
-          </div>
-        </section>
+      <section className="relative text-gray-900 py-12 md:py-20 px-4 bg-[#e6f9fb]">
+  <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+    {/* Left Content */}
+    <div>
+      <h2 className="text-2xl md:text-4xl font-bold mb-4">
+        Today is the day to streamline your HR process!
+      </h2>
+      <p className="text-base md:text-lg">
+        Fill out the form, and we’ll handle the rest.
+      </p>
+    </div>
+
+    {/* Right Form */}
+    <div className="bg-white shadow-lg rounded-lg p-6 md:p-8">
+      <h3 className="text-xl font-semibold mb-6 text-center">
+        Get more information today
+      </h3>
+      <form className="space-y-4">
+        {/* Full Name */}
+        <input
+          type="text"
+          placeholder="Full Name"
+          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+        />
+
+        {/* Email */}
+        <input
+          type="email"
+          placeholder="Email"
+          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+        />
+
+        {/* Phone */}
+        <div className="flex">
+          <select className="border border-gray-300 rounded-l-lg px-3 py-2 bg-gray-100 text-sm">
+            <option>+971</option>
+            <option>+1</option>
+            <option>+44</option>
+          </select>
+          <input
+            type="tel"
+            placeholder="Your phone number"
+            className="w-full border border-gray-300 rounded-r-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+          />
+        </div>
+
+        {/* Interested In */}
+        <select className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none">
+          <option>Select-one-or-more</option>
+          <option>HR Services</option>
+          <option>Visa Services</option>
+          <option>Recruitment</option>
+          <option>Payroll Outsourcing</option>
+        </select>
+
+        {/* Message */}
+        <textarea
+          placeholder="How can we assist you?"
+          rows={4}
+          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+        ></textarea>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="w-full bg-blue-950 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-800 transition-all duration-300"
+        >
+          SUBMIT
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
       </main>
     </div>
   );
