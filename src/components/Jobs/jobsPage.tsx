@@ -434,7 +434,7 @@ Only experienced candidates need to apply.`,
     <div className="bg-gray-50 min-h-screen flex flex-col">
       <Header />
       
-      {/* Hero Section */}
+     
       {/* Hero Section with full image */}
       <div className="w-full overflow-hidden">
         <img 

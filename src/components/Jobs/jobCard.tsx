@@ -16,7 +16,7 @@ const JobCard: React.FC<JobCardProps> = ({
   onDetailsClick,
   onApplyClick,
 }) => {
-  // Format posting date to display like BrilliantBoss format
+  // like the original website
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-GB', {

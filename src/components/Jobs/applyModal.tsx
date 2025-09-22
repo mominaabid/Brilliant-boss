@@ -159,7 +159,7 @@ const ApplyModal: React.FC<ModalProps> = ({ job, onClose }) => {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
-        <div className="relative bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-4 rounded-t-lg">
+        <div className="relative bg-blue-950 text-white px-6 py-4 rounded-t-lg">
           <h2 className="text-xl font-bold pr-8">Apply Job</h2>
           <button
             onClick={onClose}

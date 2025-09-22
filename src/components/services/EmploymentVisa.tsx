@@ -51,30 +51,40 @@ export default function EmploymentVisa() {
   return (
     <main className="bg-gray-50 font-sans">
       <Header />
-       <section className="w-full bg-white py-10 flex flex-col md:flex-row items-center justify-center gap-8 px-4 md:px-12">
-        <div className="md:w-1/2 w-full mb-8 md:mb-0 flex flex-col items-center md:items-start text-center md:text-left">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-950 mb-4">
-            Employment Visa Solutions
-          </h2>
-          The heading sizes in this file are set using Tailwind CSS classes:
+     <section className="w-full bg-white py-10 flex flex-col md:flex-row items-center justify-center gap-8 px-4 md:px-12">
+  <div className="md:w-1/2 w-full mb-8 md:mb-0 flex flex-col items-center md:items-start text-center md:text-left">
+    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-blue-950 mb-4">
+      Employment Visa Solutions
+    </h2>
 
-          - h1: text-3xl md:text-5xl (mobile: 1.875rem, desktop: 3rem)
-          - h2: text-2xl sm:text-3xl md:text-4xl (2xl: 1.5rem, sm: 1.875rem, md: 2.25rem)
-          - h2 (other sections): text-3xl lg:text-4xl (mobile: 1.875rem, large: 2.25rem)
-          - h3: text-xl (1.25rem), sometimes font-bold or font-semibold
+    <p className="text-gray-700 mb-3 text-base sm:text-lg">
+      Our experts at <strong>Brilliant Boss HR Consultancy</strong> handle all documentation, government liaison, and compliance, so you can focus on growing your business with peace of mind.
+    </p>
 
-          These classes control the font size responsively.
-          <p className="text-gray-700 mb-3 text-base sm:text-lg">
-            Our experts at <strong>Brilliant Boss HR consultancy</strong> handle all documentation, government liaison, and compliance, so you can focus on growing your business with peace of mind.
-          </p>
-          <p className="text-gray-700 text-base sm:text-lg">
-            Choose <strong>Brilliant Boss HR consultancy</strong> for transparent pricing, dedicated support, and a seamless visa experience for your employees.
-          </p>
-        </div>
-        <div className="md:w-1/2 w-full flex justify-center">
-          <img src="/visa1.jpg" alt="Employment Visa" className="max-w-xs sm:max-w-sm md:max-w-md w-full h-auto rounded-lg shadow-md object-contain" />
-        </div>
-      </section>
+    <p className="text-gray-700 mb-3 text-base sm:text-lg">
+      Choose <strong>Brilliant Boss HR Consultancy</strong> for transparent pricing, dedicated support, and a seamless visa experience for your employees.
+    </p>
+
+    <p className="text-gray-700 mb-3 text-base sm:text-lg">
+      We assist companies of all sizes in managing work permits, renewals, and regulatory requirements with complete accuracy. Our team ensures that every step of the process is handled efficiently, saving you both time and resources.
+    </p>
+
+    <p className="text-gray-700 mb-3 text-base sm:text-lg">
+      From initial consultation to final approval, we provide personalized guidance tailored to your business needs. Whether you are hiring new staff or managing renewals for existing employees, our solutions are designed to simplify every stage.
+    </p>
+
+   
+  </div>
+
+  <div className="md:w-1/2 w-full flex justify-center">
+    <img
+      src="/visa1.jpg"
+      alt="Employment Visa"
+      className="max-w-xs sm:max-w-sm md:max-w-md w-full h-auto rounded-lg shadow-md object-contain"
+    />
+  </div>
+</section>
+
 
       {/* Hero Section */}
       <section className="py-24 md:py-4 px-6 text-blue-950">
