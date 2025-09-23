@@ -436,11 +436,11 @@ Only experienced candidates need to apply.`,
       
      
       {/* Hero Section with full image */}
-      <div className="w-full overflow-hidden">
+      <div className="w-full overflow-hidden bg-white flex justify-center items-center">
         <img 
-          src="/job-fi.jpg" 
+          src="/jobsb.webp" 
           alt="Jobs Hero" 
-          className="w-full h-[350px] md:h-[400px] object-cover object-center select-none pointer-events-none opacity-300"
+          className="w-full h-[360px] md:h-[450px] object-cover select-none pointer-events-none"
           draggable="false"
         />
       </div>

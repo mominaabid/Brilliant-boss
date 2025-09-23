@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
 import { FaWhatsapp } from "react-icons/fa";
 
 import Main from "./components/Main/Main";
@@ -22,6 +23,7 @@ import Signup from "./components/login/signup";
 import ContactForm from "./components/Forms/ContactForm";
 import CandidateForm from "./components/Forms/CandidateForm";
 import EmployeeForm from "./components/Forms/EmployeeForm";
+import Admin from "./components/Admin";
 
 // Scroll Handler
 function ScrollToSection() {
@@ -49,6 +51,7 @@ export default function App() {
   return (
     <div className="font-sans">
       <Router>
+        <ScrollToTop />
         <ScrollToSection />
         <Routes>
           {/* Home */}
@@ -77,6 +80,7 @@ export default function App() {
           <Route path="/contact" element={<ContactForm />} />
           <Route path="/candidate" element={<CandidateForm />} />
           <Route path="/employee" element={<EmployeeForm />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
 
         {/*  Floating WhatsApp Button */}

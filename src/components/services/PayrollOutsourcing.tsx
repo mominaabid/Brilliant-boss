@@ -274,57 +274,51 @@ const PayrollOutsourcingPage = () => {
       <h3 className="text-xl font-semibold mb-6 text-center">
         Get more information today
       </h3>
-      <form className="space-y-4">
-        {/* Full Name */}
+      <form
+        action="https://formspree.io/f/xzzawdja"
+        method="POST"
+        className="space-y-3"
+      >
         <input
           type="text"
-          placeholder="Full Name"
-          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+          name="name"
+          placeholder="Your Name"
+          className="w-full border border-gray-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+          required
         />
-
-        {/* Email */}
         <input
           type="email"
-          placeholder="Email"
-          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
+          name="email"
+          placeholder="Your Email"
+          className="w-full border border-gray-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+          required
         />
-
-        {/* Phone */}
-        <div className="flex">
-          <select className="border border-gray-300 rounded-l-lg px-3 py-2 bg-gray-100 text-sm">
-            <option>+971</option>
-            <option>+1</option>
-            <option>+44</option>
-          </select>
-          <input
-            type="tel"
-            placeholder="Your phone number"
-            className="w-full border border-gray-300 rounded-r-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
-          />
-        </div>
-
-        {/* Interested In */}
-        <select className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none">
-          <option>Select-one-or-more</option>
-          <option>HR Services</option>
-          <option>Visa Services</option>
-          <option>Recruitment</option>
-          <option>Payroll Outsourcing</option>
-        </select>
-
-        {/* Message */}
+        <input
+          type="text"
+          name="phone"
+          placeholder="Phone Number"
+          className="w-full border border-gray-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+        />
+        <input
+          type="text"
+          name="subject"
+          placeholder="Subject"
+          className="w-full border border-gray-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
+        />
         <textarea
-          placeholder="How can we assist you?"
+          name="message"
+          placeholder="Message"
           rows={4}
-          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-red-600 focus:outline-none"
-        ></textarea>
-
-        {/* Submit Button */}
+          className="w-full border border-gray-300 p-2.5 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-none"
+          required
+        />
+        <input type="hidden" name="_subject" value="New Payroll Outsourcing Inquiry" />
+        <input type="hidden" name="_redirect" value="https://yourdomain.com/thank-you" />
         <button
           type="submit"
-          className="w-full bg-blue-950 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-800 transition-all duration-300"
+          className="w-full bg-blue-950 text-white py-2.5 rounded-lg font-semibold flex items-center justify-center space-x-2 mt-3 hover:bg-red-900 transition"
         >
-          SUBMIT
+          Submit
         </button>
       </form>
     </div>

@@ -31,14 +31,14 @@ const Footer = () => {
             
             {/* Social Icons moved here for better balance */}
             <div className="flex gap-4 items-center pt-6 mt-auto">
-              <a href="https://www.facebook.com/brilliantbosshr/" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.facebook.com/profile.php?id=61581262555856" target="_blank" rel="noopener noreferrer">
                 <FaFacebookF size={20} className="text-[#1877F2] hover:opacity-80 transition-opacity duration-300" />
               </a>
             
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.instagram.com/brilliant_boss_hr_consultancy?igsh=NzBhaHJ5eHk2ZnVh" target="_blank" rel="noopener noreferrer">
                 <FaInstagram size={20} className="text-[#E1306C] hover:opacity-80 transition-opacity duration-300" />
               </a>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/company/brilliant-boss-human-resources-consultancy/" target="_blank" rel="noopener noreferrer">
                 <FaLinkedinIn size={20} className="text-[#0077B5] hover:opacity-80 transition-opacity duration-300" />
               </a>
             </div>
@@ -127,7 +127,7 @@ const Footer = () => {
               <div>
                 <h4 className="font-semibold text-gray-900 mb-1">UAE Office</h4>
                 <span className="text-gray-600 text-sm leading-relaxed">
-                  17th Floor, IRIS Bay Tower, Business Bay Dubai, UAE
+                  Al Moosa Tower 2, Floor 20th, Sheikh Zayed Road Dubai, UAE
                 </span>
               </div>
             </div>

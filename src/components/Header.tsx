@@ -19,18 +19,18 @@ import {
 } from "react-icons/fa";
 
 const servicesData = [
-  { title: "EOR (Employer of Record)", path: "/services/eor", icon: <FaUserTie className="text-blue-600" /> },
-  { title: "Employee Mobility", path: "/services/employee-mobility", icon: <FaGlobe className="text-green-600" /> },
-  { title: "Payroll Outsourcing", path: "/services/payroll-outsourcing", icon: <FaMoneyCheckAlt className="text-yellow-600" /> },
-  { title: "Staff Outsourcing", path: "/services/staff-outsourcing", icon: <FaUsers className="text-purple-600" /> },
-  { title: "Employment Visa", path: "/services/employment-visa", icon: <FaIdBadge className="text-pink-600" /> },
-  { title: "Executive Search", path: "/services/executive-search", icon: <FaSearch className="text-indigo-600" /> },
-  { title: "Recruitment", path: "/services/recruitment", icon: <FaUserPlus className="text-red-600" /> },
-  { title: "C-Suite Level Recruitment", path: "/services/c-suite-level-recruitment", icon: <FaUserShield className="text-gray-700" /> },
-  { title: "HR Services", path: "/services/hr-services", icon: <FaUserCog className="text-blue-700" /> },
-  { title: "Saudi and Emirati Nationals Recruitment", path: "/services/saudi-emirati-nationals-recruitment", icon: <FaFlag className="text-red-700" /> },
-  { title: "Visa Stamping Services", path: "/services/visa-stamping-services", icon: <FaStamp className="text-orange-600" /> },
-  { title: "Training & Development", path: "/services/training-and-development", icon: <FaChalkboardTeacher className="text-teal-600" /> },
+  { title: "EOR (Employer of Record)", path: "/services/eor", icon: <FaUserTie className="text-blue-600 h-6 w-6" /> },
+  { title: "Employee Mobility", path: "/services/employee-mobility", icon: <FaGlobe className="text-green-600 h-6 w-6" /> },
+  { title: "Payroll Outsourcing", path: "/services/payroll-outsourcing", icon: <FaMoneyCheckAlt className="text-yellow-600 h-6 w-6" /> },
+  { title: "Staff Outsourcing", path: "/services/staff-outsourcing", icon: <FaUsers className="text-purple-600 h-6 w-6" /> },
+  { title: "Employment Visa", path: "/services/employment-visa", icon: <FaIdBadge className="text-pink-600 h-6 w-6" /> },
+  { title: "Executive Search", path: "/services/executive-search", icon: <FaSearch className="text-indigo-600 h-6 w-6" /> },
+  { title: "Recruitment", path: "/services/recruitment", icon: <FaUserPlus className="text-red-600 h-6 w-6" /> },
+  { title: "C-Suite Level Recruitment", path: "/services/c-suite-level-recruitment", icon: <FaUserShield className="text-gray-700 h-10 w-10" /> },
+  { title: "HR Services", path: "/services/hr-services", icon: <FaUserCog className="text-blue-700 h-6 w-6" /> },
+  { title: "Saudi and Emirati Nationals Recruitment", path: "/services/saudi-emirati-nationals-recruitment", icon: <FaFlag className="text-red-700 h-8 w-8" /> },
+  { title: "Visa Stamping Services", path: "/services/visa-stamping-services", icon: <FaStamp className="text-orange-600 h-8 w-8" /> },
+  { title: "Training & Development", path: "/services/training-and-development", icon: <FaChalkboardTeacher className="text-teal-600 h-8 w-8" /> },
 ];
 
 const Header: React.FC = () => {
@@ -44,23 +44,22 @@ const Header: React.FC = () => {
     <header className="relative z-30 w-full">
       {/* Top thin header */}
       <div className="bg-black text-sm text-white">
-        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center py-2 gap-2">
-          {/* Left: feature.jpg */}
-          <img src="/feature.jpg" alt="Feature" className="h-6 sm:h-8 object-contain" />
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center py-1 sm:py-2 gap-1 sm:gap-1">
+          <p className="text-center w-full sm:w-auto">Smart HR Solutions for Brilliant Results</p>
 
           {/* Right: phone + proposal link */}
-          <div className="flex flex-col sm:flex-row gap-2 sm:gap-6 items-center">
+          <div className="flex flex-col sm:flex-row gap-1 sm:gap-6 items-center w-full sm:w-auto justify-center sm:justify-end">
             <a
-              href="tel:+97142944925"
-              className="flex items-center gap-2 hover:text-gray-300 transition-colors"
+              href="tel:+971-545188045"
+              className="flex items-center gap-2 hover:text-gray-300 transition-colors justify-center"
             >
               <FaPhoneAlt className="w-4 h-4" />
-              <span className="font-medium underline">+971-42944925</span>
+              <span className="font-medium underline">+971-545188045</span>
             </a>
 
             <Link
               to="/contact"
-              className="text-white text-sm underline hover:text-gray-300 transition-colors"
+              className="text-white text-sm underline hover:text-gray-300 transition-colors text-center"
             >
               Request a Proposal
             </Link>
@@ -69,14 +68,14 @@ const Header: React.FC = () => {
       </div>
 
       {/* Main Nav */}
-      <div className="py-2 bg-[#001345] relative">
+  <div className="py-3 bg-[#001345] relative">
         <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo */}
           <Link to={"/"} className="flex items-center">
             <img
               src="/logo4.png"
               alt="Brilliant Boss HR Consultancy"
-              className="h-10 sm:h-12 md:h-14"
+              className="h-14 sm:h-16 md:h-18"
             />
           </Link>
 
@@ -133,17 +132,21 @@ const Header: React.FC = () => {
               </div>
 
               {isServicesOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 w-[28rem] bg-white rounded-lg shadow-xl border border-gray-100 py-2 z-50">
-                  <div className="grid grid-cols-2 xl:grid-cols-3 gap-0 p-2">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 w-[48rem] bg-white rounded-lg shadow-xl border border-gray-100 py-2 z-50">
+                  <div className="grid grid-cols-3 gap-x-6 gap-y-2 p-2">
                     {servicesData.map((service) => (
                       <NavLink
                         key={service.title}
                         to={service.path}
                         className={({ isActive }) =>
-                          `flex items-center gap-3 px-3 py-2 text-sm transition-colors border-b border-gray-200 last:border-b-0 ${
+                          `flex items-center gap-3 px-4 py-2 text-sm transition-colors border-b border-gray-200 last:border-b-0 ${
+                            service.title === 'Saudi and Emirati Nationals Recruitment'
+                              ? ''
+                              : 'whitespace-nowrap'
+                          } ${
                             isActive
-                              ? "bg-blue-50 text-blue-700"
-                              : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
+                              ? 'bg-blue-50 text-blue-700'
+                              : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
                           }`
                         }
                       >

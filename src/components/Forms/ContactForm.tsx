@@ -10,7 +10,7 @@ const ContactForm = () => {
       <div className="min-h-screen bg-gray-50">
         {/* Hero Section */}
         <section
-  className="relative h-[300px] sm:h-[400px] flex items-center justify-center bg-cover bg-top"
+  className="w-full h-[360px] md:h-[450px] object-cover select-none pointer-events-none"
   style={{ backgroundImage: "url('/contact-us-banner.jpg')" }}
 >
   <div className="absolute inset-0 bg-black/50"></div>
@@ -54,7 +54,12 @@ const ContactForm = () => {
                 <h3 className="text-lg font-bold text-gray-800 mb-1">
                   Email Us
                 </h3>
-                <p className="text-gray-600 text-sm">contact@brilliantbosshr.com</p>
+                <a
+                  href="mailto:contact@brilliantbosshr.com"
+                  className="text-blue-700 underline text-sm hover:text-blue-900 transition-colors"
+                >
+                  contact@brilliantbosshr.com
+                </a>
               </motion.div>
 
               {/* Phone */}
@@ -71,7 +76,12 @@ const ContactForm = () => {
                 <h3 className="text-lg font-bold text-gray-800 mb-1">
                   Call Us
                 </h3>
-                <p className="text-gray-600 text-sm">+971 50 123 4567</p>
+                <a
+                  href="tel:+971545188045"
+                  className="text-blue-700 underline text-sm hover:text-blue-900 transition-colors"
+                >
+                  +971-545188045
+                </a>
               </motion.div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import Hero from './Hero'
 import Services from './Services'
-import SpecializedIndustries from './SpecializedIndustries'
+import SpecializedIndustries, { OurClients } from './SpecializedIndustries'
 import Testimonial from './Testimonial'
 import Cta from './cta'
 const Main = () => {
@@ -9,8 +9,9 @@ const Main = () => {
       <Hero />
       <Services />
       <SpecializedIndustries />
-      <Testimonial />
-<Cta />
+  <Testimonial />
+  <OurClients />
+  <Cta />
     </main>
   )
 }

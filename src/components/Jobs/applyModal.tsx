@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import type { Job } from "../types";
 import { motion } from "framer-motion";
-import { 
-  MdClose, 
-  MdUpload, 
-  MdCheckCircle, 
-  MdPerson, 
-  MdEmail, 
-  MdPhone, 
-  MdFlag 
+import {
+  MdClose,
+  MdUpload,
+  MdCheckCircle,
+  MdPerson,
+  MdEmail,
+  MdPhone,
+  MdFlag,
 } from "react-icons/md";
 
 interface ModalProps {
@@ -37,14 +37,15 @@ const modalVariants = {
 
 const ApplyModal: React.FC<ModalProps> = ({ job, onClose }) => {
   const [formData, setFormData] = useState<FormData>({
-    fullName: '',
-    mobileNumber: '',
-    nationality: '',
-    emailAddress: '',
+    fullName: "",
+    mobileNumber: "",
+    nationality: "",
+    emailAddress: "",
     resume: null,
   });
   const [dragActive, setDragActive] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [countries, setCountries] = useState<{ name: string }[]>([]);
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -54,19 +55,40 @@ const ApplyModal: React.FC<ModalProps> = ({ job, onClose }) => {
     };
   }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  // Load countries.json dynamically
+  useEffect(() => {
+    fetch("/data/countries.json")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.features) {
+          // GeoJSON format
+          const countryList = data.features.map((f: any) => ({
+            name: f.properties.name,
+          }));
+          setCountries(countryList);
+        } else {
+          // Already cleaned JSON
+          setCountries(data);
+        }
+      })
+      .catch((err) => console.error("Error loading countries:", err));
+  }, []);
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      resume: file
+      resume: file,
     }));
   };
 
@@ -84,14 +106,18 @@ const ApplyModal: React.FC<ModalProps> = ({ job, onClose }) => {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
-    
+
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const file = e.dataTransfer.files[0];
-      if (file.type === "application/pdf" || file.name.toLowerCase().includes('.pdf') || 
-          file.name.toLowerCase().includes('.doc') || file.name.toLowerCase().includes('.docx')) {
-        setFormData(prev => ({
+      if (
+        file.type === "application/pdf" ||
+        file.name.toLowerCase().includes(".pdf") ||
+        file.name.toLowerCase().includes(".doc") ||
+        file.name.toLowerCase().includes(".docx")
+      ) {
+        setFormData((prev) => ({
           ...prev,
-          resume: file
+          resume: file,
         }));
       } else {
         alert("Please upload a PDF or Word document.");
@@ -101,21 +127,26 @@ const ApplyModal: React.FC<ModalProps> = ({ job, onClose }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Validate required fields
-    if (!formData.fullName || !formData.mobileNumber || !formData.nationality || 
-        !formData.emailAddress || !formData.resume) {
+
+    if (
+      !formData.fullName ||
+      !formData.mobileNumber ||
+      !formData.nationality ||
+      !formData.emailAddress ||
+      !formData.resume
+    ) {
       alert("Please fill in all required fields and upload your resume.");
       return;
     }
 
     setIsSubmitting(true);
-    
-    // Simulate API call
+
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      alert(`Thank you for applying for the ${job.title} position! We will review your application and get back to you soon.`);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      alert(
+        `Thank you for applying for the ${job.title} position! We will review your application and get back to you soon.`
+      );
       onClose();
     } catch (error) {
       alert("There was an error submitting your application. Please try again.");
@@ -123,21 +154,6 @@ const ApplyModal: React.FC<ModalProps> = ({ job, onClose }) => {
       setIsSubmitting(false);
     }
   };
-
-  // Common nationalities for dropdown
-  const nationalities = [
-    'Afghan', 'Albanian', 'Algerian', 'American', 'Andorran', 'Angolan', 'Argentine',
-    'Armenian', 'Australian', 'Austrian', 'Azerbaijani', 'Bahraini', 'Bangladeshi',
-    'Barbadian', 'Belarusian', 'Belgian', 'Belizean', 'Beninese', 'Bhutanese',
-    'Bolivian', 'Bosnian', 'Brazilian', 'British', 'Bulgarian', 'Burkinabe',
-    'Burmese', 'Cambodian', 'Cameroonian', 'Canadian', 'Chinese', 'Colombian',
-    'Danish', 'Egyptian', 'Ethiopian', 'Filipino', 'Finnish', 'French', 'German',
-    'Ghanaian', 'Greek', 'Indian', 'Indonesian', 'Iranian', 'Iraqi', 'Irish',
-    'Israeli', 'Italian', 'Japanese', 'Jordanian', 'Kenyan', 'Korean', 'Lebanese',
-    'Malaysian', 'Mexican', 'Nigerian', 'Pakistani', 'Russian', 'Saudi Arabian',
-    'South African', 'Spanish', 'Sri Lankan', 'Swedish', 'Swiss', 'Thai', 'Turkish',
-    'Ukrainian', 'Other'
-  ];
 
   return (
     <motion.div
@@ -158,7 +174,7 @@ const ApplyModal: React.FC<ModalProps> = ({ job, onClose }) => {
         transition={{ duration: 0.25, ease: "easeOut" }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Modal Header */}
+        {/* Header */}
         <div className="relative bg-blue-950 text-white px-6 py-4 rounded-t-lg">
           <h2 className="text-xl font-bold pr-8">Apply Job</h2>
           <button
@@ -170,11 +186,14 @@ const ApplyModal: React.FC<ModalProps> = ({ job, onClose }) => {
           </button>
         </div>
 
-        {/* Form Content */}
+        {/* Form */}
         <form onSubmit={handleSubmit} className="p-6 space-y-6">
           {/* Full Name */}
           <div>
-            <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="fullName"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               <MdPerson className="inline w-4 h-4 mr-1 text-blue-600" />
               Full Name
             </label>
@@ -194,7 +213,10 @@ const ApplyModal: React.FC<ModalProps> = ({ job, onClose }) => {
 
           {/* Mobile Number */}
           <div>
-            <label htmlFor="mobileNumber" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="mobileNumber"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               <MdPhone className="inline w-4 h-4 mr-1 text-green-600" />
               Mobile Number
             </label>
@@ -214,7 +236,10 @@ const ApplyModal: React.FC<ModalProps> = ({ job, onClose }) => {
 
           {/* Nationality */}
           <div>
-            <label htmlFor="nationality" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="nationality"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               <MdFlag className="inline w-4 h-4 mr-1 text-red-600" />
               Nationality
             </label>
@@ -229,9 +254,9 @@ const ApplyModal: React.FC<ModalProps> = ({ job, onClose }) => {
                          transition-all duration-200 bg-white"
             >
               <option value="">Select your nationality</option>
-              {nationalities.map((nationality) => (
-                <option key={nationality} value={nationality}>
-                  {nationality}
+              {countries.map((c, i) => (
+                <option key={i} value={c.name}>
+                  {c.name}
                 </option>
               ))}
             </select>
@@ -239,7 +264,10 @@ const ApplyModal: React.FC<ModalProps> = ({ job, onClose }) => {
 
           {/* Email Address */}
           <div>
-            <label htmlFor="emailAddress" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="emailAddress"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               <MdEmail className="inline w-4 h-4 mr-1 text-purple-600" />
               Email Address
             </label>
@@ -257,21 +285,25 @@ const ApplyModal: React.FC<ModalProps> = ({ job, onClose }) => {
             />
           </div>
 
-          {/* Upload Resume */}
+          {/* Resume Upload */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               <MdUpload className="inline w-4 h-4 mr-1 text-orange-600" />
               Upload Resume
             </label>
-            
-            {/* File Drop Zone */}
+
             <div
               className={`relative border-2 border-dashed rounded-lg p-6 text-center transition-all duration-200
-                         ${dragActive 
-                           ? 'border-blue-400 bg-blue-50' 
-                           : 'border-gray-300 hover:border-gray-400'
+                         ${
+                           dragActive
+                             ? "border-blue-400 bg-blue-50"
+                             : "border-gray-300 hover:border-gray-400"
                          }
-                         ${formData.resume ? 'bg-green-50 border-green-300' : 'bg-gray-50'}`}
+                         ${
+                           formData.resume
+                             ? "bg-green-50 border-green-300"
+                             : "bg-gray-50"
+                         }`}
               onDragEnter={handleDrag}
               onDragLeave={handleDrag}
               onDragOver={handleDrag}
@@ -286,7 +318,7 @@ const ApplyModal: React.FC<ModalProps> = ({ job, onClose }) => {
                 required
                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
               />
-              
+
               {formData.resume ? (
                 <div className="flex items-center justify-center space-x-2 text-green-700">
                   <MdCheckCircle className="w-5 h-5" />
@@ -295,14 +327,18 @@ const ApplyModal: React.FC<ModalProps> = ({ job, onClose }) => {
               ) : (
                 <div className="text-gray-600">
                   <MdUpload className="w-8 h-8 mx-auto mb-2 text-gray-400" />
-                  <p className="text-sm font-medium">Drop your resume here or click to browse</p>
-                  <p className="text-xs text-gray-500 mt-1">PDF, DOC, DOCX up to 10MB</p>
+                  <p className="text-sm font-medium">
+                    Drop your resume here or click to browse
+                  </p>
+                  <p className="text-xs text-gray-500 mt-1">
+                    PDF, DOC, DOCX up to 10MB
+                  </p>
                 </div>
               )}
             </div>
           </div>
 
-          {/* Action Buttons */}
+          {/* Buttons */}
           <div className="flex justify-end space-x-3 pt-4 border-t border-gray-200">
             <button
               type="button"
