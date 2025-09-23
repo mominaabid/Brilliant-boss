@@ -31,14 +31,17 @@ export default function Login() {
         { timeout: 8000 }
       );
 
-      // expected response: { token, role, email }
-      const { token, role, email: returnedEmail } = res.data;
+      // Defensive: check if res.data exists and has expected fields
+  const data: any = res.data || {};
+  const token = data.token;
+  const role = data.role;
+  const returnedEmail = data.email;
 
       if (!token) throw new Error("No token returned from server.");
 
       // store token and user info
       localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify({ email: returnedEmail ?? email, role }));
+      localStorage.setItem("user", JSON.stringify({ email: returnedEmail ?? email, role: role ?? "" }));
 
       // ✅ redirect based on role
       if (role === "admin") navigate("/admin");
