@@ -48,7 +48,7 @@ const Header: React.FC = () => {
           <p className="text-center w-full sm:w-auto">Smart HR Solutions for Brilliant Results</p>
 
           {/* Right: phone + proposal link */}
-          <div className="flex flex-col sm:flex-row gap-1 sm:gap-6 items-center w-full sm:w-auto justify-center sm:justify-end">
+          <div className="flex flex-row sm:flex-row gap-2 sm:gap-6 items-center w-full sm:w-auto justify-center sm:justify-end">
             <a
               href="tel:+971-545188045"
               className="flex items-center gap-2 hover:text-gray-300 transition-colors justify-center"
