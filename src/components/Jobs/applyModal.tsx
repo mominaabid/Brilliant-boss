@@ -26,7 +26,7 @@ const modalVariants = {
   exit: { opacity: 0, scale: 0.95, y: 20 },
 };
 
-const ApplyModal: React.FC<ModalProps> = ({ job, onClose }) => {
+const ApplyModal: React.FC<ModalProps> = ({  onClose }) => {
   // Lock body scroll when modal is open
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -35,7 +35,7 @@ const ApplyModal: React.FC<ModalProps> = ({ job, onClose }) => {
     };
   }, []);
 
-  
+
   return (
     <motion.div
       className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex justify-center items-center p-4"
