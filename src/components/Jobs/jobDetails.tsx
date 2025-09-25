@@ -40,7 +40,7 @@ const JobDetailsModal: React.FC<ModalProps> = ({ job, onClose, onApply }) => {
     };
   }, []);
 
-  // Format date like BrilliantBoss format
+  
   const formatDate = (dateString: string) => {
     if (!dateString) return "";
     const date = new Date(dateString);

@@ -66,7 +66,7 @@ const Footer = () => {
             </h3>
             <ul className="space-y-3 text-gray-600 text-sm flex-grow">
               <li><a href="/#" className="hover:text-blue-600 block transition-colors duration-300">Home</a></li>
-              <li><a href="/login" className="hover:text-blue-600 block transition-colors duration-300">Login</a></li>
+              
               <li><a href="/candidate" className="hover:text-blue-600 block transition-colors duration-300">Candidate</a></li>
               <li><a href="/employee" className="hover:text-blue-600 block transition-colors duration-300">Employee</a></li>
               <li><a href="/jobs" className="hover:text-blue-600 block transition-colors duration-300">Jobs</a></li>

@@ -172,9 +172,7 @@ const Header: React.FC = () => {
             <Link to="/jobs" className={`${linkColor} hover:text-gray-300 font-medium transition-colors`}>
               Jobs
             </Link>
-            <Link to="/login" className={`${linkColor} hover:text-gray-300 font-medium transition-colors`}>
-              Login
-            </Link>
+          
           </nav>
         </div>
 

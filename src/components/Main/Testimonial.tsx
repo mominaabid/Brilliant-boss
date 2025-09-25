@@ -10,26 +10,22 @@ interface TestimonialItem {
 
 const testimonials: TestimonialItem[] = [
   {
-    text: `"At Brilliant Boss HR, we are a specialist situation resource who is here for you to concentrate on what your HR needs are. Your trusted advisor will listen to your needs, help you problem-solve and work with you to find the right solution. We provide tailored strategies for each client, ensuring that their HR challenges are met with professionalism and expertise. Our clients appreciate the dedication and attention to detail we bring to every engagement."`,
-    author: "Sarah Healy - Director",
-    image: "/owner-pic.jpg",
-  },
-  {
-    text: `"Brilliant Boss helped us find the perfect candidate quickly and efficiently. Their team understood our needs and delivered great results. We were impressed with how they assessed candidates not just for skills, but also for cultural fit, which made a huge difference in team cohesion and performance."`,
+    text: `"Brilliant Boss helped us find the perfect candidate quickly and efficiently. Their team understood our needs and delivered great results. We were impressed with how they assessed candidates not just for skills, but also for cultural fit, which made a huge difference in team cohesion and performance. Beyond just recruitment, their ongoing support and clear communication made the entire process stress-free. It felt like they were truly a part of our internal team, ensuring we had the right people in the right roles. I can confidently say their services added long-term value to our company and improved overall team satisfaction."`,
     author: "Emma - HR Manager",
-    image: "/client-4.jpg",
+    image: "/17.jpg",
   },
   {
-    text: `"The team at Brilliant Boss is professional, responsive, and trustworthy. They made the recruitment process seamless for our company. From the initial consultation to the final placement, their guidance and support were invaluable, and we highly recommend their services to other organizations."`,
-    author: "Daniel - Operations Head",
-    image: "/client-2.jpg",
+    text: `"The team at Brilliant Boss is professional, responsive, and trustworthy. They made the recruitment process seamless for our company. From the initial consultation to the final placement, their guidance and support were invaluable, and we highly recommend their services to other organizations. What impressed us most was their ability to handle every detail with care and precision, saving us both time and effort. They didn’t just fill a position; they helped us find the right fit that aligned with our company’s long-term goals. Their dedication to quality truly sets them apart from other firms we’ve worked with."`,
+    author: "Elia - Operations Head",
+    image: "/20.jpg",
   },
   {
-    text: `"I highly recommend Brilliant Boss for any organization looking for top talent. Their expertise and guidance are unmatched. They take the time to understand your organization's needs and provide tailored solutions that lead to successful hires every time."`,
-    author: "Michael Smith - CEO",
-    image: "/client-3.jpg",
+    text: `"I highly recommend Brilliant Boss for any organization looking for top talent. Their expertise and guidance are unmatched. They take the time to understand your organization's needs and provide tailored solutions that lead to successful hires every time. Their thorough evaluation process ensures that candidates not only meet technical requirements but also blend well into the company culture. We’ve noticed a significant improvement in retention and productivity since working with them. Partnering with Brilliant Boss has been one of the best strategic decisions we’ve made to strengthen our workforce."`,
+    author: "Allice - CEO",
+    image: "/19.jpg",
   },
 ];
+
 
 const slideVariants = {
   hidden: { opacity: 0, x: 50 },

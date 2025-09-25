@@ -103,7 +103,7 @@ const SpecializedIndustries = () => {
 // --- Our Clients Section ---
 import { useRef as useClientsRef, useEffect as useClientsEffect } from "react";
 
-const clientImages = Array.from({ length: 10 }, (_, i) => `/` + (i + 1) + `.jpg`);
+const clientImages = Array.from({ length: 15 }, (_, i) => `/` + (i + 1) + `.jpg`);
 
 const OurClients = () => {
   const containerRef = useClientsRef<HTMLDivElement>(null);
