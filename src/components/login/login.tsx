@@ -1,85 +1,92 @@
 // src/components/Login.tsx
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, Navigate,  } from "react-router-dom";
 import axios from "axios";
 import { Mail, Lock, LogIn, UserPlus, Eye, EyeOff } from "lucide-react";
 
+import { BASE_URL } from "../Contants/URL";
+import { useAppDispatch, useAppSelector } from "../Redux/Hooks";
+import {  authSuccess } from "../Redux/UserSlice";
+import { toast } from "react-toastify";
+
+
+
+ type UserT = {
+  id: string;
+  userName: string;
+  email: string;
+  token: string;
+}
+
+const initialState = {
+  email:"",
+  password :"",
+}
+
+
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const {currentUser} = useAppSelector((state) => state?.authState)
+
+  console.log("current uSer =>",currentUser)
+
+  const [formData, setFormData] = useState(initialState);
+  
   const [visible, setVisible] = useState(true);
+
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
-  const navigate = useNavigate();
-  const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:5000";
+  const disatch = useAppDispatch()
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError(null);
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = e.target;
+      setFormData({ ...formData, [name]: value });
+    };
 
-    if (!email || !password) {
-      setError("Please enter email and password.");
-      return;
-    }
-
-    try {
-      setLoading(true);
-      const res = await axios.post(
-        `${API_URL}/api/login`,
-        { email, password },
-        { timeout: 8000 }
-      );
-
-      // Defensive: check if res.data exists and has expected fields
-  const data: any = res.data || {};
-  const token = data.token;
-  const role = data.role;
-  const returnedEmail = data.email;
-
-      if (!token) throw new Error("No token returned from server.");
-
-      // store token and user info
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify({ email: returnedEmail ?? email, role: role ?? "" }));
-
-      // ✅ redirect based on role
-      if (role === "admin") navigate("/admin");
-      else navigate("/");
-    } catch (err: any) {
-      console.error("Login error:", err);
-      setError(err?.response?.data?.message ?? err?.message ?? "Login failed");
-    } finally {
+const handleSubmit = async(e:React.FormEvent) => {
+e.preventDefault()
+ try {
+      const res = await axios.post(`${BASE_URL}/login`,formData)
+      console.log("data =>",res.data)
+      setLoading(false)
+      setFormData(initialState)
+      disatch(authSuccess(res.data as UserT ))
+    } catch (error) {
+     const axiosError = error as any; 
+      toast.error(axiosError.response?.data?.message ?? "");
       setLoading(false);
+    
     }
-  };
+  }
 
+if (currentUser) return <Navigate to="/admin" replace />;
+
+ 
   return (
     <div
       className="flex justify-center items-center min-h-screen bg-cover bg-center"
       style={{ backgroundImage: "url('/login.jpg')" }}
     >
       <form
-        onSubmit={handleLogin}
+        onSubmit={handleSubmit}
         className="bg-white bg-opacity-90 p-6 rounded-xl shadow-lg w-96"
       >
         <h2 className="text-2xl font-bold mb-4 text-center flex items-center justify-center gap-2 text-gray-700">
           <LogIn /> Login
         </h2>
 
-        {error && (
-          <div className="bg-red-100 text-red-700 p-2 rounded mb-3 text-sm">{error}</div>
-        )}
+       
+         
 
         <div className="flex items-center border p-2 mb-3 rounded-lg bg-gray-50">
           <Mail className="text-gray-500 mr-2" size={18} />
           <input
             type="email"
             placeholder="Email"
+            name="email"
             className="w-full outline-none bg-transparent"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            autoComplete="username"
+            value={formData.email}
+            onChange={handleChange}
+           
           />
         </div>
 
@@ -88,10 +95,11 @@ export default function Login() {
           <input
             type={visible ? "password" : "text"}
             placeholder="Password"
+            name="password"
             className="w-full outline-none text-black"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            autoComplete="current-password"
+            value={formData.password}
+            onChange={handleChange}
+           
           />
           <button
             type="button"
@@ -107,21 +115,20 @@ export default function Login() {
           type="submit"
           disabled={loading}
           className={`flex items-center justify-center gap-2 w-full py-2 rounded-lg transition 
-            ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-red-900 hover:bg-blue-700 text-white"}`}
+            ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-red-900 hover:bg-blue-700 text-white hover:cursor-pointer"}`}
         >
           <LogIn size={16} /> {loading ? "Logging in..." : "Login"}
         </button>
 
         <div className="text-center mt-4">
           <p className="text-sm text-gray-600 flex items-center justify-center gap-1">
-            Don’t have an account?
-            <button
-              type="button"
-              onClick={() => navigate("/signup")}
+            Don't have an account?
+            <Link
+              to={"/signup"}
               className="text-blue-600 font-medium flex items-center gap-1 hover:underline"
             >
               <UserPlus size={14} /> Sign Up
-            </button>
+            </Link>
           </p>
         </div>
       </form>

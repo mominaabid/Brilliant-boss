@@ -23,8 +23,9 @@ import Signup from "./components/login/signup";
 import ContactForm from "./components/Forms/ContactForm";
 import CandidateForm from "./components/Forms/CandidateForm";
 import EmployeeForm from "./components/Forms/EmployeeForm";
-import Admin from "./components/Admin";
 
+import { ProtectedRoute } from "./components/PrivateRoute/ProtectedRoute";
+import AdminDashboard from "./components/AdminDashboard";
 // Scroll Handler
 function ScrollToSection() {
   const { hash, pathname } = useLocation();
@@ -54,7 +55,12 @@ export default function App() {
         <ScrollToTop />
         <ScrollToSection />
         <Routes>
+
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           {/* Home */}
+
+          <Route element= {<ProtectedRoute/>}>
           <Route path="/" element={<Main />} />
 
           {/* Services */}
@@ -75,12 +81,14 @@ export default function App() {
           <Route path="/jobs" element={<JobsPage />} />
 
           {/* Auth / Forms */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          
           <Route path="/contact" element={<ContactForm />} />
           <Route path="/candidate" element={<CandidateForm />} />
           <Route path="/employee" element={<EmployeeForm />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+
+          
+          </Route>
         </Routes>
 
         {/*  Floating WhatsApp Button */}
