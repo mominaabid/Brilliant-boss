@@ -9,12 +9,21 @@ const ContactForm = () => {
       <Header />
       <div className="min-h-screen bg-gray-50">
         {/* Hero Section */}
-        <section
-  className="w-full h-[360px] md:h-[450px] object-cover select-none pointer-events-none"
-  style={{ backgroundImage: "url('/contact-us-banner.jpg')" }}
->
+<section className="relative min-h-[280px] sm:min-h-[350px] lg:min-h-[450px] flex items-center justify-center overflow-hidden">
+  {/* Background Image */}
+  <img
+    src="/services-hr-automation.jpg"
+    alt="Employer Recruitment"
+    className="absolute inset-0 w-full h-full object-cover object-top "
+  />
+
+  {/* Dark overlay */}
   <div className="absolute inset-0 bg-black/50"></div>
+  <h1 className="relative text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center px-4">
+    Contact Us
+  </h1>
 </section>
+
 
 
         {/* Contact Info Cards */}

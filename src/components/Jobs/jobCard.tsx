@@ -5,6 +5,7 @@ import { IoLocationSharp, IoBriefcaseOutline, IoCalendarOutline } from "react-ic
 import { BiMoney } from "react-icons/bi";
 import { BsBuilding } from "react-icons/bs";
 
+
 interface JobCardProps {
   job: Job;
   onDetailsClick: () => void;
@@ -16,34 +17,37 @@ const JobCard: React.FC<JobCardProps> = ({
   onDetailsClick,
   onApplyClick,
 }) => {
-  // like the original website
+  // Format date
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-GB', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric'
+    return date.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
     });
   };
 
   // Truncate description for preview
   const truncateDescription = (text: string, maxLength: number = 100) => {
     if (!text) return "";
-    return text.length > maxLength 
-      ? text.substring(0, maxLength).trim() + "..." 
+    return text.length > maxLength
+      ? text.substring(0, maxLength).trim() + "..."
       : text;
   };
 
   return (
     <motion.div
-      whileHover={{ y: -4, scale: 1.02, boxShadow: "0 8px 32px 0 rgba(23,37,84,0.10)" }}
+      whileHover={{
+        y: -4,
+        scale: 1.02,
+        boxShadow: "0 8px 32px 0 rgba(23,37,84,0.10)",
+      }}
       whileTap={{ scale: 0.98 }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ type: "spring", stiffness: 180, damping: 18 }}
       className="bg-white border border-blue-950 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 flex flex-col h-full group relative overflow-hidden"
     >
-      {/* Header Section */}
       {/* Decorative animated ring on hover */}
       <motion.div
         className="absolute -inset-1 rounded-2xl pointer-events-none opacity-0 group-hover:opacity-100 z-0"
@@ -53,21 +57,24 @@ const JobCard: React.FC<JobCardProps> = ({
         transition={{ duration: 0.4 }}
         style={{
           background:
-            "radial-gradient(circle at 60% 40%, rgba(23,37,84,0.08) 0%, rgba(255,255,255,0) 70%)"
+            "radial-gradient(circle at 60% 40%, rgba(23,37,84,0.08) 0%, rgba(255,255,255,0) 70%)",
         }}
       />
+
       <div className="flex-grow relative z-10">
         {/* Job Title & Company */}
         <div className="mb-4">
           <h3 className="text-lg font-bold text-gray-900 mb-2 leading-tight">
             {job.title}
           </h3>
-          
+
           {/* Company Info */}
-          {job.company && (
+          {(job.company || job.companyName) && (
             <div className="flex items-center text-gray-600 mb-2">
               <BsBuilding className="w-4 h-4 mr-2 flex-shrink-0" />
-              <span className="text-sm font-medium">{job.company}</span>
+              <span className="text-sm font-medium">
+                {job.company || job.companyName}
+              </span>
             </div>
           )}
         </div>
@@ -76,14 +83,18 @@ const JobCard: React.FC<JobCardProps> = ({
         <div className="space-y-3 mb-4">
           {/* Location & Job Type */}
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-            <div className="flex items-center text-gray-600">
-              <IoLocationSharp className="w-4 h-4 mr-2 text-blue-500 flex-shrink-0" />
-              <span className="text-sm">{job.location}</span>
-            </div>
-            <div className="flex items-center text-gray-600">
-              <IoBriefcaseOutline className="w-4 h-4 mr-2 text-green-500 flex-shrink-0" />
-              <span className="text-sm">{job.type}</span>
-            </div>
+            {job.location && (
+              <div className="flex items-center text-gray-600">
+                <IoLocationSharp className="w-4 h-4 mr-2 text-blue-500 flex-shrink-0" />
+                <span className="text-sm">{job.location}</span>
+              </div>
+            )}
+            {job.type && (
+              <div className="flex items-center text-gray-600">
+                <IoBriefcaseOutline className="w-4 h-4 mr-2 text-green-500 flex-shrink-0" />
+                <span className="text-sm">{job.type}</span>
+              </div>
+            )}
           </div>
 
           {/* Salary & Posting Date */}
@@ -113,30 +124,36 @@ const JobCard: React.FC<JobCardProps> = ({
                 {truncateDescription(job.description, 120)}
               </p>
             </div>
+            
           )}
         </div>
       </div>
 
       {/* Action Buttons */}
-  <div className="flex gap-3 mt-6 pt-4 border-t border-gray-100 relative z-10">
-        <button
-          onClick={onDetailsClick}
-          className="flex-1 bg-yellow-500 hover:bg-sky-600 text-white px-4 py-2.5 rounded-md 
-                     font-medium text-sm transition-colors duration-200 focus:outline-none 
-                     focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
-        >
-          Job Detail
-        </button>
-        <button
-          onClick={onApplyClick}
-          className="flex-1 bg-blue-950 hover:bg-blue-800 text-white px-4 py-2.5 rounded-md 
-                     font-medium text-sm transition-colors duration-200 focus:outline-none 
-                     focus:ring-2 focus:ring-blue-700 focus:ring-offset-2"
-        >
-          Apply Now
-        </button>
+      <div className="flex flex-col gap-3 mt-6 pt-4 border-t border-gray-100 relative z-10">
+        <div className="flex gap-3">
+          <button
+            onClick={onDetailsClick}
+            className="flex-1 bg-yellow-500 hover:bg-sky-600 text-white px-4 py-2.5 rounded-md 
+                       font-medium text-sm transition-colors duration-200 focus:outline-none 
+                       focus:ring-2 focus:ring-sky-500 focus:ring-offset-2"
+          >
+            Job Detail
+          </button>
+          <button
+            onClick={onApplyClick}
+            className="flex-1 bg-blue-950 hover:bg-blue-800 text-white px-4 py-2.5 rounded-md 
+                       font-medium text-sm transition-colors duration-200 focus:outline-none 
+                       focus:ring-2 focus:ring-blue-700 focus:ring-offset-2"
+          >
+            Apply Now
+          </button>
+        </div>
+
+        {/* WhatsApp & Email Always Visible */}
+     
       </div>
-  </motion.div>
+    </motion.div>
   );
 };
 

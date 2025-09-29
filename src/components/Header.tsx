@@ -31,6 +31,7 @@ const servicesData = [
   { title: "Saudi and Emirati Nationals Recruitment", path: "/services/saudi-emirati-nationals-recruitment", icon: <FaFlag className="text-red-700 h-8 w-8" /> },
   { title: "Visa Stamping Services", path: "/services/visa-stamping-services", icon: <FaStamp className="text-orange-600 h-8 w-8" /> },
   { title: "Training & Development", path: "/services/training-and-development", icon: <FaChalkboardTeacher className="text-teal-600 h-8 w-8" /> },
+  { title: "US Recruitment & Staffing", path: "/services/us-recruitment", icon: <FaUserPlus className="text-red-600 h-6 w-6" /> },
 ];
 
 const Header: React.FC = () => {
@@ -232,9 +233,7 @@ const Header: React.FC = () => {
               <Link to="/jobs" className="hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
                 Jobs
               </Link>
-              <Link to="/login" className="hover:text-gray-300" onClick={() => setIsMenuOpen(false)}>
-                Login
-              </Link>
+             
             </nav>
           </div>
         )}

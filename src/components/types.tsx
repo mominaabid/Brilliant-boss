@@ -1,21 +1,29 @@
 export interface Job {
-  id: number;
-  title: string;
-  company: string;
-  location: string;
-  type: string;
-  description: string;
-  responsibilities: string[];
-  qualifications: string[];
-  salary?: string;
-  postedDate?: string;
-  nationality?: string;
-  requirements?: string;
-  category?: string;
-  country?: string;
-  code?: string;
-  vacancies?: number;
-  email?: string;
-  phone?: string;
-  whatsapp?: string;
-}
+  _id?: string;                  // MongoDB id
+  id?: number;                    // Local/static jobs id
+  categoryId?: string;            // MongoDB reference
+  title: string;                  // Job title
+  company?: string;               // For static jobs
+  companyName?: string;           // From backend
+  country?: string;               // Country of job
+  location?: string;              // Optional location details
+  type?: string;                  // Job type (full-time, part-time)
+  category?: string;              // Category name
+  salary?: string | number;       // Numeric or string salary
+  code?: string | number;         // Numeric job code (must match backend type)
+  nationality?: string;           // Candidate nationality
+  vacancies?: number;             // Number of vacancies
+  postedDate?: string;            // Date job was posted
+  jobPostingDate?: string;        // Backend field for posting date
+  description?: string;           // Job description
+  requirements?: string;          // Optional requirements
+  theIdealCandidate?: string;     // Optional ideal candidate description
+  responsibilities?: string | string[];  // Can be string or array of strings
+  keyResponsibilities?: string | string[]; // Optional key responsibilities
+  offer?: string;                 // Optional perks or offers
+  qualifications?: string | string[]; // Optional qualifications
+  email?: string;                 // Contact email
+  whatsapp?: string;              // Contact WhatsApp
+  status?: "Y" | "N";    
+  phone?: string;                  // Contact phone number
+};
