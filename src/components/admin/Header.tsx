@@ -84,7 +84,7 @@ const Header: React.FC<HeaderProps> = ({ userEmail, onLogout }) => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                 </svg>
                 Logout
-                <Link to="/login" className="text-sm text-gray-500 hover:text-gray-700">
+                <Link to="/" className="text-sm text-gray-500 hover:text-gray-700">
                   <span className="sr-only">Logout</span>
                 </Link>
               </button>
