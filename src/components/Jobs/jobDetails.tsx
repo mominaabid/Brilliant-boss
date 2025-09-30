@@ -65,7 +65,7 @@ const JobDetailsModal: React.FC<ModalProps> = ({ job, onClose, onApply }) => {
   };
 
   const jobInfoItems = [
-    { label: "Category:", value: job.category || job.type, icon: <IoBriefcaseOutline className="w-4 h-4 text-blue-600" /> },
+    { label: "Category:", value: job.categoryName || job.type, icon: <IoBriefcaseOutline className="w-4 h-4 text-blue-600" /> },
     { label: "Title:", value: job.title, icon: <MdWork className="w-4 h-4 text-green-600" /> },
     { label: "Company:", value: job.company, icon: <MdBusiness className="w-4 h-4 text-purple-600" /> },
     { label: "Country:", value: job.country || job.location, icon: <MdLocationOn className="w-4 h-4 text-red-600" /> },

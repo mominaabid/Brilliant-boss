@@ -26,4 +26,5 @@ export interface Job {
   whatsapp?: string;              // Contact WhatsApp
   status?: "Y" | "N";    
   phone?: string;                  // Contact phone number
+  categoryName?: string;         // Category name (if needed)
 };
