@@ -251,12 +251,12 @@ const AddJob: React.FC<AddJobProps> = ({
                   Job Code
                 </label>
                 <input
-                  type="number"
+                  type="text"
                   placeholder="e.g., A12345"
                   value={jobData.code}
                   onChange={(e) => handleJobInputChange("code", e.target.value)}
                   className="w-full border-2 border-gray-200 px-4 py-3 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-                  min="0"
+                  
                 />
               </div>
               <div>
