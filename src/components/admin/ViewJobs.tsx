@@ -43,6 +43,7 @@ const ViewJobs: React.FC<ViewJobsProps> = ({
 }) => {
   const [editJob, setEditJob] = useState<Job | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
 
   const updateJob = async (id: string) => {
     if (!editJob) return;
@@ -87,12 +88,20 @@ const ViewJobs: React.FC<ViewJobsProps> = ({
   };
 
   const filteredJobs = jobs.filter(
-    (job) =>
-      job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      job.companyName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      job.country?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      job.categoryName?.toLowerCase().includes(searchTerm.toLowerCase())
+    (job) => {
+      const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        job.companyName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        job.country?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        job.categoryName?.toLowerCase().includes(searchTerm.toLowerCase());
+      
+      const matchesCategory = !selectedCategory || job.categoryName === selectedCategory;
+      
+      return matchesSearch && matchesCategory;
+    }
   );
+
+  // Get unique categories for filter dropdown
+  const uniqueCategories = Array.from(new Set(jobs.map(job => job.categoryName).filter(Boolean)));
 
   return (
     <div className="max-w-6xl">
@@ -123,30 +132,97 @@ const ViewJobs: React.FC<ViewJobsProps> = ({
           </div>
         </div>
 
-        {/* Search Bar */}
+        {/* Search Bar and Category Filter */}
         <div className="mb-6">
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Search jobs by title, company, or country or category..."
-              className="w-full border-2 border-gray-200 px-4 py-3 pl-11 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <svg
-              className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="md:col-span-2 relative">
+              <input
+                type="text"
+                placeholder="Search jobs by title, company, or country..."
+                className="w-full border-2 border-gray-200 px-4 py-3 pl-11 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
-            </svg>
+              <svg
+                className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+            </div>
+            
+            <div className="relative">
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="w-full border-2 border-gray-200 px-4 py-3 rounded-lg focus:border-blue-500 focus:outline-none transition-colors appearance-none bg-white"
+              >
+                <option value="">All Categories</option>
+                {uniqueCategories.map((category) => (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
+                ))}
+              </select>
+              <svg
+                className="w-5 h-5 text-gray-400 absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </div>
           </div>
+          
+          {(searchTerm || selectedCategory) && (
+            <div className="flex items-center gap-2 mt-3">
+              <span className="text-sm text-gray-600">Filters:</span>
+              {searchTerm && (
+                <button
+                  onClick={() => setSearchTerm("")}
+                  className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1 hover:bg-blue-200 transition-colors"
+                >
+                  Search: "{searchTerm}"
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              )}
+              {selectedCategory && (
+                <button
+                  onClick={() => setSelectedCategory("")}
+                  className="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1 hover:bg-purple-200 transition-colors"
+                >
+                  Category: {selectedCategory}
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              )}
+              <button
+                onClick={() => {
+                  setSearchTerm("");
+                  setSelectedCategory("");
+                }}
+                className="text-xs text-gray-500 hover:text-gray-700 underline"
+              >
+                Clear all
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Jobs List */}
@@ -213,7 +289,7 @@ const ViewJobs: React.FC<ViewJobsProps> = ({
           Code
         </label>
         <input
-          type="number"
+          type="string"
           value={editJob.code}
           onChange={(e) => setEditJob({ ...editJob, code: e.target.value })}
           className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none"
@@ -475,10 +551,10 @@ const ViewJobs: React.FC<ViewJobsProps> = ({
                 />
               </svg>
               <p className="text-gray-500 text-lg">
-                {searchTerm ? "No jobs match your search" : "No jobs found"}
+                {searchTerm || selectedCategory ? "No jobs match your filters" : "No jobs found"}
               </p>
               <p className="text-gray-400 text-sm">
-                {searchTerm ? "Try a different search term" : "Add your first job from the Add Job section"}
+                {searchTerm || selectedCategory ? "Try adjusting your search or category filter" : "Add your first job from the Add Job section"}
               </p>
             </div>
           )}

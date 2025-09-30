@@ -6,7 +6,7 @@ import ApplyModal from "./applyModal";
 import type { Job } from "../types";
 import Header from "../Header";
 import { AnimatePresence } from "framer-motion";
-import { MdSearch, MdLocationOn, MdWork, MdFilterList, MdClear } from "react-icons/md";
+import { MdSearch, MdLocationOn, MdWork, MdFilterList, MdClear, MdCategory } from "react-icons/md";
 
 const JobsPage = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
@@ -18,6 +18,7 @@ const JobsPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [locationFilter, setLocationFilter] = useState("");
   const [typeFilter, setTypeFilter] = useState("");
+  const [categoryFilter, setCategoryFilter] = useState("");
   const [showFilters, setShowFilters] = useState(false);
 
   //  Fetch jobs from backend
@@ -71,7 +72,9 @@ const JobsPage = () => {
         job.companyName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         job.company?.toLowerCase().includes(searchTerm.toLowerCase()) ||
         job.country?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        job.location?.toLowerCase().includes(searchTerm.toLowerCase());
+        job.location?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        job.category?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        job.categoryName?.toLowerCase().includes(searchTerm.toLowerCase());
 
       const matchesLocation =
         locationFilter === "" ||
@@ -80,13 +83,23 @@ const JobsPage = () => {
 
       const matchesType = typeFilter === "" || job.type === typeFilter;
 
-      return matchesSearch && matchesLocation && matchesType;
+      const matchesCategory =
+        categoryFilter === "" ||
+        job.category?.toLowerCase() === categoryFilter.toLowerCase() ||
+        job.categoryName?.toLowerCase() === categoryFilter.toLowerCase();
+
+      return matchesSearch && matchesLocation && matchesType && matchesCategory;
     });
-  }, [jobs, searchTerm, locationFilter, typeFilter]);
+  }, [jobs, searchTerm, locationFilter, typeFilter, categoryFilter]);
 
   //  Unique filters
   const uniqueLocations = Array.from(new Set(jobs.map((job) => job.country || job.location)));
   const uniqueTypes = Array.from(new Set(jobs.map((job) => job.type).filter(Boolean)));
+  const uniqueCategories = Array.from(
+    new Set(
+      jobs.map((job) => job.categoryName || job.category).filter(Boolean)
+    )
+  );
 
   const handleDetailsClick = (job: Job) => {
     setSelectedJob(job);
@@ -113,6 +126,7 @@ const JobsPage = () => {
     setSearchTerm("");
     setLocationFilter("");
     setTypeFilter("");
+    setCategoryFilter("");
   };
 
   return (
@@ -160,6 +174,23 @@ const JobsPage = () => {
                 showFilters ? "block" : "hidden lg:flex"
               }`}
             >
+              {/* Category Filter */}
+              <div className="relative">
+                <MdCategory className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <select
+                  value={categoryFilter}
+                  onChange={(e) => setCategoryFilter(e.target.value)}
+                  className="pl-10 pr-8 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white min-w-[150px]"
+                >
+                  <option value="">All Categories</option>
+                  {uniqueCategories.map((category) => (
+                    <option key={category} value={category}>
+                      {category}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
               {/* Location Filter */}
               <div className="relative">
                 <MdLocationOn className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
@@ -195,7 +226,7 @@ const JobsPage = () => {
               </div>
 
               {/* Clear Filters */}
-              {(searchTerm || locationFilter || typeFilter) && (
+              {(searchTerm || locationFilter || typeFilter || categoryFilter) && (
                 <button
                   onClick={clearFilters}
                   className="flex items-center space-x-2 px-3 py-3 text-gray-600 hover:text-gray-800 transition-colors duration-200"
@@ -206,6 +237,57 @@ const JobsPage = () => {
               )}
             </div>
           </div>
+
+          {/* Active Filters Display */}
+          {(searchTerm || locationFilter || typeFilter || categoryFilter) && (
+            <div className="flex flex-wrap items-center gap-2 mt-4">
+              <span className="text-sm text-gray-600 font-medium">Active Filters:</span>
+              {searchTerm && (
+                <span className="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm">
+                  Search: "{searchTerm}"
+                  <button
+                    onClick={() => setSearchTerm("")}
+                    className="hover:bg-blue-200 rounded-full p-0.5"
+                  >
+                    <MdClear className="w-3 h-3" />
+                  </button>
+                </span>
+              )}
+              {categoryFilter && (
+                <span className="inline-flex items-center gap-1 px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">
+                  Category: {categoryFilter}
+                  <button
+                    onClick={() => setCategoryFilter("")}
+                    className="hover:bg-purple-200 rounded-full p-0.5"
+                  >
+                    <MdClear className="w-3 h-3" />
+                  </button>
+                </span>
+              )}
+              {locationFilter && (
+                <span className="inline-flex items-center gap-1 px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">
+                  Location: {locationFilter}
+                  <button
+                    onClick={() => setLocationFilter("")}
+                    className="hover:bg-green-200 rounded-full p-0.5"
+                  >
+                    <MdClear className="w-3 h-3" />
+                  </button>
+                </span>
+              )}
+              {typeFilter && (
+                <span className="inline-flex items-center gap-1 px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-sm">
+                  Type: {typeFilter}
+                  <button
+                    onClick={() => setTypeFilter("")}
+                    className="hover:bg-orange-200 rounded-full p-0.5"
+                  >
+                    <MdClear className="w-3 h-3" />
+                  </button>
+                </span>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
@@ -213,11 +295,12 @@ const JobsPage = () => {
       <div className="container mx-auto px-6 py-4">
         <p className="text-gray-600">
           {filteredJobs.length} job{filteredJobs.length !== 1 ? "s" : ""} found
-          {(searchTerm || locationFilter || typeFilter) && (
+          {(searchTerm || locationFilter || typeFilter || categoryFilter) && (
             <span className="text-blue-600 ml-1">
               {searchTerm && ` matching "${searchTerm}"`}
-              {locationFilter && ` in ${locationFilter}`}
-              {typeFilter && ` (${typeFilter})`}
+              {categoryFilter && ` in ${categoryFilter}`}
+              {locationFilter && ` • ${locationFilter}`}
+              {typeFilter && ` • ${typeFilter}`}
             </span>
           )}
         </p>
