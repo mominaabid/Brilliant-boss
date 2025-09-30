@@ -90,7 +90,8 @@ const ViewJobs: React.FC<ViewJobsProps> = ({
     (job) =>
       job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       job.companyName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      job.country?.toLowerCase().includes(searchTerm.toLowerCase())
+      job.country?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      job.categoryName?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -127,7 +128,7 @@ const ViewJobs: React.FC<ViewJobsProps> = ({
           <div className="relative">
             <input
               type="text"
-              placeholder="Search jobs by title, company, or country..."
+              placeholder="Search jobs by title, company, or country or category..."
               className="w-full border-2 border-gray-200 px-4 py-3 pl-11 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -217,6 +218,7 @@ const ViewJobs: React.FC<ViewJobsProps> = ({
           onChange={(e) => setEditJob({ ...editJob, code: e.target.value })}
           className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none"
           placeholder="Job Code"
+          
         />
       </div>
       <div>
