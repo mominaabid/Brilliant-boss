@@ -246,19 +246,25 @@ const AddJob: React.FC<AddJobProps> = ({
                   min="0"
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Job Code
-                </label>
-                <input
-                  type="text"
-                  placeholder="e.g., A12345"
-                  value={jobData.code}
-                  onChange={(e) => handleJobInputChange("code", e.target.value)}
-                  className="w-full border-2 border-gray-200 px-4 py-3 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-                  
-                />
-              </div>
+            <div>
+  <label className="block text-sm font-medium text-gray-700 mb-1">
+    Job Code
+  </label>
+  <input
+    type="text"
+    placeholder="e.g., A12345"
+    value={jobData.code}
+    onChange={(e) => {
+      const value = e.target.value;
+      // Allow only letters + numbers
+      if (/^[a-zA-Z0-9]*$/.test(value)) {
+        handleJobInputChange("code", value);
+      }
+    }}
+    className="w-full border-2 border-gray-200 px-4 py-3 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
+  />
+</div>
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Nationality
