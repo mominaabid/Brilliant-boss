@@ -6,7 +6,7 @@ import ApplyModal from "./applyModal";
 import type { Job } from "../types";
 import Header from "../Header";
 import { AnimatePresence } from "framer-motion";
-import { MdSearch, MdLocationOn, MdWork, MdFilterList, MdClear, MdCategory } from "react-icons/md";
+import { MdSearch, MdLocationOn,  MdFilterList, MdClear, MdCategory } from "react-icons/md";
 
 const JobsPage = () => {
   const [jobs, setJobs] = useState<Job[]>([]);
@@ -94,7 +94,7 @@ const JobsPage = () => {
 
   //  Unique filters
   const uniqueLocations = Array.from(new Set(jobs.map((job) => job.country || job.location)));
-  const uniqueTypes = Array.from(new Set(jobs.map((job) => job.type).filter(Boolean)));
+  // const uniqueTypes = Array.from(new Set(jobs.map((job) => job.type).filter(Boolean)));
   const uniqueCategories = Array.from(
     new Set(
       jobs.map((job) => job.categoryName || job.category).filter(Boolean)
