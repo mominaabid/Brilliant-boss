@@ -91,7 +91,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeView, setActiveView }) => {
       </nav>
 
       {/* Footer */}
-      <div className="p-4 border-t border-gray-700">
+      {/* <div className="p-4 border-t border-gray-700">
         <div className="bg-gray-800 rounded-lg p-3">
           <p className="text-xs text-gray-400 mb-1">Need Help?</p>
           <a
@@ -104,7 +104,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeView, setActiveView }) => {
             Documentation
           </a>
         </div>
-      </div>
+      </div> */}
     </aside>
   );
 };
