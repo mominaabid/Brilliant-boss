@@ -209,7 +209,7 @@ const JobsPage = () => {
               </div>
 
               {/* Job Type Filter */}
-              <div className="relative">
+              {/* <div className="relative">
                 <MdWork className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <select
                   value={typeFilter}
@@ -223,7 +223,7 @@ const JobsPage = () => {
                     </option>
                   ))}
                 </select>
-              </div>
+              </div> */}
 
               {/* Clear Filters */}
               {(searchTerm || locationFilter || typeFilter || categoryFilter) && (
