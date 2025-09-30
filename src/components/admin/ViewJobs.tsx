@@ -19,6 +19,7 @@ interface Job {
   keyResponsibilities?: string;
   qualifications?: string;
   categoryId: string;
+  categoryName:string;
 }
 
 interface ViewJobsProps {
@@ -155,89 +156,208 @@ const ViewJobs: React.FC<ViewJobsProps> = ({
                 key={job._id}
                 className="bg-gray-50 border border-gray-200 p-6 rounded-lg hover:shadow-md transition-all"
               >
-                {editJob && editJob._id === job._id ? (
-                  <div className="space-y-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          Job Title
-                        </label>
-                        <input
-                          type="text"
-                          value={editJob.title}
-                          onChange={(e) => setEditJob({ ...editJob, title: e.target.value })}
-                          className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none"
-                          placeholder="Job Title"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          Company Name
-                        </label>
-                        <input
-                          type="text"
-                          value={editJob.companyName}
-                          onChange={(e) => setEditJob({ ...editJob, companyName: e.target.value })}
-                          className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none"
-                          placeholder="Company Name"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          Country
-                        </label>
-                        <input
-                          type="text"
-                          value={editJob.country}
-                          onChange={(e) => setEditJob({ ...editJob, country: e.target.value })}
-                          className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none"
-                          placeholder="Country"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">
-                          Salary
-                        </label>
-                        <input
-                          type="number"
-                          value={editJob.salary}
-                          onChange={(e) => setEditJob({ ...editJob, salary: e.target.value })}
-                          className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none"
-                          placeholder="Salary"
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Description
-                      </label>
-                      <textarea
-                        value={editJob.description}
-                        onChange={(e) => setEditJob({ ...editJob, description: e.target.value })}
-                        className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none h-20 resize-none"
-                        placeholder="Job Description"
-                      />
-                    </div>
-                    <div className="flex gap-3">
-                      <button
-                        onClick={() => updateJob(job._id)}
-                        disabled={loading}
-                        className="bg-green-600 hover:bg-green-700 disabled:opacity-50 text-white px-6 py-2 rounded-lg font-medium transition-colors flex items-center gap-2"
-                      >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        Save Changes
-                      </button>
-                      <button
-                        onClick={() => setEditJob(null)}
-                        className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
-                      >
-                        Cancel
-                      </button>
-                    </div>
-                  </div>
-                ) : (
+              {editJob && editJob._id === job._id ? (
+  <div className="space-y-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Job Title
+        </label>
+        <input
+          type="text"
+          value={editJob.title}
+          onChange={(e) => setEditJob({ ...editJob, title: e.target.value })}
+          className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none"
+          placeholder="Job Title"
+        />
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Company Name
+        </label>
+        <input
+          type="text"
+          value={editJob.companyName}
+          onChange={(e) => setEditJob({ ...editJob, companyName: e.target.value })}
+          className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none"
+          placeholder="Company Name"
+        />
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Country
+        </label>
+        <input
+          type="text"
+          value={editJob.country}
+          onChange={(e) => setEditJob({ ...editJob, country: e.target.value })}
+          className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none"
+          placeholder="Country"
+        />
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Salary
+        </label>
+        <input
+          type="number"
+          value={editJob.salary}
+          onChange={(e) => setEditJob({ ...editJob, salary: e.target.value })}
+          className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none"
+          placeholder="Salary"
+        />
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Code
+        </label>
+        <input
+          type="number"
+          value={editJob.code}
+          onChange={(e) => setEditJob({ ...editJob, code: e.target.value })}
+          className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none"
+          placeholder="Job Code"
+        />
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Nationality
+        </label>
+        <input
+          type="text"
+          value={editJob.nationality}
+          onChange={(e) => setEditJob({ ...editJob, nationality: e.target.value })}
+          className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none"
+          placeholder="Nationality"
+        />
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Requirement
+        </label>
+        <input
+          type="text"
+          value={editJob.requirement}
+          onChange={(e) => setEditJob({ ...editJob, requirement: e.target.value })}
+          className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none"
+          placeholder="Requirements"
+        />
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Job Posting Date
+        </label>
+        <input
+          type="date"
+          value={editJob.jobPostingDate ? editJob.jobPostingDate.split('T')[0] : ''}
+          onChange={(e) => setEditJob({ ...editJob, jobPostingDate: e.target.value })}
+          className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none"
+        />
+      </div>
+    
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Category Name
+        </label>
+        <input
+          type="text"
+          value={editJob.categoryName}
+          onChange={(e) => setEditJob({ ...editJob, categoryName: e.target.value })}
+          className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none"
+          placeholder="Category"
+        />
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Qualifications
+        </label>
+        <input
+          type="text"
+          value={editJob.qualifications}
+          onChange={(e) => setEditJob({ ...editJob, qualifications: e.target.value })}
+          className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none"
+          placeholder="Qualifications"
+        />
+      </div>
+    </div>
+    
+    <div className="grid grid-cols-1 gap-4">
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Description
+        </label>
+        <textarea
+          value={editJob.description}
+          onChange={(e) => setEditJob({ ...editJob, description: e.target.value })}
+          className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none h-20 resize-none"
+          placeholder="Job Description"
+        />
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          The Ideal Candidate
+        </label>
+        <textarea
+          value={editJob.theIdealCandidate}
+          onChange={(e) => setEditJob({ ...editJob, theIdealCandidate: e.target.value })}
+          className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none h-20 resize-none"
+          placeholder="Describe the ideal candidate"
+        />
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Responsibilities
+        </label>
+        <textarea
+          value={editJob.responsibilities}
+          onChange={(e) => setEditJob({ ...editJob, responsibilities: e.target.value })}
+          className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none h-20 resize-none"
+          placeholder="Job Responsibilities"
+        />
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Key Responsibilities
+        </label>
+        <textarea
+          value={editJob.keyResponsibilities}
+          onChange={(e) => setEditJob({ ...editJob, keyResponsibilities: e.target.value })}
+          className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none h-20 resize-none"
+        />
+      </div>
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">
+          Offer
+        </label>
+        <textarea
+          value={editJob.offer}
+          onChange={(e) => setEditJob({ ...editJob, offer: e.target.value })}
+          className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none h-20 resize-none"
+          placeholder="What we offer"
+        />
+      </div>
+    </div>
+    
+    <div className="flex gap-3">
+      <button
+        onClick={() => updateJob(job._id)}
+        disabled={loading}
+        className="bg-green-600 hover:bg-green-700 disabled:opacity-50 text-white px-6 py-2 rounded-lg font-medium transition-colors flex items-center gap-2"
+      >
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+        </svg>
+        Save Changes
+      </button>
+      <button
+        onClick={() => setEditJob(null)}
+        className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+) : (
                   <div className="flex justify-between items-start">
                     <div className="flex-1">
                       <div className="flex items-start justify-between mb-3">

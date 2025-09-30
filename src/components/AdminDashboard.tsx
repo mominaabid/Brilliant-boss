@@ -32,6 +32,7 @@ export interface Job {
   keyResponsibilities?: string;
   qualifications?: string;
   categoryId: string;
+  categoryName: string;
 }
 
 const AdminDashboard: React.FC = () => {
