@@ -12,7 +12,7 @@ interface JobFormData {
   companyName: string;
   country: string;
   salary: string;
-  code: string;
+  code?: string | number;
   nationality: string;
   requirement: string;
   jobPostingDate: string;
@@ -97,7 +97,8 @@ const AddJob: React.FC<AddJobProps> = ({
       const payload = {
         ...jobData,
         salary: jobData.salary ? Number(jobData.salary) : undefined,
-        code: jobData.code ? Number(jobData.code) : undefined,
+        code: jobData.code ? String(jobData.code) : undefined,
+
       };
       await axios.post(`${baseUrl}/addJob`, payload, {
         headers: { Authorization: `Bearer ${token}` },
@@ -251,7 +252,7 @@ const AddJob: React.FC<AddJobProps> = ({
                 </label>
                 <input
                   type="number"
-                  placeholder="e.g., 12345"
+                  placeholder="e.g., A12345"
                   value={jobData.code}
                   onChange={(e) => handleJobInputChange("code", e.target.value)}
                   className="w-full border-2 border-gray-200 px-4 py-3 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
