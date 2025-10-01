@@ -1,1 +1,1 @@
-export const BASE_URL = "https://brilliant-boss-backend.vercel.app/admin"
+export const BASE_URL = "https://brilliantbossbackend.vercel.app//admin"

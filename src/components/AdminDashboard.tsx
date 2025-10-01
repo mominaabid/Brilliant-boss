@@ -8,7 +8,7 @@ import ViewCategories from "./admin/ViewCategories";
 import AddJob from "./admin/AddJob";
 import ViewJobs from "./admin/ViewJobs";
 
-const BASE_URL = "https://brilliant-boss-backend.vercel.app/admin";
+const BASE_URL = "https://brilliantbossbackend.vercel.app/admin";
 
 export interface Category {
   _id: string;

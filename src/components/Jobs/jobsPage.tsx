@@ -25,7 +25,7 @@ const JobsPage = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await axios.get("https://brilliant-boss-backend.vercel.app/admin/getJobs"); //  updated endpoint
+        const res = await axios.get("https://brilliantbossbackend.vercel.app/admin/getJobs"); //  updated endpoint
 
         const data = res.data as { jobs?: Job[]; [key: string]: any };
         if (Array.isArray(data.jobs)) {

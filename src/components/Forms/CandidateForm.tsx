@@ -42,27 +42,21 @@ const CandidateForm: React.FC = () => {
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    // Add resume filename (since free Formspree doesn't accept actual file uploads)
-    if (resumeName) {
-      formData.append("resume_filename", resumeName);
-    }
-
     try {
-      const response = await fetch("https://formspree.io/f/xzzawdja", {
+      const response = await fetch("https://formsubmit.co/brilliantbosshr@gmail.com", {
         method: "POST",
         body: formData,
-        headers: { Accept: "application/json" },
       });
 
       if (response.ok) {
-        setStatus("Thanks for submitting your resume!");
+        setStatus(" Thanks for submitting your resume! We’ll contact you shortly.");
         form.reset();
         setResumeName("");
       } else {
-        setStatus("Oops! Something went wrong. Please try again.");
+        setStatus(" Something went wrong. Please try again.");
       }
     } catch (error) {
-      setStatus("Network error. Please try again later.");
+      setStatus(" Network error. Please try again later.");
     }
   };
 
@@ -76,16 +70,15 @@ const CandidateForm: React.FC = () => {
       <Header />
 
       {/* Banner */}
-    <section
-  className="relative min-h-[280px] sm:min-h-[350px] lg:min-h-[450px] flex items-center justify-center bg-cover bg-top"
-  style={{ backgroundImage: "url('/candidate-3.jpg')" }}
->
-  <div className="absolute inset-0 bg-black/50"></div>
-  <h1 className="relative text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center px-4">
-    Candidate Recruitment Form
-  </h1>
-</section>
-
+      <section
+        className="relative min-h-[280px] sm:min-h-[350px] lg:min-h-[450px] flex items-center justify-center bg-cover bg-top"
+        style={{ backgroundImage: "url('/candidate-3.jpg')" }}
+      >
+        <div className="absolute inset-0 bg-black/50"></div>
+        <h1 className="relative text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center px-4">
+          Candidate Recruitment Form
+        </h1>
+      </section>
 
       {/* Two-column Form Section */}
       <section className="flex flex-col lg:flex-row justify-center items-start py-12 px-4 gap-12 max-w-6xl mx-auto">
@@ -137,24 +130,29 @@ const CandidateForm: React.FC = () => {
             Submit Your Resume
           </h2>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4" encType="multipart/form-data">
+            {/* Hidden Config for FormSubmit */}
+            <input type="hidden" name="_autoresponse" value="Thanks for your interest, we will contact you shortly." />
+            <input type="hidden" name="_subject" value="New Job Application" />
+            <input type="hidden" name="_captcha" value="false" />
+
             <Input
               label="Full Name"
-              name="full_name"
+              name="Full Name"
               type="text"
               placeholder="John Doe"
               required
             />
             <Input
               label="Mobile Number"
-              name="mobile"
+              name="Mobile Number"
               type="tel"
               placeholder="+971 50 123 4567"
               required
             />
             <Input
               label="Nationality"
-              name="nationality"
+              name="Nationality"
               type="text"
               placeholder="Emirati"
               required
@@ -179,6 +177,7 @@ const CandidateForm: React.FC = () => {
                 </span>
                 <input
                   type="file"
+                  name="Resume"
                   className="hidden"
                   onChange={handleFileChange}
                   accept=".pdf,.doc,.docx"
