@@ -1,5 +1,3 @@
-// app/CandidateFormPage.tsx
-
 import React, { useState } from "react";
 import Header from "../Header";
 import { HiOutlineArrowUpTray } from "react-icons/hi2";
@@ -26,6 +24,7 @@ const Input: React.FC<InputProps> = ({ label, name, ...props }) => (
 const CandidateForm: React.FC = () => {
   const [resumeName, setResumeName] = useState("");
   const [status, setStatus] = useState("");
+  const [statusType, setStatusType] = useState<"success" | "error" | "loading" | "">("");
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
@@ -38,6 +37,7 @@ const CandidateForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("Submitting...");
+    setStatusType("loading");
 
     const form = e.currentTarget;
     const formData = new FormData(form);
@@ -49,14 +49,17 @@ const CandidateForm: React.FC = () => {
       });
 
       if (response.ok) {
-        setStatus(" Thanks for submitting your resume! We’ll contact you shortly.");
+        setStatus("✅ Thanks for submitting your resume! We’ll contact you shortly.");
+        setStatusType("success");
         form.reset();
         setResumeName("");
       } else {
-        setStatus(" Something went wrong. Please try again.");
+        setStatus("Something went wrong. Please try again.");
+        setStatusType("error");
       }
     } catch (error) {
-      setStatus(" Network error. Please try again later.");
+      setStatus("Network error. Please try again later.");
+      setStatusType("error");
     }
   };
 
@@ -93,12 +96,12 @@ const CandidateForm: React.FC = () => {
           <h2 className="text-3xl font-bold text-gray-800 mb-4">Join Our Team</h2>
 
           <p className="text-gray-700 mb-4">
-            We are looking for talented and motivated individuals to join our team. 
+            We are looking for talented and motivated individuals to join our team.
             Fill out the form on the right to submit your resume. Make sure your information is complete and up to date for a better chance of being shortlisted.
           </p>
 
           <p className="text-gray-700 mb-4">
-            Our recruitment process is designed to find the best fit for both our company and candidates. 
+            Our recruitment process is designed to find the best fit for both our company and candidates.
             We value professionalism, skills, and a passion for growth.
           </p>
 
@@ -113,7 +116,7 @@ const CandidateForm: React.FC = () => {
           </p>
 
           <p className="text-gray-700">
-            Submit your resume with accurate details including your skills, experience, and contact information. 
+            Submit your resume with accurate details including your skills, experience, and contact information.
             Our HR team will review your application and reach out with next steps promptly.
           </p>
         </motion.div>
@@ -194,8 +197,19 @@ const CandidateForm: React.FC = () => {
             </button>
           </form>
 
+          {/* Status Message */}
           {status && (
-            <p className="mt-4 text-center text-sm text-gray-600">{status}</p>
+            <p
+              className={`mt-4 text-center text-sm font-semibold ${
+                statusType === "success"
+                  ? "text-green-600"
+                  : statusType === "error"
+                  ? "text-red-600"
+                  : "text-gray-600"
+              }`}
+            >
+              {status}
+            </p>
           )}
         </motion.div>
       </section>

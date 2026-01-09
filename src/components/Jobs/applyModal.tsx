@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import type { Job } from "../types";
 import { motion } from "framer-motion";
 import {
@@ -9,9 +9,10 @@ import {
   MdPhone,
   MdFlag,
 } from "react-icons/md";
+import axios from "axios";
 
 interface ModalProps {
-  job: Job;
+  job?: Job;
   onClose: () => void;
 }
 
@@ -26,7 +27,10 @@ const modalVariants = {
   exit: { opacity: 0, scale: 0.95, y: 20 },
 };
 
-const ApplyModal: React.FC<ModalProps> = ({  onClose }) => {
+const ApplyModal: React.FC<ModalProps> = ({ onClose }) => {
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
   // Lock body scroll when modal is open
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -35,6 +39,27 @@ const ApplyModal: React.FC<ModalProps> = ({  onClose }) => {
     };
   }, []);
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // prevent redirect
+    setSuccessMessage("");
+    setErrorMessage("");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      await axios.post("https://formsubmit.co/ajax/brilliantbosshr@gmail.com", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
+      setSuccessMessage(
+        "✅ Thanks for submitting your resume. We will contact you shortly!"
+      );
+      form.reset();
+    } catch (error) {
+      setErrorMessage("Something went wrong. Please try again later.");
+    }
+  };
 
   return (
     <motion.div
@@ -69,16 +94,10 @@ const ApplyModal: React.FC<ModalProps> = ({  onClose }) => {
 
         {/* Form */}
         <form
-          action="https://formsubmit.co/brilliantbosshr@gmail.com"
-          method="POST"
+          onSubmit={handleSubmit}
           encType="multipart/form-data"
           className="p-6 space-y-6"
         >
-          {/* Hidden inputs for configuration */}
-          <input type="hidden" name="_autoresponse" value="Thanks for your interest, we will contact you shortly." />
-          <input type="hidden" name="_subject" value="New Job Application" />
-          <input type="hidden" name="_captcha" value="false" />
-
           {/* Full Name */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -163,6 +182,14 @@ const ApplyModal: React.FC<ModalProps> = ({  onClose }) => {
                  transition-all duration-200"
             />
           </div>
+
+          {/* Success / Error message */}
+          {successMessage && (
+            <p className="text-green-600 font-medium">{successMessage}</p>
+          )}
+          {errorMessage && (
+            <p className="text-red-600 font-medium">{errorMessage}</p>
+          )}
 
           {/* Buttons */}
           <div className="flex justify-end space-x-3 pt-4 border-t border-gray-200">

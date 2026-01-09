@@ -24,7 +24,7 @@ import Signup from "./components/login/signup";
 import ContactForm from "./components/Forms/ContactForm";
 import CandidateForm from "./components/Forms/CandidateForm";
 import EmployeeForm from "./components/Forms/EmployeeForm";
-
+import CTA from "./components/CTA";
 import AdminDashboard from "./components/AdminDashboard";
 
 import { ProtectedRoute } from "./components/PrivateRoute/ProtectedRoute";
@@ -110,6 +110,7 @@ export default function App() {
             <Route path="/contact" element={<ContactForm />} />
             <Route path="/candidate" element={<CandidateForm />} />
             <Route path="/employee" element={<EmployeeForm />} />
+            <Route path="/cta" element={<CTA />} />
           </Route>
 
           {/* Fallback Route */}

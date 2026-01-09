@@ -6,7 +6,7 @@ import { logOut, resetStore } from "../Redux/UserSlice";
 import { useAppSelector } from "../Redux/Hooks";
 import axios from "axios";
 
-const BASE_URL = "https://brilliantbossbackend.vercel.app/admin";
+const BASE_URL = "https://brilliant-boss-backend-gr6w.vercel.app/admin";
 
 interface HeaderProps {
   userEmail: string;

@@ -20,7 +20,6 @@ interface JobFormData {
   theIdealCandidate: string;
   responsibilities: string;
   offer: string;
-  keyResponsibilities: string;
   qualifications: string;
   categoryId: string;
 }
@@ -55,10 +54,11 @@ const AddJob: React.FC<AddJobProps> = ({
     theIdealCandidate: "",
     responsibilities: "",
     offer: "",
-    keyResponsibilities: "",
     qualifications: "",
     categoryId: "",
   });
+
+  const [displaySalary, setDisplaySalary] = useState(""); // ✅ full salary text
   const [successMessage, setSuccessMessage] = useState("");
 
   const handleJobInputChange = (field: keyof JobFormData, value: string) => {
@@ -79,10 +79,10 @@ const AddJob: React.FC<AddJobProps> = ({
       theIdealCandidate: "",
       responsibilities: "",
       offer: "",
-      keyResponsibilities: "",
       qualifications: "",
       categoryId: "",
     });
+    setDisplaySalary("");
   };
 
   const addJob = async () => {
@@ -94,15 +94,19 @@ const AddJob: React.FC<AddJobProps> = ({
     try {
       setLoading(true);
       setError(null);
+
+      // ✅ Send numeric salary to backend, fullSalaryText kept for frontend
       const payload = {
         ...jobData,
-        salary: jobData.salary ? Number(jobData.salary) : undefined,
+        salary: jobData.salary.trim(), // numeric only
+        fullSalaryText: displaySalary.trim(), // full typed value (500 PKR)
         code: jobData.code ? String(jobData.code) : undefined,
-
       };
+
       await axios.post(`${baseUrl}/addJob`, payload, {
         headers: { Authorization: `Bearer ${token}` },
       });
+
       resetJobForm();
       setSuccessMessage("Job added successfully!");
       setTimeout(() => setSuccessMessage(""), 3000);
@@ -176,7 +180,9 @@ const AddJob: React.FC<AddJobProps> = ({
               </svg>
               Basic Information
             </h3>
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {/* Title */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Job Title *
@@ -190,6 +196,8 @@ const AddJob: React.FC<AddJobProps> = ({
                   required
                 />
               </div>
+
+              {/* Company */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Company Name *
@@ -203,6 +211,8 @@ const AddJob: React.FC<AddJobProps> = ({
                   required
                 />
               </div>
+
+              {/* Category */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Category *
@@ -221,6 +231,8 @@ const AddJob: React.FC<AddJobProps> = ({
                   ))}
                 </select>
               </div>
+
+              {/* Country */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Country
@@ -233,38 +245,45 @@ const AddJob: React.FC<AddJobProps> = ({
                   className="w-full border-2 border-gray-200 px-4 py-3 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
                 />
               </div>
+
+              {/* ✅ Updated Salary */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Salary
                 </label>
                 <input
-                  type="number"
-                  placeholder="e.g., 50000"
-                  value={jobData.salary}
-                  onChange={(e) => handleJobInputChange("salary", e.target.value)}
+                  type="text"
+                  placeholder="e.g., 500 PKR or 1200 USD"
+                  value={displaySalary}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    setDisplaySalary(value); // full text
+                    handleJobInputChange("salary", value.replace(/[^0-9.]/g, "")); // only number
+                  }}
                   className="w-full border-2 border-gray-200 px-4 py-3 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-                  min="0"
                 />
               </div>
-            <div>
-  <label className="block text-sm font-medium text-gray-700 mb-1">
-    Job Code
-  </label>
-  <input
-    type="text"
-    placeholder="e.g., A12345"
-    value={jobData.code}
-    onChange={(e) => {
-      const value = e.target.value;
-      // Allow only letters + numbers
-      if (/^[a-zA-Z0-9]*$/.test(value)) {
-        handleJobInputChange("code", value);
-      }
-    }}
-    className="w-full border-2 border-gray-200 px-4 py-3 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-  />
-</div>
 
+              {/* Job Code */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Job Code
+                </label>
+                <input
+                  type="text"
+                  placeholder="e.g., A12345"
+                  value={jobData.code}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (/^[a-zA-Z0-9]*$/.test(value)) {
+                      handleJobInputChange("code", value);
+                    }
+                  }}
+                  className="w-full border-2 border-gray-200 px-4 py-3 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
+                />
+              </div>
+
+              {/* Nationality */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Nationality
@@ -277,6 +296,8 @@ const AddJob: React.FC<AddJobProps> = ({
                   className="w-full border-2 border-gray-200 px-4 py-3 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
                 />
               </div>
+
+              {/* Requirements */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Requirements
@@ -289,6 +310,8 @@ const AddJob: React.FC<AddJobProps> = ({
                   className="w-full border-2 border-gray-200 px-4 py-3 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
                 />
               </div>
+
+              {/* Posting Date */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Posting Date
@@ -316,6 +339,7 @@ const AddJob: React.FC<AddJobProps> = ({
               </svg>
               Detailed Information
             </h3>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -326,9 +350,9 @@ const AddJob: React.FC<AddJobProps> = ({
                   value={jobData.description}
                   onChange={(e) => handleJobInputChange("description", e.target.value)}
                   className="w-full border-2 border-gray-200 px-4 py-3 rounded-lg focus:border-blue-500 focus:outline-none transition-colors h-24 resize-none"
-                  rows={3}
                 />
               </div>
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   The Ideal Candidate
@@ -338,9 +362,9 @@ const AddJob: React.FC<AddJobProps> = ({
                   value={jobData.theIdealCandidate}
                   onChange={(e) => handleJobInputChange("theIdealCandidate", e.target.value)}
                   className="w-full border-2 border-gray-200 px-4 py-3 rounded-lg focus:border-blue-500 focus:outline-none transition-colors h-24 resize-none"
-                  rows={3}
                 />
               </div>
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Responsibilities
@@ -353,6 +377,7 @@ const AddJob: React.FC<AddJobProps> = ({
                   className="w-full border-2 border-gray-200 px-4 py-3 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
                 />
               </div>
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   What We Offer
@@ -365,18 +390,7 @@ const AddJob: React.FC<AddJobProps> = ({
                   className="w-full border-2 border-gray-200 px-4 py-3 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Key Responsibilities
-                </label>
-                <input
-                  type="text"
-                  placeholder="e.g., Project management"
-                  value={jobData.keyResponsibilities}
-                  onChange={(e) => handleJobInputChange("keyResponsibilities", e.target.value)}
-                  className="w-full border-2 border-gray-200 px-4 py-3 rounded-lg focus:border-blue-500 focus:outline-none transition-colors"
-                />
-              </div>
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Qualifications
@@ -392,13 +406,18 @@ const AddJob: React.FC<AddJobProps> = ({
             </div>
           </div>
 
-          {/* Action Buttons */}
+          {/* Buttons */}
           <div className="flex gap-4 pt-4 border-t border-gray-200">
             <button
               type="submit"
               className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-3 rounded-lg font-medium transition-all shadow-lg hover:shadow-xl flex items-center gap-2"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -408,6 +427,7 @@ const AddJob: React.FC<AddJobProps> = ({
               </svg>
               Add Job
             </button>
+
             <button
               type="button"
               onClick={resetJobForm}

@@ -16,10 +16,13 @@ interface Job {
   theIdealCandidate?: string;
   responsibilities?: string;
   offer?: string;
-  keyResponsibilities?: string;
+  // keyResponsibilities?: string;
   qualifications?: string;
   categoryId: string;
   categoryName:string;
+   displaySalary?: string;
+  currency?: string;
+  
 }
 
 interface ViewJobsProps {
@@ -276,13 +279,14 @@ const ViewJobs: React.FC<ViewJobsProps> = ({
         <label className="block text-sm font-medium text-gray-700 mb-1">
           Salary
         </label>
-        <input
-          type="number"
-          value={editJob.salary}
-          onChange={(e) => setEditJob({ ...editJob, salary: e.target.value })}
-          className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none"
-          placeholder="Salary"
-        />
+       <input
+  type="text"  // was number
+  value={editJob.salary}
+  onChange={(e) => setEditJob({ ...editJob, salary: e.target.value })}
+  className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none"
+  placeholder="Salary (e.g., '700 PKR', '800 USD')"
+/>
+
       </div>
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -393,16 +397,7 @@ const ViewJobs: React.FC<ViewJobsProps> = ({
           placeholder="Job Responsibilities"
         />
       </div>
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          Key Responsibilities
-        </label>
-        <textarea
-          value={editJob.keyResponsibilities}
-          onChange={(e) => setEditJob({ ...editJob, keyResponsibilities: e.target.value })}
-          className="w-full border-2 border-gray-200 px-3 py-2 rounded-lg focus:border-blue-500 focus:outline-none h-20 resize-none"
-        />
-      </div>
+   
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">
           Offer
@@ -464,14 +459,22 @@ const ViewJobs: React.FC<ViewJobsProps> = ({
                             <span>{job.country}</span>
                           </div>
                         )}
-                        {job.salary && (
-                          <div className="flex items-center gap-2 text-green-600 font-medium">
-                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                            </svg>
-                            <span>${job.salary}</span>
-                          </div>
-                        )}
+{job.salary && (
+  <div className="flex items-center gap-2 text-green-600 font-medium">
+    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"
+      />
+    </svg>
+    <span>{job.salary}</span>  {/* just show whatever user typed */}
+  </div>
+)}
+
+
+
                         {job.nationality && (
                           <div className="flex items-center gap-2">
                             <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">

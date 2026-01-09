@@ -9,7 +9,7 @@ import {
   MdAttachMoney,
   MdFlag,
   MdCode,
-  MdPeople
+  
 } from "react-icons/md";
 import { IoCalendarOutline, IoBriefcaseOutline } from "react-icons/io5";
 
@@ -67,13 +67,13 @@ const JobDetailsModal: React.FC<ModalProps> = ({ job, onClose, onApply }) => {
   const jobInfoItems = [
     { label: "Category:", value: job.categoryName || job.type, icon: <IoBriefcaseOutline className="w-4 h-4 text-blue-600" /> },
     { label: "Title:", value: job.title, icon: <MdWork className="w-4 h-4 text-green-600" /> },
-    { label: "Company:", value: job.company, icon: <MdBusiness className="w-4 h-4 text-purple-600" /> },
+    { label: "Company:", value: job.companyName, icon: <MdBusiness className="w-4 h-4 text-purple-600" /> },
     { label: "Country:", value: job.country || job.location, icon: <MdLocationOn className="w-4 h-4 text-red-600" /> },
     { label: "Salary:", value: job.salary, icon: <MdAttachMoney className="w-4 h-4 text-emerald-600" /> },
     { label: "Code:", value: job.code || job.id, icon: <MdCode className="w-4 h-4 text-indigo-600" /> },
     { label: "Nationality:", value: job.nationality, icon: <MdFlag className="w-4 h-4 text-orange-600" /> },
-    { label: "Requirement:", value: job.vacancies ? `${job.vacancies} Vacancies` : job.requirements, icon: <MdPeople className="w-4 h-4 text-teal-600" /> },
-    { label: "Job Posting Date:", value: job.postedDate ? formatDate(job.postedDate) : "", icon: <IoCalendarOutline className="w-4 h-4 text-gray-600" /> },
+   
+    { label: "Job Posting Date:", value: job.jobPostingDate ? formatDate(job.jobPostingDate) : "", icon: <IoCalendarOutline className="w-4 h-4 text-gray-600" /> },
   ];
 
   return (
@@ -126,6 +126,40 @@ const JobDetailsModal: React.FC<ModalProps> = ({ job, onClose, onApply }) => {
                 )
             )}
           </div>
+          {job.description && (
+  <div className="mb-6">
+    <h3 className="text-lg font-bold text-gray-800 mb-2 pb-1 border-b-2 border-gray-100">
+      Job Description:
+    </h3>
+    <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 text-sm text-gray-700">
+      {job.description}
+    </div>
+  </div>
+)}
+{/* {job.keyResponsibilities && (
+  <div className="mb-6">
+    <h3 className="text-lg font-bold text-gray-800 mb-2 pb-1 border-b-2 border-green-100">
+      Key Responsibilities:
+    </h3>
+    <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-sm text-gray-700">
+      {Array.isArray(job.keyResponsibilities)
+        ? job.keyResponsibilities.map((item, idx) => <li key={idx}>{item}</li>)
+        : job.keyResponsibilities}
+    </div>
+  </div>
+)} */}
+{job.requirement && (
+  <div className="mb-6">
+    <h3 className="text-lg font-bold text-gray-800 mb-2 pb-1 border-b-2 border-teal-100">
+      Requirements:
+    </h3>
+    <div className="bg-teal-50 border border-teal-200 rounded-lg p-4 text-sm text-gray-700">
+      {job.requirement}
+    </div>
+  </div>
+)}
+
+
 
          {/* Ideal Candidate */}
 {job.theIdealCandidate && (
@@ -139,19 +173,12 @@ const JobDetailsModal: React.FC<ModalProps> = ({ job, onClose, onApply }) => {
   </div>
 )}
 
+
+
 {/* Key Responsibilities (already partially handled) */}
-{job.keyResponsibilities && (
-  <div className="mb-6">
-    <h3 className="text-lg font-bold text-gray-800 mb-2 pb-1 border-b-2 border-green-100">
-      Key Responsibilities:
-    </h3>
-    <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-sm text-gray-700">
-      {Array.isArray(job.keyResponsibilities)
-        ? job.keyResponsibilities.map((item, idx) => <li key={idx}>{item}</li>)
-        : job.keyResponsibilities}
-    </div>
-  </div>
-)}
+
+
+
 
 {/* Offer / Perks */}
 {job.offer && (
@@ -170,7 +197,7 @@ const JobDetailsModal: React.FC<ModalProps> = ({ job, onClose, onApply }) => {
           {responsibilities.length > 0 && (
             <div className="mb-6">
               <h3 className="text-lg font-bold text-gray-800 mb-4 pb-2 border-b-2 border-green-100">
-                Key Responsibilities:
+                 Responsibilities:
               </h3>
               <div className="bg-green-50 border border-green-200 rounded-lg p-4">
                 <ul className="space-y-2">

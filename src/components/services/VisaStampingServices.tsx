@@ -2,6 +2,7 @@ import { CallToActionButton } from "../../utils/helper";
 import Header from "../Header";
 import { HiOutlineShieldExclamation } from "react-icons/hi2";
 import { Link } from "react-router-dom";
+import CTA from "../CTA";
 import {
   DocumentCheckIcon,
   ClockIcon,
@@ -217,30 +218,7 @@ export default function VisaStampingServices() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gray-200 ">
-        <div className="container mx-auto px-6 max-sm:py-8 py-20 text-center text-blue-950">
-          <h2 className="text-3xl lg:text-4xl font-bold">
-            Finalize Your{" "}
-            <span className="text-blue-950">Saudi Visa</span> Journey with
-            Confidence
-          </h2>
-          <p className="text-lg max-w-2xl mx-auto mt-4">
-            Let our experts handle the complexities of Saudi visa stamping so you
-            can focus on your upcoming travel or new role. We proudly serve
-            applicants across the globe — contact us today to get started.
-          </p>
-
-          <div className="mt-8">
-            <Link to="/contact">
-              <CallToActionButton
-                text="Contact Us for Stamping Services"
-                isPrimary={true}
-                className=" bg-blue-950 text-white border border-blue-950"
-              />
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CTA />
     </main>
   );
 }

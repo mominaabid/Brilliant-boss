@@ -25,7 +25,7 @@ const JobsPage = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await axios.get("https://brilliantbossbackend.vercel.app/admin/getJobs"); //  updated endpoint
+        const res = await axios.get("https://brilliant-boss-backend-gr6w.vercel.app/admin/getJobs"); //  updated endpoint
 
         const data = res.data as { jobs?: Job[]; [key: string]: any };
         if (Array.isArray(data.jobs)) {
@@ -51,7 +51,7 @@ const JobsPage = () => {
             vacancies: 2,
             postedDate: "2025-09-01",
             description: "This is a fallback job example shown if backend fails.",
-            requirements: "At least 2 years experience required.",
+            requirement: "At least 2 years experience required.",
             email: "brilliantbosshr@gmail.com",
             whatsapp: "+971545188045",
             responsibilities: ["Example responsibility 1", "Example responsibility 2"],

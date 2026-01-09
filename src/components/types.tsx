@@ -16,10 +16,10 @@ export interface Job {
   postedDate?: string;            // Date job was posted
   jobPostingDate?: string;        // Backend field for posting date
   description?: string;           // Job description
-  requirements?: string;          // Optional requirements
+  requirement?: string;          // Optional requirements
   theIdealCandidate?: string;     // Optional ideal candidate description
   responsibilities?: string | string[];  // Can be string or array of strings
-  keyResponsibilities?: string | string[]; // Optional key responsibilities
+  // keyResponsibilities?: string | string[]; // Optional key responsibilities
   offer?: string;                 // Optional perks or offers
   qualifications?: string | string[]; // Optional qualifications
   email?: string;                 // Contact email
@@ -27,4 +27,7 @@ export interface Job {
   status?: "Y" | "N";    
   phone?: string;                  // Contact phone number
   categoryName?: string;         // Category name (if needed)
+    displaySalary?: string; // full text e.g. "500 USD"
+  currency?: string; // optional currency code if you ever add one
+  salaryText?: string;
 };

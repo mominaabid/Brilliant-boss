@@ -8,7 +8,7 @@ import ViewCategories from "./admin/ViewCategories";
 import AddJob from "./admin/AddJob";
 import ViewJobs from "./admin/ViewJobs";
 
-const BASE_URL = "https://brilliantbossbackend.vercel.app/admin";
+const BASE_URL = "https://brilliant-boss-backend-gr6w.vercel.app/admin";
 
 export interface Category {
   _id: string;
@@ -29,10 +29,12 @@ export interface Job {
   theIdealCandidate?: string;
   responsibilities?: string;
   offer?: string;
-  keyResponsibilities?: string;
+  // keyResponsibilities?: string;
   qualifications?: string;
   categoryId: string;
   categoryName: string;
+    displaySalary?: string; // full text e.g. "500 USD"
+  currency?: string; // optional currency code if you ever add one
 }
 
 const AdminDashboard: React.FC = () => {
